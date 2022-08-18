@@ -1,17 +1,39 @@
 from django import forms
 from .models import Account
 
+
 class RegistrationForm(forms.ModelForm):
-    full_name = forms.CharField(max_length=50, label='Full Name', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}))
-    email     = forms.EmailField(required=True, label="Email", widget=forms.TextInput(attrs={'placeholder': 'Please enter your email'}))
-    username  = forms.CharField(required=True, label="User Name", widget=forms.TextInput(attrs={'placeholder': 'Please enter your user name'}))
-    password = forms.CharField(required=True, label="Password", widget=forms.PasswordInput(attrs={'placeholder': 'Please enter your password'}))
-    phone_number = forms.CharField(required=True, label="Phone Number", widget=forms.TextInput(attrs={'placeholder': 'Please enter your phone number'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = Account
-        fields = ['full_name','username', 'email', 'phone_number', 'password']
-        
+        fields = ['full_name', 'email', 'phone_number', 'password', 'confirm_password']
+        widgets = {
+            'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['full_name'].widget.attrs['placeholder'] = 'Full Name'
+        self.fields['email'].widget.attrs['placeholder'] = 'Email'
+        self.fields['phone_number'].widget.attrs['placeholder'] = 'Phone Number'
+        self.fields['password'].widget.attrs['placeholder'] = 'Password'
+        self.fields['confirm_password'].widget.attrs['placeholder'] = 'Confirm Password'
+
+    def clean(self):
+        cleaned_data = super(RegistrationForm, self).clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password != confirm_password: 
+            raise forms.ValidationError('Password does not match!')
+
+        return cleaned_data 
 
 
-# class LoginForm(forms.Form):
+
+
+

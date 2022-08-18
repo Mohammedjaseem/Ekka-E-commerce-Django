@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import redirect
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
@@ -12,7 +13,6 @@ class MyAccountManager(BaseUserManager):
 
         user = self.model(
             email    =self.normalize_email(email),
-
             username =username,
         )
 
@@ -34,7 +34,7 @@ class MyAccountManager(BaseUserManager):
         return user
 
 class Account(AbstractBaseUser):
-    username     = models.CharField(max_length=50, unique=True)
+    username     = models.CharField(max_length=50)#removed uniq due to diffrent doamins and auto generation of id
     email        = models.EmailField(max_length=255, unique=True)
     phone_number = models.CharField(max_length=20, blank=True) 
     full_name = models.CharField(max_length=50, blank=True) 

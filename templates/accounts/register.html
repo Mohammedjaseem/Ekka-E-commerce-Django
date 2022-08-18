@@ -6,6 +6,17 @@
 <link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css' %}">
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
+<style>
+    .blink_me {
+        animation: blinker 1s linear infinite;
+      }
+      
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -124,16 +135,7 @@
                 <div class="ec-register-wrapper">
                     <div class="ec-register-container">
                         <div class="ec-register-form">
-                            {% for message in messages %} 
-                            <div class="blink_me">
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>{{ message }}</strong>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            {% endfor %}
+                             {% include 'includes/alerts.html' %}<br>
                             <form action="#" method="post">
                                 {% csrf_token %}
                                 <span class="ec-register-wrap ec-register-half">
@@ -143,19 +145,25 @@
                                     {{ form.email|as_crispy_field }}
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
-                                    {{ form.username|as_crispy_field }}
+                                    {{ form.phone_number|as_crispy_field }}
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
                                     {{ form.password|as_crispy_field }}
                                 </span>
                                 <span class="ec-register-wrap ec-register-half">
-                                    {{ form.phone_number|as_crispy_field }}
+                                    {{ form.confirm_password|as_crispy_field }}
                                 </span>
                                 
-
+                                <span class="ec-register-wrap ec-register-btn blink_me">
+                                    {{ form|as_crispy_errors }} <!--error here prints-->
+                                </span>
+                                
                                 <span class="ec-register-wrap ec-register-btn">
                                     <button class="btn btn-primary" type="submit">Register</button>
                                 </span>
+                               
+                                
+                                
                             </form>
                         </div>
                     </div>

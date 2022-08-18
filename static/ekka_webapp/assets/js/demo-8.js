@@ -36,6 +36,11 @@ function ecAccessCookie(cookieName)
     return "";
 }
 
+//message close
+setTimeout(function(){
+    $('#message').fadeOut('slow');
+} , 3000); 
+
 // Function To Check Existing Cookie
 function ecCheckCookie()
 {

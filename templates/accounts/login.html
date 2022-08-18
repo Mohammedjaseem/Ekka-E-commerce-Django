@@ -127,10 +127,12 @@
             <div class="ec-login-wrapper">
                 <div class="ec-login-container">
                     <div class="ec-login-form">
+                        {% include 'includes/alerts.html' %}
                         <form action="#" method="post">
+                            {% csrf_token %}
                             <span class="ec-login-wrap">
                                 <label>Email Address*</label>
-                                <input type="text" name="name" placeholder="Enter your email add..." required />
+                                <input type="email" name="email" placeholder="Enter your email add..." required />
                             </span>
                             <span class="ec-login-wrap">
                                 <label>Password*</label>

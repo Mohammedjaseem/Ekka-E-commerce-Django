@@ -1,9 +1,19 @@
 
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <div id="message" class="container">
+    <div id="message" class="container" style="width:400px;">
    <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">
     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span> </button>
         {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}

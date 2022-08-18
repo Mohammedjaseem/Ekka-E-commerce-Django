@@ -143,3 +143,11 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
 }
+
+#email setup
+#smtp configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jassybrocamp@gmail.com'
+EMAIL_HOST_PASSWORD = 'tord jjuq bzaz fdhu'
+EMAIL_USE_TLS = True

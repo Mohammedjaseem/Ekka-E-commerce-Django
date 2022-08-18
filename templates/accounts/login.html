@@ -12,6 +12,15 @@
 
 {% block content %}
 
+{% if request.GET.command == 'verification'%}
+
+<div style="max-width: 550px; margin-top:100px; margin-left:500px; background-color:#00c04b; color: white; padding:25px; border-radius:25px;">
+    <h3 style="color:white;">Thank you for registering with us.</h3> Please check your email "{{ request.GET.email }}" for verification link.
+    <br><br>
+    Already verified? <a href="{% url 'login' %}" style="color:black;">Login</a>
+</div>
+
+{% else %}
 
 <!-- ekka Cart Start -->
 <div class="ec-side-cart-overlay"></div>
@@ -143,7 +152,7 @@
                             </span>
                             <span class="ec-login-wrap ec-login-btn">
                                 <button class="btn btn-primary" type="submit">Login</button>
-                                <a href="register.html" class="btn btn-secondary">Register</a>
+                                <a href="/accounts/register" class="btn btn-secondary">Register</a>
                             </span>
                         </form>
                     </div>
@@ -151,7 +160,10 @@
             </div>
         </div>
     </div>
+
+
 </section>
+{% endif %}
 
     
     

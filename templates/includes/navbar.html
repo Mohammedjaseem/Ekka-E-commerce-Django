@@ -135,11 +135,11 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     {% if user.is_authenticated %}
                                     <li><a class="dropdown-item" href="#">Hai, {{user.full_name}}</a></li>
+                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
                                     <li><a class="dropdown-item" href={% url 'logout' %}>Logout</a></li>
                                     {% else %}
                                     <li><a class="dropdown-item" href={% url 'register' %}>Register</a></li>
                                     <li><a class="dropdown-item" href={% url 'login' %}>Login</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
                                     {% endif %}
                                     
                                 </ul>

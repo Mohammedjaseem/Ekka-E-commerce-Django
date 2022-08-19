@@ -1,0 +1,454 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block extra_head %}
+<link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css' %}">
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
+{% endblock %}
+
+
+
+{% block content %}
+
+    
+
+
+
+    <!-- ekka Cart Start -->
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/6_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                            <span class="cart-price"><span>$76.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/12_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                            <span class="cart-price"><span>$64.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/3_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                            <span class="cart-price"><span>$59.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right">$300.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right">$60.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color">$360.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="cart.html" class="btn btn-primary">View Cart</a>
+                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ekka Cart End -->
+
+    <section class="sec-5 section-space-p" style="margin:0px;">
+        <div class="container">
+            <div class="row">
+                <h2 class="ec-title-rbg"><span>All Products</span></h2>
+                {% comment %} <p style="text-align:center;">All Products from Ekka.</p> {% endcomment %}
+            </div>
+        </div>
+    </section>
+        <!-- Page detail section -->
+        <section class="ec-bnr-detail margin-bottom-30 section-space-pt">
+            <div class="ec-page-detail">
+                <div class="container">
+                    <div class="ec-main-heading d-none">
+                        <h2>Shop <span>Detail</span></h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="ec-cat-bnr">
+                                <a href="product-left-sidebar.html"><span></span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="ec-page-description">
+                                <h6>The Best deal on top brands</h6>
+                                <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                    since the 1500s. It has survived not only five centuries, but also the
+                                    leap into electronic typesetting, remaining essentially unchanged.
+                                <p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End detail section -->
+
+
+    {% comment %} <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Shop</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Shop</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end --> {% endcomment %}
+
+    
+    <!-- Ec Shop page -->
+
+    <section class="ec-page-content section-space-p" style="margin-top:-50px;">
+        <div class="container">
+            <div class="row">
+                <div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first margin-b-30">
+                    <!-- Shop Top Start -->
+                    <div class="ec-pro-list-top d-flex">
+                        <div class="col-md-6 ec-grid-list">
+                            <div class="ec-gl-btn">
+                                <button class="btn btn-grid active"><img src="{% static 'ekka_webapp/assets/images/icons/grid.svg' %}"
+                                        class="svg_img gl_svg" alt="" /></button>
+                                <button class="btn btn-list"><img src="{% static 'ekka_webapp/assets/images/icons/list.svg' %}"
+                                        class="svg_img gl_svg" alt="" /></button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ec-sort-select">
+                            <span class="sort-by">Sort by</span>
+                            <div class="ec-select-inner">
+                                <select name="ec-select" id="ec-select">
+                                    <option selected disabled>Position</option>
+                                    <option value="1">Relevance</option>
+                                    <option value="2">Name, A to Z</option>
+                                    <option value="3">Name, Z to A</option>
+                                    <option value="4">Price, low to high</option>
+                                    <option value="5">Price, high to low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Shop Top End -->
+
+                    <!-- Shop content Start -->
+                <div class="shop-pro-content">
+                    <div class="shop-pro-inner">
+                            <div class="row">
+                                {% for product in products%}
+                <!-- START single card -->
+				<div class="col-lg-3 col-md-6 col-sm-6 my-4" >
+					<div class="ec-product-tp">
+						<div class="ec-product-image" >
+							<a href="#">  
+								<img src="{{ product.images.url }}" class="img-center" alt="">
+							</a>
+							<span class="ec-product-ribbon">New</span>
+							<div class="ec-link-icon">
+								<a href="#" data-tip="Add to Wishlist"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg '%}"
+										class="svg_img header_svg pro_svg" alt="wishlist" /></a>
+								<a href="#" data-tip="Compare"><img src="{% static 'ekka_webapp/assets/images/icons/compare.svg '%}"
+										class="svg_img pro_svg" alt="compare" /></a>
+								<a href="#" data-tip="Quick View"><img src="{% static 'ekka_webapp/assets/images/icons/quickview.svg '%}"
+										class="svg_img pro_svg" alt="quick view" /></a>
+							</div>
+						</div>
+						<div class="ec-product-body">
+                            
+							<h3 class="ec-title"><a href="#">{{product.product_name}}</a></h3>
+                            {{product.Category_Main}} - {{product.sub_category}}
+							<p class="ec-description">
+								{{product.short_desp}}
+							</p>
+							<ul class="ec-rating">
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star fill"></li>
+								<li class="ecicon eci-star"></li>
+							</ul>
+							<div class="ec-price"><span> ₹{{product.mrp_price}}</span> ₹{{product.price}}</div>
+							<div class="ec-link-btn">
+								<a class=" ec-add-to-cart" href="#">add to cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+                    <!-- END single card -->
+                {% endfor %}
+                                
+                                
+                               
+                            </div>
+                        </div>
+                        <!-- Ec Pagination Start -->
+                        <div class="ec-pro-pagination">
+                            <span>Showing 1-12 of 21 item(s)</span>
+                            <ul class="ec-pro-pagination-inner">
+                                <li><a class="active" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a class="next" href="#">Next <i class="ecicon eci-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Ec Pagination End -->
+                    </div>
+                    <!--Shop content End -->
+                </div>
+                <!-- Sidebar Area Start -->
+                <div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last">
+                    <div id="shop_sidebar">
+                        <div class="ec-sidebar-heading">
+                            <h1>Filter Products By</h1>
+                        </div>
+                        <div class="ec-sidebar-wrap">
+                            <!-- Sidebar Category Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Category</h3>
+                                </div>
+                                <div class="ec-sb-block-content">
+                                    <ul>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" checked /> <a href="#">clothes</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" /> <a href="#">Bags</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" /> <a href="#">Shoes</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" /> <a href="#">cosmetics</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" /> <a href="#">electrics</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" /> <a href="#">phone</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li id="ec-more-toggle-content" style="padding: 0; display: none;">
+                                            <ul>
+                                                <li>
+                                                    <div class="ec-sidebar-block-item">
+                                                        <input type="checkbox" /> <a href="#">Watch</a><span
+                                                            class="checked"></span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="ec-sidebar-block-item">
+                                                        <input type="checkbox" /> <a href="#">Cap</a><span
+                                                            class="checked"></span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item ec-more-toggle">
+                                                <span class="checked"></span><span id="ec-more-toggle">More
+                                                    Categories</span>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar Size Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Size</h3>
+                                </div>
+                                <div class="ec-sb-block-content">
+                                    <ul>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" value="" checked /><a href="#">S</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" value="" /><a href="#">M</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" value="" /> <a href="#">L</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" value="" /><a href="#">XL</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <input type="checkbox" value="" /><a href="#">XXL</a><span
+                                                    class="checked"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar Color item -->
+                            <div class="ec-sidebar-block ec-sidebar-block-clr">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Color</h3>
+                                </div>
+                                <div class="ec-sb-block-content">
+                                    <ul>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#c4d6f9;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#ff748b;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#000000;"></span></div>
+                                        </li>
+                                        <li class="active">
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#2bff4a;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#ff7c5e;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#f155ff;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#ffef00;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#c89fff;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#7bfffa;"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="ec-sidebar-block-item"><span
+                                                    style="background-color:#56ffc1;"></span></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar Price Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">Price</h3>
+                                </div>
+                                <div class="ec-sb-block-content es-price-slider">
+                                    <div class="ec-price-filter">
+                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
+                                            data-max="250" data-step="10"></div>
+                                        <div class="ec-price-input">
+                                            <label class="filter__label"><input type="text"
+                                                    class="filter__input"></label>
+                                            <span class="ec-price-divider"></span>
+                                            <label class="filter__label"><input type="text"
+                                                    class="filter__input"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop page -->
+
+
+
+
+    
+    
+    {% endblock %}

@@ -135,7 +135,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     {% if user.is_authenticated %}
                                     <li><a class="dropdown-item" href="{% url 'dashboard' %}">Hai, {{user.full_name}}</a></li>
-                                    <li><a class="dropdown-item" href={% url 'forgotPassword' %}>Change Password</a></li>
+                                    <li><a class="dropdown-item" href={% url 'changePassword' %}>Change Password</a></li>
                                     <li><a class="dropdown-item" href={% url 'logout' %}>Logout</a></li>
                                     {% else %}
                                     <li><a class="dropdown-item" href={% url 'register' %}>Register</a></li>

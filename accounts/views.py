@@ -16,7 +16,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
-from django.utils.encoding import force_text
+
 
 #mail template
 from django.core.mail import send_mail
@@ -166,4 +166,24 @@ def resetPassword(request):
             return redirect('resetPassword')
     else:
         template = 'accounts/resetPassword.html'
+        return render(request, template)
+
+
+def changePassword(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if password == confirm_password:
+            user = Account.objects.get(pk=request.user.pk)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Password has been reset successfully.')
+            return redirect('login')
+
+        else:
+            messages.error(request, 'Password does not match')
+            return redirect('changePassword')
+    else:
+        template = 'accounts/changePassword.html'
         return render(request, template)

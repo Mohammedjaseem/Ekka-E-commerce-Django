@@ -41,3 +41,12 @@ def substore(request, category_slug=None, sub_category_slug=None):
         'produ_count': produ_count,
         }
     return render(request, 'store/store.html', context) 
+
+def product_detail(request, category_slug=None, sub_category_slug=None, product_slug=None):
+    product = None
+    if product_slug != None:
+        product = get_object_or_404(Product, slug=product_slug)
+    context = {
+        'product': product,
+        }
+    return render(request, 'store/product_detail.html', context)

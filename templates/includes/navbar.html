@@ -35,7 +35,7 @@
                     <div class="header-top-lan-curr d-flex justify-content-end">
                         <!-- Currency Start -->
                         <div class="header-top-curr dropdown">
-                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                            <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
                                     class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                             <ul class="dropdown-menu">
                                 <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
@@ -45,7 +45,7 @@
                         <!-- Currency End -->
                         <!-- Language Start -->
                         <div class="header-top-lan dropdown">
-                            <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
+                            <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
                                     class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                             <ul class="dropdown-menu">
                                 <li class="active"><a class="dropdown-item" href="#">English</a></li>
@@ -62,7 +62,7 @@
                     <div class="ec-header-bottons">
                         <!-- Header User Start -->
                         <div class="ec-header-user dropdown">
-                            <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
+                            <button class=" rounded-3 dropdown-toggle" data-bs-toggle="dropdown"><img
                                     src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a class="dropdown-item" href="register.html">Register</a></li>
@@ -117,7 +117,7 @@
                         <div class="header-search">
                             <form class="ec-btn-group-form" action="#">
                                 <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                <button class="submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
+                                <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
                                         class="svg_img header_svg" alt="" /></button>
                             </form>
                         </div>
@@ -130,7 +130,7 @@
 
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
-                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
+                                <button class=" rounded-3 dropdown-toggle" data-bs-toggle="dropdown"><img
                                         src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     {% if user.is_authenticated %}
@@ -186,7 +186,7 @@
                     <div class="header-search">
                         <form class="ec-btn-group-form" action="#">
                             <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                            <button class="submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
+                            <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
                                     class="svg_img header_svg" alt="icon" /></button>
                         </form>
                     </div>
@@ -210,15 +210,16 @@
                                         <ul class="d-block">
                                             <li class="menu_title"><a href="javascript:void(0)">Main Categories</a></li>
                                             {% for cat in cat_main_links%}
-                                            <li><a href="{{cat.get_url}}">{{cat.category_name}}</a>
+                                            <li><a href="{{cat.get_url}}">{{cat.category_name}}   </a>
                                             </li>
-                                            {% endfor %}
+                                            {% endfor %}     
+                                            {% comment %} {{produ_count}}   can used to display count of products{% endcomment %}
                                             
                                         </ul>
                                         <ul class="d-block">
                                             <li class="menu_title"><a href="javascript:void(0)">Sub Categories</a></li>
                                             {% for cat in cat_sub_links %}
-                                            <li><a href="{{cat.category.get_url}}{{cat.slug}}">{{cat.sub_category_name}}</a></li>
+                                            <li><a href="{{cat.category.get_url}}{{cat.slug}}">{{cat.sub_category_name}} </a></li>
                                             {% endfor %}
                                             
                                         </ul>
@@ -435,7 +436,7 @@
     <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
         <div class="ec-menu-title">
             <span class="menu_title">My Menu</span>
-            <button class="ec-close">×</button>
+            <button class=" rounded-3 ec-close">×</button>
         </div>
         <div class="ec-menu-inner">
             <div class="ec-menu-content">
@@ -632,7 +633,7 @@
                 <div class="header-top-lan-curr">
                     <!-- Language Start -->
                     <div class="header-top-lan dropdown">
-                        <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
+                        <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
                                 class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                         <ul class="dropdown-menu">
                             <li class="active"><a class="dropdown-item" href="#">English</a></li>
@@ -642,7 +643,7 @@
                     <!-- Language End -->
                     <!-- Currency Start -->
                     <div class="header-top-curr dropdown">
-                        <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
+                        <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
                                 class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                         <ul class="dropdown-menu">
                             <li class="active"><a class="dropdown-item" href="#">USD $</a></li>

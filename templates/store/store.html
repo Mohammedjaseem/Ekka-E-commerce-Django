@@ -23,7 +23,7 @@
             <div class="ec-cart-top">
                 <div class="ec-cart-title">
                     <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
+                    <button class=" rounded-3 ec-close">×</button>
                 </div>
                 <ul class="eccart-pro-items">
                     <li>
@@ -165,14 +165,17 @@
                     <div class="ec-pro-list-top d-flex">
                         <div class="col-md-6 ec-grid-list">
                             <div class="ec-gl-btn">
-                                <button class="btn btn-grid active"><img src="{% static 'ekka_webapp/assets/images/icons/grid.svg' %}"
+                                <button class=" rounded-3 btn btn-grid active"><img src="{% static 'ekka_webapp/assets/images/icons/grid.svg' %}"
                                         class="svg_img gl_svg" alt="" /></button>
-                                <button class="btn btn-list"><img src="{% static 'ekka_webapp/assets/images/icons/list.svg' %}"
+                                <button class=" rounded-3 btn btn-list"><img src="{% static 'ekka_webapp/assets/images/icons/list.svg' %}"
                                         class="svg_img gl_svg" alt="" /></button>
                             </div>
+                            
                         </div>
+                        
                         <div class="col-md-6 ec-sort-select">
-                            <span class="sort-by">Sort by</span>
+                            <b> {{produ_count}} Products Found‏‏‎ ‎</b>
+                            <span class="sort-by">| Sort by</span>
                             <div class="ec-select-inner">
                                 <select name="ec-select" id="ec-select">
                                     <option selected disabled>Position</option>
@@ -189,6 +192,7 @@
 
                     <!-- Shop content Start -->
                 <div class="shop-pro-content">
+                    
                     <div class="shop-pro-inner">
                             <div class="row">
                                 {% for product in products%}
@@ -196,7 +200,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6 my-4" >
 					<div class="ec-product-tp">
 						<div class="ec-product-image" >
-							<a href="#">  
+							<a href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}">  
 								<img src="{{ product.images.url }}" class="img-center" alt="">
 							</a>
 							<span class="ec-product-ribbon">New</span>
@@ -269,59 +273,20 @@
                                     <ul>
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" checked /> <a href="#">clothes</a><span
-                                                    class="checked"></span>
+                                                <a href="{% url 'store'%}">All Products</a>
                                             </div>
                                         </li>
+                                        {% for cat in cat_main_links%}
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Bags</a><span
-                                                    class="checked"></span>
+                                                <a href="{{cat.get_url}}">{{cat.category_name}}</a>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">Shoes</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">cosmetics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">electrics</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="#">phone</a><span
-                                                    class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li id="ec-more-toggle-content" style="padding: 0; display: none;">
-                                            <ul>
-                                                <li>
-                                                    <div class="ec-sidebar-block-item">
-                                                        <input type="checkbox" /> <a href="#">Watch</a><span
-                                                            class="checked"></span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="ec-sidebar-block-item">
-                                                        <input type="checkbox" /> <a href="#">Cap</a><span
-                                                            class="checked"></span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        {% endfor %}   
+                                        
                                         <li>
                                             <div class="ec-sidebar-block-item ec-more-toggle">
-                                                <span class="checked"></span><span id="ec-more-toggle">More
+                                               <span id="ec-more-toggle">More
                                                     Categories</span>
                                             </div>
                                         </li>

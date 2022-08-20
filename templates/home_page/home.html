@@ -20,7 +20,7 @@
             <div class="ec-cart-top">
                 <div class="ec-cart-title">
                     <span class="cart_title">My Cart</span>
-                    <button class="ec-close">×</button>
+                    <button class=" rounded-3 ec-close">×</button>
                 </div>
                 <ul class="eccart-pro-items">
                     <li>
@@ -290,7 +290,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6 my-4" >
 					<div class="ec-product-tp">
 						<div class="ec-product-image" >
-							<a href="#">  
+							<a href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}">  
 								<img src="{{ product.images.url }}" class="img-center" alt="">
 							</a>
 							<span class="ec-product-ribbon">New</span>

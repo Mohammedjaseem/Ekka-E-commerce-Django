@@ -319,7 +319,7 @@
 							</ul>
 							<div class="ec-price"><span> ₹{{product.mrp_price}}</span> ₹{{product.price}}</div>
 							<div class="ec-link-btn">
-								<a class=" ec-add-to-cart" href="#">add to cart</a>
+								<a class=" ec-add-to-cart" href="{% url 'add_cart' product.id%}">add to cart</a>
 							</div>
 						</div>
 					</div>

@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block extra_head %}
+<link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css' %}">
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
+{% endblock %}
+
+
+
+{% block content %}
+<!-- ekka Cart Start -->
+<div class="ec-side-cart-overlay"></div>
+<div id="ec-side-cart" class="ec-side-cart">
+    <div class="ec-cart-inner">
+        <div class="ec-cart-top">
+            <div class="ec-cart-title">
+                <span class="cart_title">My Cart</span>
+                <button class=" rounded-3 ec-close">×</button>
+            </div>
+            <ul class="eccart-pro-items">
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                        <span class="cart-price"><span>$76.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/12_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                        <span class="cart-price"><span>$64.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/3_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                        <span class="cart-price"><span>$59.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="ec-cart-bottom">
+            <div class="cart-sub-total">
+                <table class="table cart-table">
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Sub-Total :</td>
+                            <td class="text-right">$300.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">VAT (20%) :</td>
+                            <td class="text-right">$60.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Total :</td>
+                            <td class="text-right primary-color">$360.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart_btn">
+                <a href="cart.html" class="btn btn-primary">View Cart</a>
+                <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ekka Cart End -->
+
+<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row ec_breadcrumb_inner">
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="ec-breadcrumb-title">Cart</h2>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <!-- ec-breadcrumb-list start -->
+                        <ul class="ec-breadcrumb-list">
+                            <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="ec-breadcrumb-item active">Cart</li>
+                        </ul>
+                        <!-- ec-breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ec breadcrumb end -->
+
+<!-- Ec cart page -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                {% if not cart_items %}
+
+
+                <!-- shop empty page -->
+    <div class="py-6 py-lg-12" style="margin-top:-50px;">
+        <div class="container">
+            <div class="row">
+                <div class="offset-lg-3 col-lg-6 col-md-12 col-12 text-center">
+                    <img src="https://codescandy.com/coach/rtl/assets/images/bag.svg" alt="" class="img-fluid mb-4" />
+                    <h2>Your shopping cart is empty</h2>
+                    <p class="mb-4">
+                        Return to the store to add items to your cart. You will find a lot of interesting products on our shop page.
+                    </p>
+                    <a href="/store/" class="btn btn-primary">Explore Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                {% else %}
+                <!-- cart content Start -->
+                <div class="ec-cart-content">
+                    <div class="ec-cart-inner">
+                        <div class="row">
+                            <form action="#">
+                                <div class="table-content cart-table-content">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th style="text-align: center;">Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for  cart_item in cart_items %}
+                                            <tr>
+                                                <td data-label="Product" class="ec-cart-pro-name"><a
+                                                        href="{{cart_item.product.Category_Main.get_url}}{{cart_item.product.sub_category.slug}}/{{cart_item.product.slug}}"><img class="ec-cart-pro-img mr-4"
+                                                            src={{cart_item.product.images.url }} alt="" />{{cart_item.product.product_name }}</a></td>
+                                                <td data-label="Price" class="ec-cart-pro-price"><span
+                                                        class="amount">₹ {{cart_item.product.price }}</span></td>
+                                                <td data-label="Quantity" class="ec-cart-pro-qty"
+                                                    style="text-align: center;">
+                                                    <div class="cart-qty-plus-minus">
+                                                        <a href="{% url 'remove_cart' cart_item.product.id %}" class="dec ec_qtybtn">-</a>
+                                                        <input class="cart-plus-minus" type="text"
+                                                            name="cartqtybutton" value="{{cart_item.quantity }}" readonly/>
+                                                            <a href="{% url 'add_cart' cart_item.product.id %}" class="inc ec_qtybtn">+</a>
+                                                                
+                                                    </div>
+                                                </td>           
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{cart_item.sub_total }}</td>
+                                                <td data-label="Remove" class="ec-cart-pro-remove" style="text-align: left; float:left;">
+                                                    
+                                                    <a href="{% url 'remove_cart_item' cart_item.product.id %}"><i class="ecicon eci-trash-o"></i></a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ec-cart-update-bottom">
+                                            <a href="/store/">Continue Shopping</a>
+                                            <button class=" rounded-3 btn btn-primary">Check Out</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--cart content End -->
+                {% endif %}
+            </div>
+            <!-- Sidebar Area Start -->
+            <div class="ec-cart-rightside col-lg-4 col-md-12">
+                <div class="ec-sidebar-wrap">
+                    <!-- Sidebar Summary Block -->
+                    <div class="ec-sidebar-block">
+                        <div class="ec-sb-title">
+                            <h3 class="ec-sidebar-title">Summary</h3>
+                        </div>
+                        {% comment %} <div class="ec-sb-block-content">
+                            <h4 class="ec-ship-title">Estimate Shipping</h4>
+                            <div class="ec-cart-form">
+                                <p>Enter your destination to get a shipping estimate</p>
+                                <form action="#" method="post">
+                                    <span class="ec-cart-wrap">
+                                        <label>Country *</label>
+                                        <span class="ec-cart-select-inner">
+                                            <select name="ec_cart_country" id="ec-cart-select-country"
+                                                class="ec-cart-select">
+                                                <option selected="" disabled="">United States</option>
+                                                <option value="1">Country 1</option>
+                                                <option value="2">Country 2</option>
+                                                <option value="3">Country 3</option>
+                                                <option value="4">Country 4</option>
+                                                <option value="5">Country 5</option>
+                                            </select>
+                                        </span>
+                                    </span>
+                                    <span class="ec-cart-wrap">
+                                        <label>State/Province</label>
+                                        <span class="ec-cart-select-inner">
+                                            <select name="ec_cart_state" id="ec-cart-select-state"
+                                                class="ec-cart-select">
+                                                <option selected="" disabled="">Please Select a region, state
+                                                </option>
+                                                <option value="1">Region/State 1</option>
+                                                <option value="2">Region/State 2</option>
+                                                <option value="3">Region/State 3</option>
+                                                <option value="4">Region/State 4</option>
+                                                <option value="5">Region/State 5</option>
+                                            </select>
+                                        </span>
+                                    </span>
+                                    <span class="ec-cart-wrap">
+                                        <label>Zip/Postal Code</label>
+                                        <input type="text" name="postalcode" placeholder="Zip/Postal Code">
+                                    </span>
+                                </form>
+                            </div>
+                        </div> {% endcomment %}
+
+                        <div class="ec-sb-block-content">
+                            <div class="ec-cart-summary-bottom">
+                                <div class="ec-cart-summary">
+                                    <div>
+                                        <span class="text-left">Sub-Total</span>
+                                        <span class="text-right">₹{{total}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">Taxs Charge ( {{tax_percentage}}% )</span>
+                                        <span class="text-right">₹{{tax }}</span>
+                                    </div>
+                                    
+                                    <div>
+                                        <span class="text-left">Coupan Discount</span>
+                                        <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
+                                    </div>
+                                    <div class="ec-cart-coupan-content">
+                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                            action="#">
+                                            <input class="ec-coupan" type="text" required=""
+                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                            <button class=" rounded-3 ec-coupan-btn button btn-primary" type="submit"
+                                                name="subscribe" value="">Apply</button>
+                                        </form>
+                                    </div>
+                                    <div class="ec-cart-summary-total">
+                                        <span class="text-left">Total Amount</span>
+                                        <span class="text-right">₹<b>{{grand_total}}</b></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Summary Block -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

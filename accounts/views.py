@@ -43,14 +43,17 @@ def register(request):
             current_site = get_current_site(request) #this should be imported 
             mail_subject = 'Activate your Ekka Ecom account.'
             user.save()
+
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
                 'domain': current_site,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)), 
                 'token': default_token_generator.make_token(user),
             })
+            
             to_email = form.cleaned_data.get('email')
             send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.content_subtype = "html"
             send_email.send()
             # messages.success(request, 'Please confirm your email address to complete the registration')
             return redirect('login?command=verification&email='+email)

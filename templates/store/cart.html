@@ -9,46 +9,7 @@
 
 {% comment %} alert box {% endcomment %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script>
-         function functionAlert(msg, myYes) {
-            var confirmBox = $("#confirm");
-            confirmBox.find(".message").text(msg);
-            confirmBox.find(".yes").unbind().click(function() {
-               confirmBox.hide();
-            });
-            confirmBox.find(".yes").click(myYes);
-            confirmBox.show();
-         }
-      </script>
-      <style>
-         #confirm {
-            display: none;
-            background-color: #F3F5F6;
-            color: #000000;
-            border: 1px solid #aaa;
-            position: fixed;
-            width: 300px;
-            height: 100px;
-            left: 40%;
-            top: 40%;
-            box-sizing: border-box;
-            text-align: center;
-         }
-         #confirm button {
-            background-color: #FFFFFF;
-            display: inline-block;
-            border-radius: 12px;
-            border: 4px solid #aaa;
-            padding: 5px;
-            text-align: center;
-            width: 60px;
-            cursor: pointer;
-         }
-         #confirm .message {
-            text-align: left;
-         }
-      </style>
+
 
       
 {% endblock %}
@@ -248,7 +209,8 @@
                                     <div class="col-lg-12">
                                         <div class="ec-cart-update-bottom">
                                             <a href="/store/">Continue Shopping</a>
-                                            <button class=" rounded-3 btn btn-primary">Check Out</button>
+                                            <a href="/cart/checkout">
+                                            <button class=" rounded-3 btn btn-primary" ><a href="/cart/checkout" style="color:white;">Check Out</button></a>
                                         </div>
                                     </div>
                                 </div>

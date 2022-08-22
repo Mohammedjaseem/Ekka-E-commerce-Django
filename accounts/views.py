@@ -126,6 +126,7 @@ def forgotPassword(request):
             })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.content_subtype = "html"
             send_email.send()
 
             messages.success(request, 'Password reset link has been sent to your email.')

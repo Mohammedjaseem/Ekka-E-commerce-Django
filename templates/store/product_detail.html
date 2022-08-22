@@ -31,7 +31,7 @@
                             <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
                             <span class="cart-price"><span>$76.00</span> x 1</span>
                             <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                <input class="qty-input" type="text"  value="1" />
                             </div>
                             <a href="javascript:void(0)" class="remove">×</a>
                         </div>
@@ -43,7 +43,7 @@
                             <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
                             <span class="cart-price"><span>$64.00</span> x 1</span>
                             <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                <input class="qty-input" type="text"  value="1" />
                             </div>
                             <a href="javascript:void(0)" class="remove">×</a>
                         </div>
@@ -55,7 +55,7 @@
                             <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
                             <span class="cart-price"><span>$59.00</span> x 1</span>
                             <div class="qty-plus-minus">
-                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                <input class="qty-input" type="text"  value="1" />
                             </div>
                             <a href="javascript:void(0)" class="remove">×</a>
                         </div>
@@ -158,7 +158,12 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="single-pro-desc single-pro-desc-no-sidebar">
+
+                                    <form action="{% url 'add_cart' product.id%}" method = "POST">
+                                      {% csrf_token %}  
+
                                     <div class="single-pro-content">
                                         <h5 class="ec-single-title">{{product.product_name}}</h5>
                                         <div class="ec-single-rating-wrap">
@@ -173,10 +178,13 @@
                                                     review this product</a></span>
                                         </div>
                                         <div class="ec-single-desc">{{product.short_desp}}</div>
-
+                                        
+                                        
                                         <div class="ec-single-sales">
+                                            
                                             <div class="ec-single-sales-inner">
                                                 <div class="ec-single-sales-title">sales accelerators</div>
+                                                {% if product.is_available %}
                                                 <div class="ec-single-sales-visitor">Hurry up! left <span>{{product.stock}}</span> in stock now!</div>
                                                 <div class="ec-single-sales-progress">
                                                     <span class="ec-single-progressbar"></span>
@@ -186,7 +194,9 @@
                                                             id="ec-single-countdown"></span></div>
                                                     <div class="ec-single-count-desc">Time is Running Out!</div>
                                                 </div>
+                                                
                                             </div>
+                                            {% endif %}
                                         </div>
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
@@ -197,53 +207,71 @@
                                                 <span class="ec-single-sku">ID#: {{product.id}}</span>
                                             </div>
                                         </div>
-
+                                        {% comment %} Varition start here {% endcomment %}
+                                        
                                         <div class="ec-pro-variation">
+                                            <div class="d-inline-block justify-content-center">
                                             <div class="ec-pro-variation-inner ec-pro-variation-color">
-                                                <span>Color</span>
+                                                <span>Select Color & Size</span>
                                                 <div class="ec-pro-variation-content">
-                                                    <ul>
-                                                        <li class="active"><span
-                                                                style="background-color:#8dc4fa;"></span></li>
-                                                        <li><span style="background-color:#6fd5c7"></span></li>
-                                                        <li><span style="background-color:#7ed48d;"></span></li>
-                                                        <li><span style="background-color:#e7b97e;"></span></li>
-                                                    </ul>
+                                                    <select name="color" class="active btn btn-info" style="border-radius:15px; color:black; text-align:left;" required>
+                                                        <option  value="" disabled selected style="">Choose color ⬇️</option>
+                                                        {% for i in product.variation_set.colors %}
+                                                        <option value="{{i.Variation_value | lower }}">{{i.Variation_value }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    
+                                                    
+                                                    <select name="size" class="active btn ml-2" style="border-radius:15px; background-color:#8f918f ;  color:black; text-align:left;" required>
+                                                        <option  value="" disabled selected style="" style="">Choose Size⬇️</option>
+                                                        {% for i in product.variation_set.sizes %}
+                                                        <option value="{{i.Variation_value  | lower}}">{{i.Variation_value }}</option>
+                                                        {% endfor %}
+                                                    </select>
                                                 </div>
+                                                
                                             </div>
-
+                                           
+                                            
                                         </div>
+                                    </div>
+                                        {% comment %} Variation ends here {% endcomment %}
                                         <div class="ec-single-qty">
-                                            {% if product.is_available %}
-                                                {% if in_cart %}
-                                                <div class="ec-single-cart ">
+                                            {% comment %} {% if product.is_available %} {% endcomment %}
+                                                 {% if in_cart %}
+                                                 <div class="ec-single-cart ">
                                                     <button class=" rounded-3 btn btn-success">Already added ‏‏‎ ‎<i class="fa fa-check" aria-hidden="true"></i> </button>
                                                 </div>
                                                 <div class="ec-single-cart ">
                                                     <a href="/cart/">
                                                     <button class=" rounded-3 btn btn-secondary">View Cart ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
-                                                </div>
-
+                                                </div> 
+                                                {% endif %} 
                                                 {% comment %} <div class="ec-single-cart ">
                                                     <a href="{% url 'remove_cart_item' product.id %}">
                                                     <button class=" rounded-3 btn btn-info">Remove  ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
-                                                </div> {% endcomment %}
+                                                </div> 
 
 
-                                                {% else%}
+                                                {% else%} 
                                                     <div class="qty-plus-minus">
-                                                        <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                        <input class="qty-input" type="text"  value="1" />
                                                     </div>
                                                     <div class="ec-single-cart ">
-                                                        <a href={% url 'add_cart' product.id%}>
-                                                        <button class=" rounded-3 btn btn-primary">Add To Cart </button></a>
+                                                        <button type="submit"  class=" rounded-3 btn btn-primary">Add To Cart </button>
                                                     </div>
-                                                {% endif %}
-                                            {% else %}
-                                            <div class="ec-single-cart ">
+                                                {% endif %} {% endcomment %}
+                                            {% if product.stock <= 0 %}
+                                            <div class="ec-single-cart "> 
                                                 <button class=" rounded-3 btn btn-danger" disabled>Out of stock</button>
                                             </div>
-                                            {% endif %}
+                                            {% else %}
+                                            <div class="ec-single-cart ">
+                                                <button type="submit"  class=" rounded-3 btn btn-primary">Add To Cart </button>
+                                            </div> 
+                                            {% endif %} 
+
+
                                             {% if product.is_available %}
                                             {% if in_cart %}
 
@@ -282,6 +310,7 @@
                                             </ul>
                                         </div>
                                     </div>
+                                </form>
                                 </div>
                             </div>
                         </div>

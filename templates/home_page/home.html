@@ -286,6 +286,7 @@
 			</div>
 			<div class="row">
                 {% for product in products%}
+                
                 <!-- START single card -->
 				<div class="col-lg-3 col-md-6 col-sm-6 my-4" >
 					<div class="ec-product-tp">
@@ -293,7 +294,11 @@
 							<a href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}">  
 								<img src="{{ product.images.url }}" class="img-center" alt="">
 							</a>
-							<span class="ec-product-ribbon">New</span>
+                            {% if product.is_available %}
+							<span class="ec-product-ribbon">In Stock</span>
+                            {% else %}
+                            <span class="ec-product-ribbon">Out of Stock</span>
+                            {% endif %}
 							<div class="ec-link-icon">
 								<a href="#" data-tip="Add to Wishlist"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg '%}"
 										class="svg_img header_svg pro_svg" alt="wishlist" /></a>
@@ -319,7 +324,10 @@
 							</ul>
 							<div class="ec-price"><span> ₹{{product.mrp_price}}</span> ₹{{product.price}}</div>
 							<div class="ec-link-btn">
-								<a class=" ec-add-to-cart" href="{% url 'add_cart' product.id%}">add to cart</a>
+                            
+								<a class=" ec-add-to-cart" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}">View Details</a>
+                        
+                                
 							</div>
 						</div>
 					</div>

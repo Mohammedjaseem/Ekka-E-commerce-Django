@@ -79,10 +79,10 @@
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header Cart Start -->
-                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                        <a href="/cart/" class="ec-header-btn ">
                             <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg ' %}"
                                     class="svg_img header_svg" alt="" /></div>
-                            <span class="ec-header-count ec-cart-count cart-count-lable">3</span>
+                            <span class="ec-header-count ec-cart-count cart-count-lable">{{cart_count}}</span>
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header menu Start -->
@@ -152,11 +152,11 @@
                                 <span class="ec-header-count">4</span>
                             </a>
                             <!-- Header wishlist End -->
-                            <!-- Header Cart Start -->
-                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                            {% comment %} <!-- Header Cart Start --> ( #ec-side-cart ) to view side cart ) {% endcomment %}
+                            <a href="/cart/" class="ec-header-btn ">
                                 <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg ' %}"
                                         class="svg_img header_svg" alt="" /></div>
-                                <span class="ec-header-count ec-cart-count cart-count-lable">3</span>
+                                <span class="ec-header-count ec-cart-count cart-count-lable">{{cart_count}}</span>
                             </a>
                             <!-- Header Cart End -->
                         </div>

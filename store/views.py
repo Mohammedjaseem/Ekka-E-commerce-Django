@@ -12,10 +12,10 @@ def store(request, category_slug=None):
     if category_slug != None:
         
         categories = get_object_or_404(CategoryMain, slug=category_slug)
-        products = Product.objects.filter(Category_Main=categories, is_available=True)
+        products = Product.objects.filter(Category_Main=categories )  #, is_available=True to display only avilable products
         produ_count = products.count()
     else:
-        products = Product.objects.all().filter(is_available=True)
+        products = Product.objects.all() #.filter(is_available=True) to display only avilable products
         produ_count = products.count()
 
     context = {
@@ -32,10 +32,10 @@ def substore(request, category_slug=None, sub_category_slug=None):
     if category_slug != None:
         if sub_category_slug != None:
                 categories = get_object_or_404(SubCategory, slug=sub_category_slug)
-                products = Product.objects.filter(sub_category=categories, is_available=True)
+                products = Product.objects.filter(sub_category=categories) #, is_available=True to display only avilable products
                 produ_count = products.count()
         else:
-            products = Product.objects.all().filter(is_available=True)
+            products = Product.objects.all()   #.filter(is_available=True) to display only avilable products
             produ_count = products.count()
 
     context = {

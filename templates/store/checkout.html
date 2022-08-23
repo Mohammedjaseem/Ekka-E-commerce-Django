@@ -98,7 +98,8 @@
                                            </span> {% endcomment %}
                                        </span>
                                        <div class="ec-check-bill-form">
-                                           <form action="#" method="post">
+                                            {% csrf_token %}
+                                           <form action="#" method="POST">
                                                <span class="ec-bill-wrap ec-bill-half">
                                                    <label>First Name*</label>
                                                    <input type="text" name="firstname"
@@ -163,7 +164,7 @@
                                                 <label>Order Notes</label>
                                                 <input type="text" name="order-notes" placeholder="Add Comments About Your Order" />
                                                </span>
-                                           </form>
+                                           
                                        </div>
 
                                    </div>
@@ -171,7 +172,7 @@
 
                            </div>
                            <span class="ec-check-order-btn">
-                               <a class="btn btn-primary" type="submit" href="#">Place Order</a>
+                            <button type="submit" name="submit" class="btn btn-primary">Place Order</button>
                            </span>
                        </div>
                    </div>
@@ -362,6 +363,7 @@
                        </div>
                        <!-- Sidebar Payment Block -->
                    </div>
+                </form> 
                </div>
            </div>
        </div>

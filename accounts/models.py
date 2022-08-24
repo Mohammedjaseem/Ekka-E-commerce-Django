@@ -34,10 +34,17 @@ class MyAccountManager(BaseUserManager):
         return user
 
 class Account(AbstractBaseUser):
-    username     = models.CharField(max_length=50)#removed uniq due to diffrent doamins and auto generation of id
-    email        = models.EmailField(max_length=255, unique=True)
-    phone_number = models.CharField(max_length=20, blank=True) 
-    full_name = models.CharField(max_length=50, blank=True) 
+    username      = models.CharField(max_length=50)#removed uniq due to diffrent doamins and auto generation of id
+    email         = models.EmailField(max_length=255, unique=True)
+    email2        = models.EmailField(max_length=255, blank=True)
+    phone_number  = models.CharField(max_length=20, blank=True) 
+    phone_number2 = models.CharField(max_length=20, blank=True) 
+    full_name     = models.CharField(max_length=50, blank=True) 
+    user_pic      = models.ImageField(upload_to='profile_pics', blank=True)
+    dob           = models.DateField(blank=True, null=True)
+    address       = models.CharField(max_length=500, blank=True)
+    address2      = models.CharField(max_length=500, blank=True)
+    
 
     #required fields for AbstractBaseUser
     date_joined = models.DateTimeField(auto_now_add=True)

@@ -125,14 +125,11 @@ def login(request):
             # messages.success(request, 'you are logged in.')
             url = request.META.get('HTTP_REFERER')
             try:
-        
-                query = requests.utils.urlprase(url).query
-
+                query  = requests.utils.urlparse(url).query
                 params = dict(x.split('=') for x in query.split('&'))
-                
                 if 'next' in params:
-                    nextPage = params['next']
-                    return redirect(nextPage) 
+                    return redirect(params['next'])
+                
             except:
                  return redirect('/')
         else:
@@ -167,7 +164,10 @@ def activate(request, uidb64, token):
 
 @login_required(login_url='login')
 def dashboard(request): 
-    return render(request, 'accounts/dashboard.html')
+    user = request.user
+    #form = job_post_add(request.POST, request.FILES, instance=job_post.objects.get(id=id))
+    # edit_form =  user(request.POST,request.FILES, instance=user)
+    return render(request, 'accounts/dashboard.html', {'profile': user})
 
 def forgotPassword(request):
     if request.method == 'POST':

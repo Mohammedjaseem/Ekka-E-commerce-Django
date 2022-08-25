@@ -191,6 +191,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
     except ObjectDoesNotExist:
         pass #we can ignore
     
+
     tax_percentage = 2 #15% tax
     tax = (tax_percentage * total) / 100
     grand_total = total + tax
@@ -214,16 +215,15 @@ def checkout(request, total=0, quantity=0, cart_items=None):
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart, is_active=True)
 
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
     
 
     except ObjectDoesNotExist:
-        pass #we can ignore
+        HttpResponse('You have no items in your cart') #we can ignore
     
+
     tax_percentage = 2 #15% tax
     tax = (tax_percentage * total) / 100
     grand_total = total + tax

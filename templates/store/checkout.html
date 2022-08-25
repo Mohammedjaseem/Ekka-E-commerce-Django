@@ -100,71 +100,58 @@
                                            </span> {% endcomment %}
                                        </span>
                                        <div class="ec-check-bill-form">
+                                           
+                                           <form action="{% url 'place_order' %}" method="POST">
                                             {% csrf_token %}
-                                           <form action="#" method="POST">
+
                                                <span class="ec-bill-wrap ec-bill-half">
                                                    <label>First Name*</label>
-                                                   <input type="text" name="firstname"
-                                                       placeholder="Enter your first name" required />
+                                                   <input type="text" name="first_name" placeholder="Enter your first name" required />
                                                </span>
+
                                                <span class="ec-bill-wrap ec-bill-half">
                                                    <label>Last Name*</label>
-                                                   <input type="text" name="lastname"
-                                                       placeholder="Enter your last name" required />
+                                                   <input type="text" name="last_name" placeholder="Enter your last name" required />
                                                </span>
-                                               <span class="ec-bill-wrap">
-                                                   <label>Address</label>
-                                                   <input type="text" name="address" placeholder="Address Line 1" required />
+
+                                                <span class="ec-bill-wrap ec-bill-half">
+                                                    <label>Email*</label>
+                                                    <input type="email" name="email" placeholder="Enter your email" required />
+                                                </span>
+
+                                                <span class="ec-bill-wrap ec-bill-half">
+                                                     <label>Phone*</label>
+                                                     <input type="text" name="phone" placeholder="Enter your phone" required />
+                                                </span>
+
+                                               <span class="ec-bill-wrap ec-bill-half">
+                                                   <label>Address line 1*</label>
+                                                   <input type="text" name="address_line_1" placeholder="Address Line 1" required />
                                                </span>
+
+                                               <span class="ec-bill-wrap ec-bill-half">
+                                                <label>Address line 2</label>
+                                                <input type="text" name="address_line_2" placeholder="Address Line 2" />
+                                               </span>
+
                                                <span class="ec-bill-wrap ec-bill-half">
                                                    <label>City *</label>
-                                                   <span class="ec-bl-select-inner">
-                                                       <select name="ec_select_city" id="ec-select-city"
-                                                           class="ec-bill-select" required>
-                                                           <option selected disabled>City</option>
-                                                           <option value="1">City 1</option>
-                                                           <option value="2">City 2</option>
-                                                           <option value="3">City 3</option>
-                                                           <option value="4">City 4</option>
-                                                           <option value="5">City 5</option>
-                                                       </select>
-                                                   </span>
+                                                    <input type="text" name="city" placeholder="Enter your city" required />
                                                </span>
-                                               <span class="ec-bill-wrap ec-bill-half">
-                                                   <label>Post Code</label>
-                                                   <input type="text" name="postalcode" placeholder="Post Code" required />
-                                               </span>
+
                                                <span class="ec-bill-wrap ec-bill-half">
                                                    <label>Country *</label>
-                                                   <span class="ec-bl-select-inner">
-                                                       <select name="ec_select_country" id="ec-select-country"
-                                                           class="ec-bill-select">
-                                                           <option selected disabled>Country</option>
-                                                           <option value="1">Country 1</option>
-                                                           <option value="2">Country 2</option>
-                                                           <option value="3">Country 3</option>
-                                                           <option value="4">Country 4</option>
-                                                           <option value="5">Country 5</option>
-                                                       </select>
-                                                   </span>
+                                                   <input type="text" name="country" placeholder="Enter your country" required />
                                                </span>
+
                                                <span class="ec-bill-wrap ec-bill-half">
-                                                   <label>Region State</label>
-                                                   <span class="ec-bl-select-inner">
-                                                       <select name="ec_select_state" id="ec-select-state"
-                                                           class="ec-bill-select" required>
-                                                           <option selected disabled>Region/State</option>
-                                                           <option value="1">Region/State 1</option>
-                                                           <option value="2">Region/State 2</option>
-                                                           <option value="3">Region/State 3</option>
-                                                           <option value="4">Region/State 4</option>
-                                                           <option value="5">Region/State 5</option>
-                                                       </select>
-                                                   </span>
+                                                   <label>State *</label>
+                                                    <input type="text" name="state" placeholder="Enter your region state" required />
                                                </span>
-                                               <span class="ec-bill-wrap">
+
+                                               <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Order Notes</label>
-                                                <input type="text" name="order-notes" placeholder="Add Comments About Your Order" />
+                                                <input type="text" name="order_note" placeholder="Add Comments About Your Order" />
                                                </span>
                                            
                                        </div>
@@ -178,6 +165,7 @@
                            </span>
                        </div>
                    </div>
+                </form>
                    <!--cart content End -->
                </div>
                <!-- Sidebar Area Start -->
@@ -189,33 +177,37 @@
                                <h3 class="ec-sidebar-title">Summary</h3>
                            </div>
                            <div class="ec-sb-block-content">
-                               <div class="ec-checkout-summary">
-                                   <div>
-                                       <span class="text-left">Sub-Total</span>
-                                       <span class="text-right">$80.00</span>
-                                   </div>
-                                   <div>
-                                       <span class="text-left">Delivery Charges</span>
-                                       <span class="text-right">$80.00</span>
-                                   </div>
-                                   <div>
-                                       <span class="text-left">Coupan Discount</span>
-                                       <span class="text-right"><a class="ec-checkout-coupan">Apply Coupan</a></span>
-                                   </div>
-                                   <div class="ec-checkout-coupan-content">
-                                       <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
-                                           method="post" action="#">
-                                           <input class="ec-coupan" type="text" required=""
-                                               placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                           <button class="ec-coupan-btn button btn-primary" type="submit"
-                                               name="subscribe" value="">Apply</button>
-                                       </form>
-                                   </div>
-                                   <div class="ec-checkout-summary-total">
-                                       <span class="text-left">Total Amount</span>
-                                       <span class="text-right">$80.00</span>
-                                   </div>
-                               </div>
+                            <div class="ec-cart-summary-bottom">
+                                <div class="ec-cart-summary">
+                                    <div>
+                                        <span class="text-left">Sub-Total</span>
+                                        <span class="text-right">₹{{total}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">Taxs Charge ( {{tax_percentage}}% )</span>
+                                        <span class="text-right">₹{{tax }}</span>
+                                    </div>
+                                    
+                                    <div>
+                                        <span class="text-left">Coupan Discount</span>
+                                        <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
+                                    </div>
+                                    <div class="ec-cart-coupan-content">
+                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                            action="#">
+                                            <input class="ec-coupan" type="text" required=""
+                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                            <button class=" rounded-3 ec-coupan-btn button btn-primary" type="submit"
+                                                name="subscribe" value="">Apply</button>
+                                        </form>
+                                    </div>
+                                    <div class="ec-cart-summary-total">
+                                        <span class="text-left">Total Amount</span>
+                                        <span class="text-right">₹<b>{{grand_total}}</b></span>
+                                    </div>
+                                </div>
+
+                            </div>
                                <div class="ec-checkout-pro">
                                 {% for  cart_item in cart_items %}
                                    <div class="col-sm-12 mb-6">
@@ -268,101 +260,7 @@
                        </div>
                        <!-- Sidebar Summary Block -->
                    </div>
-                   <div class="ec-sidebar-wrap ec-checkout-del-wrap">
-                       <!-- Sidebar Summary Block -->
-                       <div class="ec-sidebar-block">
-                           <div class="ec-sb-title">
-                               <h3 class="ec-sidebar-title">Delivery Method</h3>
-                           </div>
-                           <div class="ec-sb-block-content">
-                               <div class="ec-checkout-del">
-                                   <div class="ec-del-desc">Please select the preferred shipping method to use on this
-                                       order.</div>
-                                   <form action="#">
-                                       <span class="ec-del-option">
-                                           <span>
-                                               <span class="ec-del-opt-head">Free Shipping</span>
-                                               <input type="radio" id="del1" name="radio-group" checked>
-                                               <label for="del1">Rate - $0 .00</label>
-                                           </span>
-                                           <span>
-                                               <span class="ec-del-opt-head">Flat Rate</span>
-                                               <input type="radio" id="del2" name="radio-group">
-                                               <label for="del2">Rate - $5.00</label>
-                                           </span>
-                                       </span>
-                                       <span class="ec-del-commemt">
-                                           <span class="ec-del-opt-head">Add Comments About Your Order</span>
-                                           <textarea name="your-commemt" placeholder="Comments"></textarea>
-                                       </span>
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- Sidebar Summary Block -->
-                   </div>
-                   <div class="ec-sidebar-wrap ec-checkout-pay-wrap">
-                       <!-- Sidebar Payment Block -->
-                       <div class="ec-sidebar-block">
-                           <div class="ec-sb-title">
-                               <h3 class="ec-sidebar-title">Payment Method</h3>
-                           </div>
-                           <div class="ec-sb-block-content">
-                               <div class="ec-checkout-pay">
-                                   <div class="ec-pay-desc">Please select the preferred payment method to use on this
-                                       order.</div>
-                                   <form action="#">
-                                       <span class="ec-pay-option">
-                                           <span>
-                                               <input type="radio" id="pay1" name="radio-group" checked>
-                                               <label for="pay1">Cash On Delivery</label>
-                                           </span>
-                                       </span>
-                                       <span class="ec-pay-commemt">
-                                           <span class="ec-pay-opt-head">Add Comments About Your Order</span>
-                                           <textarea name="your-commemt" placeholder="Comments"></textarea>
-                                       </span>
-                                       <span class="ec-pay-agree"><input type="checkbox" value=""><a href="#">I have
-                                               read and agree to the <span>Terms & Conditions</span></a><span
-                                               class="checked"></span></span>
-                                   </form>
-                               </div>
-                           </div>
-                       </div>
-                       <!-- Sidebar Payment Block -->
-                   </div>
-                   <div class="ec-sidebar-wrap ec-check-pay-img-wrap">
-                       <!-- Sidebar Payment Block -->
-                       <div class="ec-sidebar-block">
-                           <div class="ec-sb-title">
-                               <h3 class="ec-sidebar-title">Payment Method</h3>
-                           </div>
-                           <div class="ec-sb-block-content">
-                               <div class="ec-check-pay-img-inner">
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment1.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment2.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment3.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment4.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment5.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment6.png ' %}" alt="">
-                                   </div>
-                                   <div class="ec-check-pay-img">
-                                       <img src="{% static 'ekka_webapp/assets/images/icons/payment7.png ' %}" alt="">
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
+                   
                        <!-- Sidebar Payment Block -->
                    </div>
                 </form> 

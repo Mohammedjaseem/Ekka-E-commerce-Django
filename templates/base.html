@@ -35,13 +35,18 @@
     <!-- Main Style -->
   
     <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/demo8.css ' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     {% block extra_head %}
     
     {% endblock %}
-    
+    <style>
+        body {
+            font-family: 'Nunito';
+        }
+    </style>
     
 </head>
-<body >
+<body style="font-family: 'Nunito';">
 
  {% include 'includes/navbar.html'%}   
 {% block content %}

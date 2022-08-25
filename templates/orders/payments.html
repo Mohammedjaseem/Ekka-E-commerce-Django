@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block extra_head %}
+<link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css' %}">
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
+
+{% comment %} alert box {% endcomment %}
+
+
+
+      
+{% endblock %}
+
+
+
+{% block content %}
+<!-- ekka Cart Start -->
+<div class="ec-side-cart-overlay"></div>
+<div id="ec-side-cart" class="ec-side-cart">
+    <div class="ec-cart-inner">
+        <div class="ec-cart-top">
+            <div class="ec-cart-title">
+                <span class="cart_title">My Cart</span>
+                <button class=" rounded-3 ec-close">×</button>
+            </div>
+            <ul class="eccart-pro-items">
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                        <span class="cart-price"><span>$76.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/12_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                        <span class="cart-price"><span>$64.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                            src={% static 'ekka_webapp/assets/images/product-image/3_1.jpg' %} alt="product"></a>
+                    <div class="ec-pro-content">
+                        <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                        <span class="cart-price"><span>$59.00</span> x 1</span>
+                        <div class="qty-plus-minus">
+                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                        </div>
+                        <a href="javascript:void(0)" class="remove">×</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="ec-cart-bottom">
+            <div class="cart-sub-total">
+                <table class="table cart-table">
+                    <tbody>
+                        <tr>
+                            <td class="text-left">Sub-Total :</td>
+                            <td class="text-right">$300.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">VAT (20%) :</td>
+                            <td class="text-right">$60.00</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">Total :</td>
+                            <td class="text-right primary-color">$360.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart_btn">
+                <a href="cart.html" class="btn btn-primary">View Cart</a>
+                <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ekka Cart End -->
+
+<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row ec_breadcrumb_inner">
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="ec-breadcrumb-title">Cart</h2>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <!-- ec-breadcrumb-list start -->
+                        <ul class="ec-breadcrumb-list">
+                            <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="ec-breadcrumb-item active">Cart</li>
+                        </ul>
+                        <!-- ec-breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ec breadcrumb end -->
+
+<!-- Ec cart page -->
+<section class="ec-page-content section-space-p" style="font-family: 'Nunito';">
+    <div class="container">
+        <div class="row">
+            <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                
+                <!-- cart content Start -->
+                <div class="ec-cart-content">
+                    <div class="ec-cart-inner">
+                        <div class="row">
+                            <form action="#">
+                                <div class="table-content cart-table-content">
+                                    <div class="card">
+                                        <h5 class="card-header">Billing Address</h5>
+                                        <div class="card-body">
+                                          <pre class="card-text" style="font-family: 'Nunito';">
+<b>    Name         :</b>  {{order.full_name }}
+<b>    Address      :</b>  {{order.address }}
+<b>    Phone         :</b>  {{order.phone }}
+<b>    Email          :</b>  {{order.email  }}
+<b>    City             :</b>  {{order.city }}
+<b>    State           :</b>  {{order.state }}
+<b>    Country      :</b>  {{order.country }}{% if order.order_note %}
+<b>    Order Note :</b>  " {{order.order_note }} "</pre>
+                                            {% endif %}
+                                        </pre>
+                                            
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="card">
+                                        <h5 class="card-header">Billing Method</h5>
+                                        <div class="card-body">
+                                          <pre class="card-text">   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" height="30px"></pre>
+                                          
+                                        </div>
+                                    </div>
+                                    <br>
+                                    
+                                    <div class="card">
+                                        <h5 class="card-header">Billing Amount</h5>
+                                        <div class="card-body">
+                                            <div class="ec-sb-block-content">
+                                                <div class="ec-cart-summary-bottom">
+                                                    <div class="ec-cart-summary">
+                                                        <div>
+                                                            <span class="text-left">Sub-Total</span>
+                                                            <span class="text-right">₹{{total}}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-left">Taxs Charge ( 2 % )</span>
+                                                            <span class="text-right">₹{{tax }}</span>
+                                                        </div>
+
+                                                    
+                                                        <div class="ec-cart-coupan-content">
+                                                            <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                                                action="#">
+                                                                <input class="ec-coupan" type="text" required=""
+                                                                    placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                                                <button class=" rounded-3 ec-coupan-btn button btn-primary" type="submit"
+                                                                    name="subscribe" value="">Apply</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="ec-cart-summary-total">
+                                                            <span class="text-left">Total Amount</span>
+                                                            <span class="text-right">₹<b>{{grand_total}}</b></span>
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>  
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ec-cart-update-bottom">
+                                            <a href="/cart/checkout/">Make Payment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--cart content End -->
+            </div>
+
+
+            
+
+
+
+            <!-- Sidebar Area Start -->
+            <div class="ec-cart-rightside col-lg-4 col-md-12">
+                <h5 class="card-header">Ordered Products</h5>
+                <div class="ec-sidebar-wrap">
+                    <div class="ec-checkout-pro">
+                        <div class="ec-checkout-pro">
+                            {% for  cart_item in cart_items %}
+                               <div class="col-sm-12 mb-6">
+                                   <div class="ec-product-inner p-4">
+                                       <div class="ec-pro-image-outer">
+                                           
+                                               <a href="product-left-sidebar.html" class="image">
+                                                   <img class="main-image"
+                                                       src={{cart_item.product.images.url }}
+                                                       alt="Product"  style="float:right; height:120px; width:120px; border-radius:15px;"/>
+                                                   {% comment %} <img class="hover-image"
+                                                       src="{% static 'ekka_webapp/assets/images/product-image/1_2.jpg' %}"
+                                                       alt="Product" /> {% endcomment %}
+                                               </a>
+                                          
+                                       </div>
+                                       <div class="ec-pro-content">
+                                           <h5 class="ec-pro-title"><a href="product-left-sidebar.html"><b>{{cart_item.product.product_name }}</b></a></h5>
+                                           <div>
+                                           <b>Quantity</b>: {{cart_item.quantity }}
+                                           </div>
+                                           {% if cart_item.variations.all  %}
+                                            {% for item in cart_item.variations.all%}
+                                            <div>
+                                           <b>{{item.Variation_category}}</b> : {{item.Variation_value}}<br>
+                                           
+                                            </div>
+                                           {% endfor %}
+                                           {% endif %}
+                                       
+                                     
+                                       <span class="ec-price">
+                                        
+                                           <span class="old-price"> ₹ {{cart_item.product.mrp_price}}</span> 
+                                           <span class="new-price">₹ {{cart_item.product.price }}</span>
+                                           
+                                       </div>
+                                   </div>
+                               </div>
+                                {% endfor %}
+                               </div>
+                    <!-- Sidebar Summary Block -->
+                    <div class="ec-sidebar-block">
+                        <div class="ec-sb-title">
+                            <h3 class="ec-sidebar-title">Summary</h3>
+                        </div>
+                        
+
+                        <div class="ec-sb-block-content">
+                            <div class="ec-cart-summary-bottom">
+                                <div class="ec-cart-summary">
+                                    <div>
+                                        <span class="text-left">Sub-Total</span>
+                                        <span class="text-right">₹{{total}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">Taxs Charge ( 2 % )</span>
+                                        <span class="text-right">₹{{tax }}</span>
+                                    </div>
+                                    
+                                   
+                                    <div class="ec-cart-coupan-content">
+                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
+                                            action="#">
+                                            <input class="ec-coupan" type="text" required=""
+                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                            <button class=" rounded-3 ec-coupan-btn button btn-primary" type="submit"
+                                                name="subscribe" value="">Apply</button>
+                                        </form>
+                                    </div>
+                                    <div class="ec-cart-summary-total">
+                                        <span class="text-left">Total Amount</span>
+                                        <span class="text-right">₹<b>{{grand_total}}</b></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar Summary Block -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

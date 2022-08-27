@@ -377,7 +377,7 @@
                     .then(data => {
                         console.log('Success:', data);
                         console.log('transaction Completed')
-                        window.location.href = redirect_url + "?order_number=" + data.order_number + '&payment_id='+ data.payment_id;
+                        window.location.href = redirect_url + "?order_number=" + data.order_number + '&payment_id='+ data.transID;
                     });
                 }
                 });

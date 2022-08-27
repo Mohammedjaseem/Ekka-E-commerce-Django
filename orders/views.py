@@ -69,6 +69,7 @@ def payments(request):
         'items': cart_items,
         
     })
+    
     to_email   = request.user.email
     send_email = EmailMessage(mail_subject, message, to=[to_email])
     # send_email.content_subtype = "html"
@@ -80,7 +81,6 @@ def payments(request):
         'transID': payment.payment_id,
     }
     return JsonResponse(data)
-
 
 
 
@@ -150,12 +150,39 @@ def place_order(request, total=0, quantity=0):
 
 
 def order_complete(request):
-    
-    context = {
-        'order_number': request.GET.get('order_number'),
 
-    }
-    return render(request, 'orders/order_complete.html', context)
+    order_number = request.GET.get('order_number')
+    transID = request.GET.get('payment_id')
+
+    try:
+        order = Order.objects.get(order_number=order_number, is_ordered=True)
+        ordered_products = OrderProduct.objects.filter(order_id=order.id)
+        payment = Payment.objects.get(payment_id=transID)
+        tax = (2 * order.order_total) / 100
+        subtotal = order.order_total - tax
+        subtotal = round(subtotal, 2)
+        grand_total = order.order_total
+        tax = round(tax, 2)
+        context = {
+            'user_name': order.user.full_name,
+            'date': order.date ,
+            'note': order.order_note,
+            'order': order,
+            'ordered_products': ordered_products,
+            'order_number': order_number,
+            'transID': transID,
+            'address': order.address,
+            'subtotal': subtotal,
+            'tax': tax,
+            'grand_total': grand_total,
+        }
+
+        return render(request, 'orders/order_complete.html',context)
+
+    except (Payment.DoesNotExist, Order.DoesNotExist):
+        return redirect('/')
+    
+    
 
 
 

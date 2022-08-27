@@ -51,6 +51,9 @@ class Order(models.Model):
 
     def address (self):
         return self.address_line_1 + ' ' + self.address_line_2 
+    
+    def date (self):
+        return self.created_at.strftime('%d %b %Y')
 
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

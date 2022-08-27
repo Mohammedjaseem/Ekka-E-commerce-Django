@@ -335,6 +335,8 @@
     var csrftoken      = getCookie('csrftoken');
     var orderID        = {{order.order_number}}
     var payment_method = "Paypal"
+    var redirect_url   = "{% url 'order_complete' %}"
+
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
 
@@ -369,12 +371,17 @@
                             transID        : details.id,
                             payment_method : payment_method,
                             status         : details.status,
-                        })
+                        }),
                     })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        console.log('transaction Completed')
+                        window.location.href = redirect_url + "?order_number=" + data.order_number + '&payment_id='+ data.payment_id;
+                    });
                 }
                 });
             }
-
     }).render('#paypal-button-container');
 </script>
 

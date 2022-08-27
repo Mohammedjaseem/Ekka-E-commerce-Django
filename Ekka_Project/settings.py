@@ -154,7 +154,7 @@ MESSAGE_TAGS = {
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jassybrocamp@gmail.com'
-EMAIL_HOST_PASSWORD = 'tord jjuq bzaz fdhu'
+EMAIL_HOST_PASSWORD = 'jjck xunk qbec ubkt'
 EMAIL_USE_TLS = True
 
 

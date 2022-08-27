@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+Hey {{user.full_name}},
+
+Your order has been Recived 
+ Order number : {{order.order_number}}
+ Total Amount : {{order.order_total}} Rupees
+ Tax paid     : {{order.tax}} Rupees
+ Ordered on   : {{order.updated_at}}
+ {% comment %} Items       : 
+    {% for item in cart_items %}
+        {{item.product.name}} - {{item.quantity}}
+    {% endfor %} {% endcomment %}
+ 
+{% endautoescape %}

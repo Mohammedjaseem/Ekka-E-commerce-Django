@@ -195,8 +195,13 @@
 
                                 <div class="row">
                                     <div class="col-lg-12">
+                                        <div class="payment-link">
+                                            <br>
+                                            <img src="{% static 'ekka_webapp/assets/images/icons/payment.png ' %}" alt="">
+                                        </div>
                                         <div class="ec-cart-update-bottom">
-                                            <a href="/cart/checkout/">Make Payment</a>
+                                            <div id="paypal-button-container">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +279,7 @@
                                     </div>
                                     <div>
                                         <span class="text-left">Taxs Charge ( 2 % )</span>
-                                        <span class="text-right">₹{{tax }}</span>
+                                        <span class="text-right">₹{{tax}}</span>
                                     </div>
                                     
                                    
@@ -302,4 +307,75 @@
         </div>
     </div>
 </section>
+
+<script src="https://www.paypal.com/sdk/js?client-id=ASHQaVNygDQF-248AqZVNtjAylXuiJaiyEO6VbCzC9bIr8lOCj5Cx0vckCvKK5QZ1RnGx5A9IvQwjYb4&currency=USD"></script>
+<script>
+
+    //csrf token 
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+
+    // setting amount 
+    var amount         = {{grand_total}}
+    var url            = "{% url 'payments' %}"
+    var csrftoken      = getCookie('csrftoken');
+    var orderID        = {{order.order_number}}
+    var payment_method = "Paypal"
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+
+        // Set up the transaction 
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: amount,
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Successful capture! For demo purposes:
+                //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                // var transaction = orderData.purchase_units[0].payments.captures[0];
+                console.log(details);
+                sendData();
+                function sendData(){
+                    fetch(url, {
+                        method : "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": csrftoken,
+                        },
+                        body: JSON.stringify({
+                            orderID        : orderID,
+                            transID        : details.id,
+                            payment_method : payment_method,
+                            status         : details.status,
+                        })
+                    })
+                }
+                });
+            }
+
+    }).render('#paypal-button-container');
+</script>
+
 {% endblock %}

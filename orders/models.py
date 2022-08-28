@@ -50,7 +50,7 @@ class Order(models.Model):
         return self.first_name + ' ' + self.last_name
 
     def address (self):
-        return self.address_line_1 + ' ' + self.address_line_2 
+        return self.address_line_1 + ' ' + self.address_line_2 + ' ' + self.city + ' ' + self.state + ' ' + self.country
     
     def date (self):
         return self.created_at.strftime('%d %b %Y')

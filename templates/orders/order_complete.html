@@ -65,6 +65,20 @@
     {% for item in ordered_products%}
     <td width="20%"> <img src="{{ item.product.images.url}}" width="90"> </td>
     <td width="60%"> <span class="font-weight-bold">{{ item.product.product_name }}</span>
+
+        {% comment %} Adding variation product {% endcomment %}
+            
+            {% if item.variation.all  %}
+       
+                {% for product in item.variation.all%}
+                    <div>
+                        <b>{{product.Variation_category}}</b> : {{product.Variation_value}}<br>
+                    </div>
+               {% endfor %}
+            {% endif %}
+
+        {% comment %} End vartion adding here {% endcomment %}
+
     <div class="product-qty"> <span class="d-block">Quantity: <b>{{item.quantity}}</b></span> </div>
     </td>
     <td width="20%">

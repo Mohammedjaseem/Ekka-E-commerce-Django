@@ -31923,8 +31923,8 @@ input[type=email]:focus::-webkit-input-placeholder {
           align-items: center;
 }
 .ec-vendor-dashboard .ec-vendor-sidebar .ec-sidebar-block .ec-vendor-block .ec-vendor-block-detail .v-img, .ec-vendor-uploads .ec-vendor-sidebar .ec-sidebar-block .ec-vendor-block .ec-vendor-block-detail .v-img {
-  width: 140px;
-  height: 140px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   margin-top: -70px;
   border: 10px solid #ffffff;
@@ -32453,8 +32453,8 @@ input[type=email]:focus::-webkit-input-placeholder {
           align-items: center;
 }
 .ec-vendor-profile-card .ec-vendor-block-profile .ec-vendor-block-img .ec-vendor-block-detail .v-img {
-  width: 140px;
-  height: 140px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   margin-top: -70px;
   border: 10px solid #ffffff;
@@ -32522,8 +32522,8 @@ input[type=email]:focus::-webkit-input-placeholder {
   position: relative;
 }
 .ec-vendor-setting-card .ec-vendor-block-detail .v-img {
-  width: 140px;
-  height: 140px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   margin-top: -70px;
   border: 10px solid #ffffff;
@@ -32643,8 +32643,8 @@ input[type=email]:focus::-webkit-input-placeholder {
   position: relative;
 }
 #edit_modal .ec-vendor-block-detail .v-img {
-  width: 140px;
-  height: 140px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   margin-top: -70px;
   border: 10px solid #ffffff;

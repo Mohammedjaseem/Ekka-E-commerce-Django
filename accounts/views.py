@@ -11,6 +11,9 @@ from django.http import HttpResponse
 #import orders
 from orders.models import Order, OrderProduct
 
+#import account details
+from accounts.models import Account, UserProfile
+
 #verfication email
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -185,19 +188,13 @@ def dashboard(request):
 
 @login_required(login_url='login')
 def user_profile(request):
-    user = request.user
-    # if request.method == 'POST':
-    #     form = UserProfileForm(request.POST, request.FILES, instance=user)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(request, 'Your profile has been updated.')
-    #         return redirect('user_profile')
-    # else:
-    #     form = UserProfileForm(instance=user)
-    # context = {
-    #     'form': form,
-    # }
-    return render(request, 'accounts/profile.html', {'profile': user})
+    user         = request.user
+    profile_data = UserProfile.objects.get(user=user)
+    context      = {
+        'profile': user,
+        'profile_data': profile_data,
+    }
+    return render(request, 'accounts/profile.html', context)
 
 def forgotPassword(request):
     if request.method == 'POST':
@@ -263,7 +260,7 @@ def resetPassword(request):
         template = 'accounts/resetPassword.html'
         return render(request, template)
 
-
+@login_required(login_url='login')
 def changePassword(request):
     if request.method == 'POST':
         password = request.POST['password']
@@ -282,3 +279,9 @@ def changePassword(request):
     else:
         template = 'accounts/changePassword.html'
         return render(request, template)
+
+
+@login_required(login_url='login')
+def edit_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'accounts/profile.html', {'profile': user_profile})

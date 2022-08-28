@@ -34,18 +34,11 @@ class MyAccountManager(BaseUserManager):
         return user
 
 class Account(AbstractBaseUser):
-    username      = models.CharField(max_length=50)#removed uniq due to diffrent doamins and auto generation of id
+    username      = models.CharField(max_length=50)#removed uniq due to diffrent doamins and auto generation of id in the mails
     email         = models.EmailField(max_length=255, unique=True)
-    email2        = models.EmailField(max_length=255, blank=True)
     phone_number  = models.CharField(max_length=20, blank=True) 
-    phone_number2 = models.CharField(max_length=20, blank=True) 
     full_name     = models.CharField(max_length=50, blank=True) 
-    user_pic      = models.ImageField(upload_to='profile_pics', blank=True)
-    dob           = models.DateField(blank=True, null=True)
-    address       = models.CharField(max_length=500, blank=True)
-    address2      = models.CharField(max_length=500, blank=True)
-    
-
+   
     #required fields for AbstractBaseUser
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login  = models.DateTimeField(auto_now=True)
@@ -67,6 +60,24 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class UserProfile(models.Model):
+    user            = models.OneToOneField(Account, on_delete=models.CASCADE)
+    #one to one relationship with the user ( user can have only one profile | if we use forgin key then one user can have many profiles) 
+    address_line_1  = models.CharField(max_length=150, blank=True)
+    address_line_2  = models.CharField(max_length=150, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics', blank=True)
+    city            = models.CharField(max_length=100, blank=True)
+    state           = models.CharField(max_length=100, blank=True)
+    country         = models.CharField(max_length=100, blank=True)
+    bio             = models.TextField(max_length=500, blank=True)
+
+    def __str__(self):
+        return self.user.full_name
+    
+    def full_address(self):
+        return f'{self.address_line_1} {self.address_line_2}'
 
 
      

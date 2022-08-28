@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 
+#import orders
+from orders.models import Order, OrderProduct
+
 #verfication email
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -165,9 +168,36 @@ def activate(request, uidb64, token):
 @login_required(login_url='login')
 def dashboard(request): 
     user = request.user
-    #form = job_post_add(request.POST, request.FILES, instance=job_post.objects.get(id=id))
-    # edit_form =  user(request.POST,request.FILES, instance=user)
-    return render(request, 'accounts/dashboard.html', {'profile': user})
+    orders = Order.objects.order_by('-created_at').filter(user_id=user.id, is_ordered=True)
+    orders_count = orders.count()
+    product_ordered = OrderProduct.objects.filter(user_id=user.id).order_by('-created_at')
+    
+
+    context = {
+        'profile': user,
+        'orders_count': orders_count,
+        'user': user,
+        'product_ordered': product_ordered,
+        'orders': orders,
+        
+    }
+    return render(request, 'accounts/dashboard.html', context)
+
+@login_required(login_url='login')
+def user_profile(request):
+    user = request.user
+    # if request.method == 'POST':
+    #     form = UserProfileForm(request.POST, request.FILES, instance=user)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request, 'Your profile has been updated.')
+    #         return redirect('user_profile')
+    # else:
+    #     form = UserProfileForm(instance=user)
+    # context = {
+    #     'form': form,
+    # }
+    return render(request, 'accounts/profile.html', {'profile': user})
 
 def forgotPassword(request):
     if request.method == 'POST':

@@ -9,11 +9,6 @@
 {% endblock %}
 {% block content %}
 
-
-
-
-
-
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
@@ -21,13 +16,13 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">User Profile</h2>
+                            <h2 class="ec-breadcrumb-title">User History</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="ec-breadcrumb-item active">Profile</li>
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">History</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
                         </div>
@@ -38,120 +33,68 @@
     </div>
     <!-- Ec breadcrumb end -->
 
-    <!-- User profile section -->
+    <!-- User history section -->
     <section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
         <div class="container">
             <div class="row">
-                <!-- Sidebar Area Start -->
-                <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
-                    <div class="ec-sidebar-wrap">
-                        <!-- Sidebar Category Block -->
-                        <div class="ec-sidebar-block">
-                            <div class="ec-vendor-block">
-                                <!-- <div class="ec-vendor-block-bg"></div>
-                                <div class="ec-vendor-block-detail">
-                                    <img class="v-img" src="{% static 'ekka_webapp/assets/images/user/1.jpg' %}" alt="vendor image">
-                                    <h5>Mariana Johns</h5>
-                                </div> -->
-                                <div class="ec-vendor-block-items">
-                                    <ul>
-                                        <li><a href="#">User Profile</a></li>
-                                        <li><a href="user-history.html">History</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="track-order.html">Track Order</a></li>
-                                        <li><a href="user-invoice.html">Invoice</a></li>
-                                    </ul>
-                                </div>
+                {% include  'includes/dashboard_sidebar.html'%}
+                <div class="ec-shop-rightside col-lg-9 col-md-12">
+                    <div class="ec-vendor-dashboard-card">
+                        <div class="ec-vendor-card-header">
+                            <h5 style="text-transform: capitalize; color:#2f2695;">{{profile.full_name}}'s <br> <p style="font-size:15px; color:#8d77a3;"> Order's History<br>
+                            </p></h5>
+                            <div class="ec-header-btn">
+                                <a class="btn btn-lg btn-primary rounded-3" href="../store">Shop Now</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="ec-shop-rightside col-lg-9 col-md-12">
-                    <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
                         <div class="ec-vendor-card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="ec-vendor-block-profile">
-                                        <div class="ec-vendor-block-img space-bottom-30">
-                                            <div class="ec-vendor-block-bg">
-                                                <a href="#" class="btn btn-lg btn-primary"
-                                                    data-link-action="editmodal" title="Edit Detail"
-                                                    data-bs-toggle="modal" data-bs-target="#edit_modal">Edit Detail</a>
-                                            </div>
-                                            {% if profile.banner_pic.url %}
-                                            <div class="ec-vendor-block-detail" style="background-image:url({{ profile.banner_pic.url }});">
-                                            {% else %}
-                                            <div class="ec-vendor-block-detail">
+                            <div class="ec-vendor-card-table">
+                                <table class="table ec-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Sl no</th>
+                                            <th scope="col">Orderd ID</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Orderd Date & time</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Payment</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in product_ordered %}
+                                        <tr>
+                                            <th scope="row"><span>{{forloop.counter}}</span></th>
+                                            <th scope="row"><span>{{item.order.order_number}}</span></th>
+                                            <td><img class="prod-img mt-4 rounded-2" src="{{item.product.images.url}}"
+                                                    alt="product image" ></td>
+                                            <td><span><b>{{item.product.product_name}}</b></span>
+
+                                            {% comment %} Adding variation product {% endcomment %}
+            
+                                            {% if item.variation.all  %}
+                                                
+                                                {% for product in item.variation.all%}
+                                                    <div>
+                                                        <b>{{product.Variation_category}}</b> : {{product.Variation_value}}<br>
+                                                    </div>
+                                               {% endfor %}
                                             {% endif %}
-                                                {% for message in messages %} 
-					                            <div class="blink_me">
-					                            	  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-					                            		  <strong>{{ message }}</strong>
-					                            		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					                            			  <span aria-hidden="true">&times;</span>
-					                            		  </button>
-					                            	  </div>
-					                            </div>
-					                            {% endfor %}
 
-                                                {% if profile.profile_pic.url %}
-                                                <img class="v-img" src="{{ profile.user_pic.url }}" alt="vendor image">
-                                                {% else %}
-                                                <img class="v-img" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="vendor image">
-                                                {% endif %}
-                                                <h5 class="name">{{profile.name}}</h5>
-                                                <p>( {{profile.full_name}} ) </p>
-                                            </div>
-                                            <p>Hello <span>{{profile.full_name}}!</span></p>
-                                            <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
-                                        </div>
-                                        <h5>Account Information</h5>
+                                              {% comment %} End vartion adding here {% endcomment %}
+                                            
+                                            </td>
 
-                                        <div class="row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="ec-vendor-detail-block ec-vendor-block-email space-bottom-30">
-                                                    <h6>Email Address <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
-                                                        class="svg_img pro_svg" alt="edit" /></a></h6>
-                                                    <ul>
-                                                        <li><strong>Email Address : </strong>{{profile.email}}</li>
-                                                        <li><strong>Alternative Mail : </strong>{{profile.email2}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="ec-vendor-detail-block ec-vendor-block-contact space-bottom-30">
-                                                    <h6>Contact nubmer<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
-                                                        class="svg_img pro_svg" alt="edit" /></a></h6>
-                                                    <ul>
-                                                        <li><strong>Phone Nubmer: </strong>{{profile.phone_number}}</li>
-                                                        <li><strong>Alternative Nubmer: </strong>{{profile.phone_number2}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="ec-vendor-detail-block ec-vendor-block-address mar-b-30">
-                                                    <h6>Shipping Address<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
-                                                        class="svg_img pro_svg" alt="edit" /></a></h6>
-                                                    <ul>
-                                                        <li><strong>Home Address<br> </strong>{{profile.address}}</li>
-                                                        <li><strong>Work Address <br> </strong>{{profile.address2}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <div class="ec-vendor-detail-block ec-vendor-block-address">
-                                                    <h6>Date Of Birth<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
-                                                        class="svg_img pro_svg" alt="edit" /></a></h6>
-                                                    <ul>
-                                                        <li><strong>BOD : </strong>{{profile.dob}}.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <td><span>{{item.order.updated_at}}</span></td>
+                                            <td><span>₹ <b>{{item.product.price}}</b></span></td>
+                                            <td><span><b>{{item.payment.status}}</b></span></td>
+                                            <td><span class="tbl-btn"><a class="btn btn-lg btn-primary rounded-3"
+                                                        href="#">View</a></span></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -159,102 +102,6 @@
             </div>
         </div>
     </section>
-    <!-- End User profile section -->
-
-    {% comment %} modal {% endcomment %}
-
-    <!-- Modal -->
-    <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="ec-vendor-block-img space-bottom-30">
-                            <div class="ec-vendor-block-bg cover-upload">
-                                <div class="thumb-upload">
-                                    <div class="thumb-edit">
-                                        <input type='file' id="thumbUpload01" class="ec-image-upload"
-                                            accept=".png, .jpg, .jpeg" />
-                                        <label><img src="assets/images/icons/edit.svg"
-                                                class="svg_img header_svg" alt="edit" /></label>
-                                    </div>
-                                    <div class="thumb-preview ec-preview">
-                                        <div class="image-thumb-preview">
-                                            <img class="image-thumb-preview ec-image-preview v-img"
-                                                src="assets/images/banner/8.jpg" alt="edit" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ec-vendor-block-detail">
-                                <div class="thumb-upload">
-                                    <div class="thumb-edit">
-                                        <input type='file' id="thumbUpload02" class="ec-image-upload"
-                                            accept=".png, .jpg, .jpeg" />
-                                        <label><img src="assets/images/icons/edit.svg"
-                                                class="svg_img header_svg" alt="edit" /></label>
-                                    </div>
-                                    <div class="thumb-preview ec-preview">
-                                        <div class="image-thumb-preview">
-                                            <img class="image-thumb-preview ec-image-preview v-img"
-                                                src="assets/images/user/1.jpg" alt="edit" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ec-vendor-upload-detail">
-                                <form class="row g-3">
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">{{edit_form.username}}</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Last name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-12 space-t-15">
-                                        <label class="form-label">Address 1</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-12 space-t-15">
-                                        <label class="form-label">Address 2</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-12 space-t-15">
-                                        <label class="form-label">Address 3</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Email id 1</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Email id 2</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Phone number 1</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Phone number 2</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-12 space-t-15">
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                        <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
-                                            aria-label="Close">Close</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal end -->
-
-    {% comment %} model ends here {% endcomment %}
+    <!-- End User history section -->
 
     {% endblock %}

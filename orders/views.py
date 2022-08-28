@@ -61,18 +61,24 @@ def payments(request):
     # Empty the cart
     CartItem.objects.filter(user=request.user).delete() 
 
+    data = {
+        'order_number': order.order_number,
+        'transID': payment.payment_id,
+    }
+
     # Send email to the user ( with order details )
     mail_subject = 'Thank you for your order.'
     message = render_to_string('orders/order_mail.html', {
         'user': request.user,
         'order': order,
         'items': cart_items,
+        'url'   : 'http://127.0.0.1:8000/orders/order_complete/?' + 'order_number=' + order.order_number + '&payment_id=' + payment.payment_id,
         
     })
     
     to_email   = request.user.email
     send_email = EmailMessage(mail_subject, message, to=[to_email])
-    # send_email.content_subtype = "html"
+    send_email.content_subtype = "html"
     send_email.send()
 
     # send order number & transcation id back to sendData method via JasonResponse

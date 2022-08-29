@@ -196,15 +196,7 @@ def dashboard(request):
     }
     return render(request, 'accounts/dashboard.html', context)
 
-# @login_required(login_url='login')
-# def user_profile(request):
-#     user         = request.user
-#     profile_data = UserProfile.objects.get(user=user)
-#     context      = {
-#         'profile': user,
-#         'profile_data': profile_data,
-#     }
-#     return render(request, 'accounts/profile.html', context)
+
 
 def forgotPassword(request):
     if request.method == 'POST':
@@ -301,7 +293,7 @@ def user_profile(request):
     try:
        #userprofile  = get_object_or_404(UserProfile, user=request.user)
        userprofile = UserProfile.objects.get(user=request.user)
-       
+
     except ObjectDoesNotExist:
         # created new userprofile if not exist for the user
         userprofile = UserProfile.objects.create(user=request.user)

@@ -134,7 +134,7 @@
                                         src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     {% if user.is_authenticated %}
-                                    <li><a class="dropdown-item" href="{% url 'dashboard' %}">Hai, {{user.full_name}}</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'user_profile' %}">Hai, {{user.full_name}}</a></li>
                                     <li><a class="dropdown-item" href={% url 'changePassword' %}>Change Password</a></li>
                                     <li><a class="dropdown-item" href={% url 'logout' %}>Logout</a></li>
                                     {% else %}

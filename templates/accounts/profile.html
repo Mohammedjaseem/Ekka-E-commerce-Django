@@ -82,6 +82,8 @@
                                             </div>
                                             <h2>Hey, <b><span>{{profile.full_name}}!</span></b></h2>
                                             <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
+                                           <br> <h6> <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><button class="btn" style="background-color:black; color:white; border-radius:15px;">Update Profile <img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
+                                                class="svg_img pro_svg" alt="edit" /></button></a></h6>
                                             {% for message in messages %} 
                                             <br>
                                             <strong> <h5 class="blink_me">{{ message }}</h5></strong>

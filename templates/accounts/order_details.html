@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static%}
+
+
+{% block extra_head_content  %}
+    {{ block.super }}
+    <style>
+        .card {
+            border: none
+            }
+            .logo {
+            background-color: #eeeeeea8
+            }
+            .totals tr td {
+            font-size: 13px
+            }
+           
+            .footeronpage span {
+            font-size: 12px
+            }
+            .product-qty span {
+            font-size: 12px;
+            color: #dedbdb
+            }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+    <div class="card">
+    <div class="text-left logo p-2 px-5"> <img src="{% static 'ekka_webapp/assets/images/logo/logo-6.png' %}" width="180" style="margin-top: 30px; float:right"> </div>
+    <div class="invoice p-5 pt-2">
+    <h3><b>Your order Detail !</b></h3> <span class="font-weight-bolder d-block mt-4">Hello, {{order.full_name}}</span> <span>You order has been confirmed and will be shipped in next two days!</span><br>
+    {% if note %}                                       
+    <span>Order Note: "<b>{{note}}</b>"</span>
+    {% endif %}
+    <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+    <table class="table table-borderless">
+    <tbody>
+    <tr>
+    <td>
+    <div class="py-2"> <span class="d-block text-muted"> Date & time   </span> <span>{{order.updated_at}}</span> </div>
+    </td>
+    <td>
+    <div class="py-2"> <span class="d-block text-muted">Order No</span> <span>{{order.order_number}}</span> </div>
+    </td>
+    <td>
+    <div class="py-2"> <span class="d-block text-muted">Trans ID</span> <span>{{order.payment.payment_id}}</span> </div>
+    </td>
+    <td>
+    <div class="py-2"> <span class="d-block text-muted">Shiping Address</span> <span>{{order.address_line_1}}</span> </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="product border-bottom table-responsive">
+    <table class="table table-borderless">
+    <tbody>
+    <tr>
+    {% for item in order_detail %}
+    <td width="20%"> <img src="{{ item.product.images.url}}" width="90"> </td>
+    <td width="60%"> <span class="font-weight-bold">{{ item.product.product_name }}</span>
+
+        {% comment %} Adding variation product {% endcomment %}
+            
+            {% if item.variation.all  %}
+       
+                {% for product in item.variation.all%}
+                    <div>
+                        <b>{{product.Variation_category}}</b> : {{product.Variation_value}}<br>
+                    </div>
+               {% endfor %}
+            {% endif %}
+
+        {% comment %} End vartion adding here {% endcomment %}
+
+    <div class="product-qty"> <span class="d-block">Quantity: <b>{{item.quantity}}</b></span> </div>
+    </td>
+    <td width="20%">
+    <div class="text-right"> <span class="font-weight-bold">₹ {{item.product_price}}</span> </div>
+    </td>
+    </tr>
+    <tr>
+    
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="row d-flex justify-content-end">
+    <div class="col-md-5">
+    <table class="table table-borderless">
+    <tbody class="totals">
+    <tr>
+    <td>
+    <div class="text-left"> <span class="text-muted">Product Price</span> </div>
+    </td>
+    <td>
+    <div class="text-right"> <span>₹ {{item.product.price}}</span> </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="text-left"> <span class="text-muted">Tax Fee</span> </div>
+    </td>
+    <td>
+    <div class="text-right"> <span>₹ {{tax}}</span> </div>
+    </td>
+    </tr>
+    
+    <tr class="border-top border-bottom">
+    <td>
+    <div class="text-left"> <span class="font-weight-bold">Subtotal</span> </div>
+    </td>
+    <td>
+    <div class="text-right"> <span class="font-weight-bold">₹ {{grand_total}}</span> </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    {% comment %} <p>We will be sending shipping confirmation email when the item shipped successfully!</p> {% endcomment %}
+    <p class="font-weight-bold mb-0">Thanks for shopping with us!</p> <span>Ekka Team</span>
+    </div>
+    <div class="d-flex justify-content-between footeronpage p-3"> <span>Need Help? visit our <a href="#"> help center</a></span> <span> Bill Genarated : {{order.updated_at}}</span> </div>
+    </div>
+    </div>
+    </div>
+    </div> 
+
+    {% endfor %}
+{% endblock %}

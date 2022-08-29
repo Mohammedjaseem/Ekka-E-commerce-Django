@@ -51,7 +51,7 @@ class UserForm(forms.ModelForm):
         self.fields['phone_number'].widget.attrs['placeholder'] = 'Phone Number'
 
 
-class UserProfile(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['address_line_1', 'address_line_2', 'profile_picture', 'city', 'state', 'country', 'bio']
@@ -65,16 +65,20 @@ class UserProfile(forms.ModelForm):
             'profile_picture': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Profile Picture'}),
         }
 
-    def __init__(self, *args, **kwargs):
-        super(UserProfile, self).__init__(*args, **kwargs)
-        self.fields['address_line_1'].widget.attrs['placeholder'] = 'Address Line 1'
-        self.fields['address_line_2'].widget.attrs['placeholder'] = 'Address Line 2'
-        self.fields['city'].widget.attrs['placeholder'] = 'City'
-        self.fields['state'].widget.attrs['placeholder'] = 'State'
-        self.fields['country'].widget.attrs['placeholder'] = 'Country'
-        self.fields['bio'].widget.attrs['placeholder'] = 'Bio'
-        self.fields['profile_picture'].widget.attrs['placeholder'] = 'Profile Picture'
+    # def __init__(self, *args, **kwargs):
+    #     super(UserProfile, self).__init__(*args, **kwargs)
+    #     self.fields['address_line_1'].widget.attrs['placeholder'] = 'Address Line 1'
+    #     self.fields['address_line_2'].widget.attrs['placeholder'] = 'Address Line 2'
+    #     self.fields['city'].widget.attrs['placeholder'] = 'City'
+    #     self.fields['state'].widget.attrs['placeholder'] = 'State'
+    #     self.fields['country'].widget.attrs['placeholder'] = 'Country'
+    #     self.fields['bio'].widget.attrs['placeholder'] = 'Bio'
+    #     self.fields['profile_picture'].widget.attrs['placeholder'] = 'Profile Picture'
         
+
+
+
+
 
 
 

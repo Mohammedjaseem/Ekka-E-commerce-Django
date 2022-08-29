@@ -6,6 +6,18 @@
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/vendor/ecicons.min.css' %}" />
+
+<style>
+    .blink_me {
+        animation: blinker 1s linear infinite;
+      }
+      
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+</style>
 {% endblock %}
 {% block content %}
 
@@ -53,32 +65,27 @@
                                         <div class="ec-vendor-block-img space-bottom-30" style="float:right;">
                                             
                                             {% if profile.banner_pic.url %}
-                                            <div style="float:right; background-image:url({{ profile_data.profile_picture.url }});">
+                                            <div  class="svg_img pro_svg" alt="edit" style="float:right; background-image:url({{ profile_data.profile_picture.url }});" <a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
+                                                class="svg_img pro_svg" alt="edit" /></a>
                                             </div>
                                             {% else %}
-                                            <div class="ec-vendor-block-detail">
+                                            <div class="ec-vendor-block-detail" style="float: right;">
                                             {% endif %}
-                                                {% for message in messages %} 
-					                            <div class="blink_me">
-					                            	  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-					                            		  <strong>{{ message }}</strong>
-					                            		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					                            			  <span aria-hidden="true">&times;</span>
-					                            		  </button>
-					                            	  </div>
-					                            </div>
-					                            {% endfor %}
+                                                
 
                                                 {% if profile_data.profile_picture %}
-                                                <img class="v-img" src="{{ profile_data.profile_picture.url }}" alt="vendor image">
+                                                <img class="v-img svg_img pro_svg" src="{{ profile_data.profile_picture.url }}"  alt="edit">
                                                 {% else %}
                                                 <img class="v-img" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="vendor image">
                                                 {% endif %}
-                                                <h5 class="name">{{profile.name}}</h5>
-                                                <p>( {{profile.full_name}} ) </p>
+                                                
                                             </div>
-                                            <p>Hello, <b><span>{{profile.full_name}}!</span></b></p>
+                                            <h2>Hey, <b><span>{{profile.full_name}}!</span></b></h2>
                                             <p>From your account you can easily view and track orders. You can manage and change your account information like address, contact information and history of orders.</p>
+                                            {% for message in messages %} 
+                                            <br>
+                                            <strong> <h5 class="blink_me">{{ message }}</h5></strong>
+					                            {% endfor %}
                                         </div>
                                         <h5>Account Information</h5>
 
@@ -106,7 +113,7 @@
                                                     <h6>Shipping Address<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
                                                         class="svg_img pro_svg" alt="edit" /></a></h6>
                                                     <ul>
-                                                        <li><strong>Home Address<br> </strong>{{profile_data.full_address}}</li>
+                                                        <li><strong>Home Address: </strong>{{profile_data.full_address}}</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -115,7 +122,7 @@
                                                     <h6>My Bio<a href="javasript:void(0)" data-link-action="editmodal" title="Edit Detail" data-bs-toggle="modal" data-bs-target="#edit_modal"><img src="{% static 'ekka_webapp/assets/images/icons/edit.svg' %}"
                                                         class="svg_img pro_svg" alt="edit" /></a></h6>
                                                     <ul>
-                                                        <li><strong>Bio : </strong>{{profile_data.bio}}</li>
+                                                        <li><strong> </strong>"{{profile_data.bio}}"</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -140,53 +147,53 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="ec-vendor-block-img space-bottom-30 p-4">
-                           
-                   
+                      
+                            <h4 style="text-align:center; margin-bottom:20px;"><b>Edit Profile</b></h4><div style="height:2px; background-color:#f7f7f7;"></div>
                             <div class="ec-vendor-upload-detail">
                                 <form class="row g-3" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">Full Name</label>
-                                        <input type="text" class="form-control">
+                                        {{user_form.full_name }}
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">Email id</label>
-                                        <input type="text" class="form-control">
+                                        {{user_form.email }}
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">Mobile Number</label>
-                                        <input type="text" class="form-control">
+                                        {{user_form.phone_number }}
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">profile Picture</label>
-                                        <input type="file" class="form-control">
+                                        {{profile_form.profile_picture }}
                                     </div>
 
 
                                     <div class="col-md-12 space-t-15">
                                         <label class="form-label">Address Line 1</label>
-                                        <input type="text" class="form-control">
+                                        {{profile_form.address_line_1 }}
                                     </div>
                                     <div class="col-md-12 space-t-15">
                                         <label class="form-label">Address Line 2</label>
-                                        <input type="text" class="form-control">
+                                        {{profile_form.address_line_2 }}
                                     </div>
                                    
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">City</label>
-                                        <input type="text" class="form-control">
+                                        {{profile_form.city }}
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">State</label>
-                                        <input type="text" class="form-control">
+                                        {{profile_form.state }}
                                     </div>
                                     <div class="col-md-6 space-t-15">
                                         <label class="form-label">Country</label>
-                                        <input type="text" class="form-control">
+                                        {{profile_form.country}}
                                     </div>
                                     <div class="col-md-6 space-t-15">
-                                        <label class="form-label">Country</label>
-                                        <input type="text" class="form-control">
+                                        <label class="form-label">Bio</label>
+                                        {{profile_form.bio}}
                                     </div>
                                     <div class="col-md-12 space-t-15">
                                         <button type="submit" class="btn btn-primary rounded-3">Update</button>

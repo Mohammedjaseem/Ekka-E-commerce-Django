@@ -16,6 +16,7 @@ from django.shortcuts import get_object_or_404
 
 #import orders
 from orders.models import Order, OrderProduct
+from django.core.exceptions import ObjectDoesNotExist
 
 
 
@@ -294,9 +295,18 @@ def changePassword(request):
         return render(request, template)
 
 
+
 @login_required(login_url='login')
 def user_profile(request):
-    userprofile  = get_object_or_404(UserProfile, user=request.user)
+    try:
+       #userprofile  = get_object_or_404(UserProfile, user=request.user)
+       userprofile = UserProfile.objects.get(user=request.user)
+       
+    except ObjectDoesNotExist:
+        # created new userprofile if not exist for the user
+        userprofile = UserProfile.objects.create(user=request.user)
+        userprofile.save()
+
     user         = request.user
     profile_data = UserProfile.objects.get(user=user)
     if request.method == 'POST':

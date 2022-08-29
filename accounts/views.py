@@ -323,9 +323,23 @@ def order_details(request, order_id):
     order_details = OrderProduct.objects.filter(order__order_number=order_id)
     order         = Order.objects.get(order_number=order_id)
 
+    #total amount in order details
+    for i in order_details:
+        total = i.product_price * i.quantity
+        i.total = total
+
     #tax calculating 
+    for item in order_details:
+        item.tax = (i.total * 2)/100
+        total = i.total + item.tax
+
+    #items count
+    items_count = order_details.count()
+
     context = {
         'order_detail': order_details,
         'order': order,
+        'tax': item.tax,
+        'total': i.total,
     }
     return render(request, 'accounts/order_details.html', context)   

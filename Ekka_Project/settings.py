@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    'Ekka_Admin_App',
 ]
 
 MIDDLEWARE = [

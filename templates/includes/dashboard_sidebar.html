@@ -15,12 +15,18 @@
                         <li><a href="user_profile">User Profile</a></li>
                         <li><a href="dashboard">My Orders</a></li>
                         <li><a href="changePassword/"> Change Password</a></li>
-                        {% comment %} <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="track-order.html">Track Order</a></li>
-                        <li><a href="user-invoice.html">Invoice</a></li> {% endcomment %}
+                        {% if user.is_superuser %}
+                        <li><a href="checkout.html">Admin Dashboard</a></li>
+                        <li><a href="track-order.html">Users</a></li>
+                        <li><a href="user-invoice.html">Add Category</a></li>
+                        <li><a href="user-invoice.html">Add Sub Category</a></li>
+                        <li><a href="user-invoice.html">Add Product</a></li>
+                        <li><a href="user-invoice.html">View Orders</a></li>
+
+                        {% endif %}
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
 </div>

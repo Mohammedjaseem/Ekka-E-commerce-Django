@@ -54,45 +54,45 @@
                                         <tr>
                                             <th scope="col">Sl no</th>
                                             <th scope="col">Orderd ID</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Product</th>
                                             <th scope="col">Orderd Date & time</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Payment</th>
-                                            <th scope="col">Actions</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Payment Status</th>
+                                            <th scope="col">Payment Method</th>
+                                            <th scope="col">View Details</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for item in product_ordered %}
+                                       {% for item in orders %} 
                                         <tr>
                                             <th scope="row"><span>{{forloop.counter}}</span></th>
-                                            <th scope="row"><span>{{item.order.order_number}}</span></th>
-                                            <td><img class="prod-img mt-4 rounded-2" src="{{item.product.images.url}}"
+                                            <th scope="row"><span>{{item.order_number}}</span></th>
+                                            {% comment %} <td><img class="prod-img mt-4 rounded-2" src="{{item.product.images.url}}"
                                                     alt="product image" ></td>
-                                            <td><span><b>{{item.product.product_name}}</b></span>
+                                            <td><span><b>{{item.product.product_name}}</b></span> {% endcomment %}
 
                                             {% comment %} Adding variation product {% endcomment %}
             
-                                            {% if item.variation.all  %}
+                                            {% comment %} {% if item.variation.all  %}
                                                 
                                                 {% for product in item.variation.all%}
                                                     <div>
                                                         <b>{{product.Variation_category}}</b> : {{product.Variation_value}}<br>
                                                     </div>
                                                {% endfor %}
-                                            {% endif %}
+                                            {% endif %} {% endcomment %}
 
                                               {% comment %} End vartion adding here {% endcomment %}
                                             
                                             </td>
 
-                                            <td><span>{{item.order.updated_at}}</span></td>
-                                            <td><span>₹ <b>{{item.product.price}}</b></span></td>
+                                            <td><span>{{item.updated_at}}</span></td>
+                                            <td><span>₹ <b>{{item.payment.amount_paid}}</b></span></td>
                                             <td><span><b>{{item.payment.status}}</b></span></td>
+                                            <td><span><b>{{item.payment.payment_method}}</b></span></td>
                                             <td><span class="tbl-btn"><a class="btn btn-lg btn-primary rounded-3"
-                                                        href="./order_details/{{item.order.order_number}}/">View</a></span></td>
+                                                        href="./order_details/{{item.order_number}}/">Details</a></span></td>
                                         </tr>
-                                        {% endfor %}
+                                        {% endfor %} 
                                     </tbody>
                                 </table>
                             </div>

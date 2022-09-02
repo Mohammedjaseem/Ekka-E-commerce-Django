@@ -3,7 +3,7 @@
     Author: ashishmaraviya
     Version: 3.2
     Copyright 2021
-	Author URI: https://themeforest.net/user/ashishmaraviya
+	Author URI: https://mohammedjaseem.me/
 **/
 // Function To Create New Cookie 
 function ecCreateCookie(cookieName,cookieValue,daysToExpire)

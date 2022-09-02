@@ -937,32 +937,30 @@
 							<div class="ec-cat-list card card-default mb-24px">
 								<div class="card-body">
 									<div class="ec-cat-form">
-										<h4>Add New Sub Category</h4>
+										<h4>Edit Category ( <b>{{sub.sub_category_name}}</b> )</h4>
 
 										<form method="POST" enctype="multipart/form-data" >
-                                            {% csrf_token %}    
+                                            {% csrf_token %}
 											<div class="form-group row">
 												<label for="text" class="col-12 col-form-label">Name</label> 
 												<div class="col-12">
-                                                    
-													{{form.sub_category_name}}
-													
+                                                     {{edit_form.sub_category_name}}
+
 												</div>
 											</div>
 
                                             <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Choose Main Category</label> 
+												<label for="text" class="col-12 col-form-label">Choose Category</label> 
 												<div class="col-12">
-                                                    
-													{{form.category}}
-													
+                                                     {{edit_form.category}}
+
 												</div>
 											</div>
 
 											<div class="form-group row">
 												<label for="slug" class="col-12 col-form-label">Slug</label> 
 												<div class="col-12">
-													<input id="slug" name="slug" class="form-control here set-slug" type="text" {{form.slug}}
+													<input id="slug" name="slug" class="form-control here set-slug" type="text" {{edit_form.slug}}
                                                     
 													<small>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
 												</div>
@@ -970,18 +968,17 @@
 
 											<div class="form-group row">
 												<div class="col-12">
-                                                    {{form.description|as_crispy_field}}
+                                                    {{edit_form.description|as_crispy_field}}
 												</div>
 											</div> 
                                             <div class="form-group row" >
 												<label class="col-12 col-form-label">Category Image</label> 
 												<div class="col-12" >
-												    {{form.cat_sub_img}}
+												    {{edit_form.cat_sub_img}}
 												</div>
 											</div> 
 
 											
-
 											<div class="row">
 												<div class="col-12">
 													<button name="submit" type="submit" class="btn btn-primary">Submit</button>
@@ -1003,10 +1000,9 @@
 												<tr>
                                                     <th>Sl no</th>
 													<th>Thumb</th>
-                                                    <th>Sub Categories</th>
-													<th>Main Category</th>
-													<th>Description</th>
-                                                    {% comment %}  
+													<th>Category</th>
+													<th>Sub Categories</th>
+													 <th>Description</th>{% comment %}
 													<th>Total Sell</th> {% endcomment %}
 													
 													<th>Action</th>
@@ -1014,20 +1010,22 @@
 											</thead>
 
 											<tbody>
-												{% for category in sub %}
+											 {% for category in mains %}
                                     <tr>
                                         <td><span class="ec-sub-cat-count" title="Total Sub Categories">{{ forloop.counter }}</span></td>
-                                        <td><img class="cat-thumb" src="{{category.cat_sub_img.url}}" alt="Product Image" /></td>
-                                        
+                                        <td><img class="cat-thumb" src="{{category.cat_main_img.url}}" alt="Product Image" /></td>
+                                        <td>{{category.category_name}}</td>
                                         
                                         <td>
                                             <span class="ec-sub-cat-list">
-
-                                               <span class="ec-sub-cat-tag">{{category}}</span>
+                                            {% for subc in sub %}
+                                            {% if subc.category == category %}
+                                               <span class="ec-sub-cat-tag">{{subc}}</span>
+                                            {% endif %}
+                                            {% endfor %}
                                             </span>
                                             
                                         </td>
-                                        <td>{{category.category.category_name}}</td>
                                         <td>{{category.description}}</td>
                                         
                                         <td>
@@ -1042,8 +1040,8 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="./sub_category_edit/{{category.id}}">Edit</a>
-                                                    <a class="dropdown-item" href="./sub_category_delete/{{category.id}}">Delete</a>
+                                                    <a class="dropdown-item" href="../main_category_edit/{{category.id}}">Edit</a>
+                                                    <a class="dropdown-item" href="./main_category_delete/{{category.id}}">Delete</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -1064,7 +1062,7 @@
             {% comment %} edit modal {% endcomment %}
 
             <div class="modal fade modal-add-contact" id="editUser" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            aria-labelledby="exampleModalCenterTitle" >
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <form>

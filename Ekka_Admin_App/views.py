@@ -120,6 +120,32 @@ def sub_category(request):
     }
     return render(request, 'Ekka_Admin_App/Category/SubCategory.html', context)
 
+@login_required(login_url='login')
+def sub_category_edit(request, pk):
+    sub = SubCategory.objects.get(pk=pk)
+    form = SubCategoryForm(instance=sub)
+
+    if request.method == 'POST':
+        form = SubCategoryForm(request.POST, request.FILES, instance=sub )
+        if form.is_valid():
+            form.save()
+            return redirect('sub_category')
+        else: 
+            print(form.errors)
+        
+    context = {
+        'sub': sub,
+        'edit_form': form,
+    }
+    return render(request, 'Ekka_Admin_App/Category/SubCategoryedit.html', context)
+
+
+@login_required(login_url='login')
+def sub_category_delete(request, pk):
+    sub = SubCategory.objects.get(pk=pk)
+    sub.delete()
+    return redirect('sub_category')
+
 
 
 

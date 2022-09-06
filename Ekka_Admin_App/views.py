@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from category.models import CategoryMain, SubCategory
 from category.forms import SubCategoryForm, CategoryMainForm
 from store.models import Product, Variation
+from carts.forms import ProductForm
 
 
 # Create your views here.
@@ -145,6 +146,50 @@ def sub_category_delete(request, pk):
     sub = SubCategory.objects.get(pk=pk)
     sub.delete()
     return redirect('sub_category')
+
+
+# Product based views ##############################################################
+
+@login_required(login_url='login')
+def product_list(request):
+    product = Product.objects.all()
+    addProductForm = ProductForm
+    if request.method == 'POST':
+        addProductForm = ProductForm(request.POST, request.FILES)
+        if addProductForm.is_valid():
+            addProductForm.save()
+            return redirect('product_list')
+    context = {
+        'product': product,
+        'addProduct': addProductForm,
+    }
+    return render(request, 'Ekka_Admin_App/Products/product_list.html', context)
+
+@login_required(login_url='login')
+def product_edit(request, pk):
+    Allproduct = Product.objects.all()
+    product = Product.objects.get(pk=pk)
+    form = ProductForm(instance=product)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+        else: 
+            print(form.errors)
+        
+    context = {
+        'product': Allproduct,
+        'product_editing': product,
+        'edit_form': form,
+    }
+    return render(request, 'Ekka_Admin_App/Products/product_edit.html', context)
+
+@login_required(login_url='login')
+def product_delete(request, pk):
+    product = Product.objects.get(pk=pk)
+    product.delete()
+    return redirect('product_list')
 
 
 

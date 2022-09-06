@@ -16,9 +16,16 @@ urlpatterns = [
     path('main_category_edit/<int:pk>', views.main_category_edit, name='main_category_edit'),
     path('main_category_delete/<int:pk>', views.main_category_delete, name='main_category_delete'),
 
-
+    #sub category based urls
     path('sub_category', views.sub_category, name='sub_category'),
     path('sub_category_edit/<int:pk>', views.sub_category_edit, name='sub_category_edit'),
     path('sub_category_delete/<int:pk>', views.sub_category_delete, name='sub_category_delete'),
 
+    #product based urls
+    path('product_list', views.product_list, name='product_list'),
+    path('product_edit/<int:pk>', views.product_edit, name='product_edit'),
+    path('product_delete/<int:pk>', views.product_delete, name='product_delete'),
+
+    #Variations based urls
+    path('variation_list', views.variation_list, name='variation_list'),
 ]

@@ -42,6 +42,7 @@ class Order(models.Model):
     is_ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    order_status = models.CharField(max_length=50, choices=STATUS, default='Accepted')
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name + ' ' + self.order_number 

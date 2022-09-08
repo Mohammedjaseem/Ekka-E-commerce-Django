@@ -30,4 +30,8 @@ urlpatterns = [
     path('add_variations', views.add_variations, name='add_variations'),
     path('edit_variations/<int:pk>', views.edit_variations, name='edit_variations'),
     path('delete_variations/<int:pk>', views.delete_variations, name='delete_variations'),
+
+    #Order based urls
+    path('order_list', views.order_list, name='order_list'),
+    path('order_update/<int:pk>', views.order_update, name='order_update'),
 ]

@@ -8,6 +8,8 @@ from category.forms import SubCategoryForm, CategoryMainForm
 from store.models import Product, Variation, VariationManager
 from carts.forms import ProductForm
 from store.forms import variationForm
+from orders.forms import OrderForm, OrderUpdateForm
+from orders.models import Order, OrderProduct, Payment
 
 
 # Create your views here.
@@ -237,6 +239,37 @@ def delete_variations(request, pk):
     variation.delete()
     return redirect('add_variations')
 
+
+# Orders based views ##############################################################
+@login_required(login_url='login')
+def order_list(request):
+    orders = Order.objects.all()
+    order_products = OrderProduct.objects.all() 
+    print(order_update)
+    context = {
+        'orders': orders,
+        'order_products': order_products,
+    }
+    return render(request, 'Ekka_Admin_App/Orders/order_list.html', context)
+
+@login_required(login_url='login')
+def order_update(request, pk):
+    orders = Order.objects.get(pk=pk)
+    update_order = Order.objects.get(pk=pk)
+    form = OrderUpdateForm(instance=update_order)
+    if request.method == 'POST':
+        form = OrderUpdateForm(request.POST, instance=update_order)
+        if form.is_valid():
+            form.save()
+            return redirect('order_list')
+        else: 
+            print(form.errors)
+        
+    context = {
+        'orders': orders,
+        'form': form,
+    }
+    return render(request, 'Ekka_Admin_App/Orders/order_update.html', context)                          
 
 
 

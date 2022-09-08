@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-{% load static %}
-{% load crispy_forms_tags %}
 <html lang="en" dir="ltr">
-
+    {% load static %}
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,17 +14,17 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.4.95/css/materialdesignicons.css" rel="stylesheet" />
 
 	<!-- PLUGINS CSS STYLE -->
-	<link href="{% static 'ekka_admin/assets/plugins/simplebar/simplebar.css' %}" rel="stylesheet" />	
+	<link href="{% static 'ekka_admin/assets/plugins/simplebar/simplebar.css' %}" rel="stylesheet" />
 
 	<!-- Data Tables -->
 	<link href="{% static 'ekka_admin/assets/plugins/data-tables/datatables.bootstrap5.min.css' %}" rel='stylesheet'>
-	<link href="{% static 'ekka_admin/assets/responsive.datatables.min.css' %}" rel='stylesheet'>
+	<link href="{% static 'ekka_admin/assets/plugins/data-tables/responsive.datatables.min.css' %}" rel='stylesheet'>
 
 	<!-- ekka CSS -->
-	<link id="ekka-css" rel="stylesheet" href="{% static 'ekka_admin/assets/css/ekka.css' %}" />
+	<link id="ekka-css' %}" rel="stylesheet" href="{% static 'ekka_admin/assets/css/ekka.css' %}" />
 
 	<!-- FAVICON -->
 	<link href="{% static 'ekka_admin/assets/img/favicon.png' %}" rel="shortcut icon" />
@@ -674,219 +672,71 @@
 				</nav>
 			</header>
 
+
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+			
+
 			<!-- CONTENT WRAPPER -->
 			<div class="ec-content-wrapper">
 				<div class="content">
-					<div class="breadcrumb-wrapper breadcrumb-wrapper-2 breadcrumb-contacts">
-							<h1>Products</h1>
-							<p class="breadcrumbs"><span><a href="index.html">Home</a></span>
-								<span><i class="mdi mdi-chevron-right"></i></span>Products</p>
+					<div class="breadcrumb-wrapper breadcrumb-wrapper-2">
+						<h1>Orders History</h1>
+						<p class="breadcrumbs"><span><a href="index.html">Home</a></span>
+							<span><i class="mdi mdi-chevron-right"></i></span>History
+						</p>
 					</div>
 					<div class="row">
-						<div class="col-xl-4 col-lg-12">
-							<div class="ec-cat-list card card-default mb-24px">
-								<div class="card-body">
-									<div class="ec-cat-form">
-										<h4>Add New Product </h4>
-
-										<form method="POST" enctype="multipart/form-data" >
-                                            {% csrf_token %}
-											<div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Name</label> 
-												<div class="col-12">
-                                                     {{addProduct.product_name}}
-
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<label for="slug" class="col-12 col-form-label">Slug</label> 
-												<div class="col-12">
-													<input id="slug" name="slug" class="form-control here set-slug" type="text" {{addProduct.slug}}
-                                                    
-													<small>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Main Category</label> 
-												<div class="col-12">
-                                                     {{addProduct.Category_Main}}
-
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Sub Category </label> 
-												<div class="col-12">
-                                                     {{addProduct.sub_category }}
-
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Mrp Price</label> 
-												<div class="col-12">
-                                                     {{addProduct.mrp_price }}
-
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Selling Price</label> 
-												<div class="col-12">
-                                                     {{addProduct.price}}
-
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Short Description</label> 
-												<div class="col-12">
-                                                     {{addProduct.short_desp}}
-
-												</div>
-											</div>
-
-                                            
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Is Available</label> 
-												<div class="col-12">
-                                                     {{addProduct.is_available}}
-
-												</div>
-											</div>
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Stock </label> 
-												<div class="col-12">
-                                                     {{addProduct.stock}}
-
-												</div>
-											</div>
-
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Product Image</label> 
-												<div class="col-12">
-                                                     {{addProduct.images}}
-
-												</div>
-											</div>
-                                            <div class="form-group row">
-												<label for="text" class="col-12 col-form-label">Description</label> 
-												<div class="col-12">
-                                                     {{addProduct.description}}
-
-												</div>
-											</div>
-                                            <div class="row">
-												<div class="col-12">
-													<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-												</div>
-											</div>
-
-											{% comment %} <div class="form-group row">
-												<div class="col-12">
-                                                    {% comment %} {{edit_form.description|as_crispy_field}} 
-												</div>
-											</div> 
-                                            <div class="form-group row" >
-												<label class="col-12 col-form-label">Category Image</label> 
-												<div class="col-12" >
-												    {{edit_form.cat_main_img}}
-												</div>
-											</div> 
-
-											
-											<div class="row">
-												<div class="col-12">
-													<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-												</div>
-											</div> {% endcomment %}
-
-										</form>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-8 col-lg-12">
-							<div class="ec-cat-list card card-default">
+						<div class="col-12">
+							<div class="card card-default">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="responsive-data-table" class="table">
+										<table id="responsive-data-table" class="table" style="width:100%">
 											<thead>
 												<tr>
-                                                    <th>Sl no</th>
-													<th>Thumb</th>
-													<th>Product Name</th>
-													<th>Category</th>
-													<th>Available</th> 
-													 {% comment %} <th>Mrp</th> {% endcomment %}
-                                                     <th>Offer Price</th>
-													<th>Stock</th>
-                                                    <th>Short Description</th> 
+													<th>ID</th>
+                                                    <th>Order Number</th>
+                                                    <th>Date & Time</th>
+													<th>Customer</th>
+													<th>Email</th>
+													<th>Total Amount</th>
+                                                    <th>Order Status</th>
+                                                    <th>Change to</th>
 													<th>Action</th>
 												</tr>
 											</thead>
 
 											<tbody>
-											 {% for prodt in product %}
-                                    <tr>
-                                        <td><span class="ec-sub-cat-count" title="Total Sub Categories">{{ forloop.counter }}</span></td>
-                                        <td><img class="cat-thumb" src="{{prodt.images.url}}" alt="Product Image" /></td>
-                                        <td><a href="../..{{prodt.Category_Main.get_url}}{{prodt.sub_category.slug}}/{{prodt.slug}}">{{prodt.product_name}}</td>
-                                        
-                                        <td>
-                                            <span class="ec-sub-cat-list">
-                                            {% comment %} {% for subc in sub %}
-                                            {% if subc.category == category %}
-                                               <span class="ec-sub-cat-tag">{{subc}}</span>
-                                            {% endif %}
-                                            {% endfor %} {% endcomment %}
-                                            <span class="ec-sub-cat-tag">
-                                            Main: {{prodt.Category_Main.category_name}}
-                                            </span>
-                                            <span class="ec-sub-cat-tag">
-                                                Sub: {{prodt.sub_category.sub_category_name}}
-                                                </span>
-                                            </span>
-                                            
-                                        </td>
-                                        <td>
-                                            {% if prodt.stock > 0 %}
-                                            <span class="badge badge-success">Available</span>
-                                            {% else %}
-                                            <span class="badge badge-danger">Not Available</span>
-                                            {% endif %}
-                                        </td>
-                                        
-                                        {% comment %} <td>₹{{prodt.mrp_price}}</td> {% endcomment %}
-                                        <td>₹<b>{{prodt.price}}</b></td>
-                                        <td>{{prodt.stock}}</td>
-                                        <td> {{prodt.short_desp }}</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button type="button"
-                                                    class="btn btn-outline-success">Info</button>
-                                                <button type="button"
-                                                    class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false" data-display="static">
-                                                    <span class="sr-only">Info</span>
-                                                </button>
+												<tr>
+													<td>{{orders.id}}</td>
+                                                    <td>{{orders.order_number}}</td>
+                                                    <td>{{orders.created_at}}</td>
+													<td>{{orders.full_name}}</td>
+													<td>{{orders.email}}</td>
+													<td>₹ {{orders.order_total}}</td>
+													
+                                                    <td><span class="mb-2 mr-2 badge badge-primary">{{orders.order_status}}</span></td>
+                                                    
+													<td>
+														<div class="btn-group mb-1">
+                                                            <form method='post'>
+                                                                {% csrf_token %}
+                                                                {{form.order_status}}
+															
+														</div>
+													</td>
+                                                    <td>
+														<div class="btn mb-1">
+															<button type="submit"
+																class="btn btn-danger">Update</button>    
+                                                            </form>
+														</div>
+													</td>
+												</tr>
+												
 
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="./product_edit/{{prodt.id}}">Edit</a>
-                                                    <a class="dropdown-item" href="./product_delete/{{prodt.id}}">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        {% endfor %}	
 											</tbody>
 										</table>
-                                       
-                                    </tr>
-                                    
 									</div>
 								</div>
 							</div>
@@ -895,42 +745,18 @@
 				</div> <!-- End Content -->
 			</div> <!-- End Content Wrapper -->
 
-            {% comment %} edit modal {% endcomment %}
-
-            <div class="modal fade modal-add-contact" id="editUser" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" >
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header px-4">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit User</h5>
-                        </div>
-
-                        <div class="modal-body px-4">
-                            {{ edit_form }}
-
-                        <div class="modal-footer px-4">
-                            <button type="button" class="btn btn-secondary btn-pill"
-                                data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary btn-pill">Save Contact</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
 			<!-- Footer -->
 			<footer class="footer mt-auto">
 				<div class="copyright bg-white">
 					<p>
 						Copyright &copy; <span id="ec-year"></span><a class="text-primary"
-						href="https://themeforest.net/user/ashishmaraviya" target="_blank"> Ekka Admin Dashboard</a>. All Rights Reserved.
-					  </p>
+							href="https://mohammedjaseem.me/" target="_blank"> Ekka Admin
+							Dashboard</a>. All Rights Reserved.
+					</p>
 				</div>
 			</footer>
 
 		</div> <!-- End Page Wrapper -->
-
 	</div> <!-- End Wrapper -->
 
 	<!-- Common Javascript -->
@@ -938,7 +764,6 @@
 	<script src="{% static 'ekka_admin/assets/plugins/jquery/jquery.notify.min.js' %}"></script>
 	<script src="{% static 'ekka_admin/assets/plugins/jquery/jquery.bundle.notify.min.js' %}"></script>
 	<script src="{% static 'ekka_admin/assets/js/bootstrap.bundle.min.js' %}"></script>
-	<script src="{% static 'ekka_admin/assets/plugins/tags-input/bootstrap-tagsinput.js' %}"></script>
 	<script src="{% static 'ekka_admin/assets/plugins/simplebar/simplebar.min.js' %}"></script>
 	<script src="{% static 'ekka_admin/assets/plugins/jquery-zoom/jquery.zoom.min.js' %}"></script>
 	<script src="{% static 'ekka_admin/assets/plugins/slick/slick.min.js' %}"></script>
@@ -954,4 +779,5 @@
 	<!-- Ekka Custom -->
 	<script src="{% static 'ekka_admin/assets/js/ekka.js' %}"></script>
 </body>
+
 </html>

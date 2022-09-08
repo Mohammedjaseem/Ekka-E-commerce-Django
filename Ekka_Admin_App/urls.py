@@ -27,5 +27,7 @@ urlpatterns = [
     path('product_delete/<int:pk>', views.product_delete, name='product_delete'),
 
     #Variations based urls
-    path('variation_list', views.variation_list, name='variation_list'),
+    path('add_variations', views.add_variations, name='add_variations'),
+    path('edit_variations/<int:pk>', views.edit_variations, name='edit_variations'),
+    path('delete_variations/<int:pk>', views.delete_variations, name='delete_variations'),
 ]

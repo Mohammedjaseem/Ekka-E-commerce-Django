@@ -5,8 +5,9 @@ from accounts.models import Account, UserProfile
 from django.shortcuts import redirect
 from category.models import CategoryMain, SubCategory
 from category.forms import SubCategoryForm, CategoryMainForm
-from store.models import Product, Variation
+from store.models import Product, Variation, VariationManager
 from carts.forms import ProductForm
+from store.forms import variationForm
 
 
 # Create your views here.
@@ -190,6 +191,52 @@ def product_delete(request, pk):
     product = Product.objects.get(pk=pk)
     product.delete()
     return redirect('product_list')
+
+
+# product variations based views ##############################################################
+
+@login_required(login_url='login')
+def add_variations(requst):
+    existing_variations = Variation.objects.all()
+    if requst.method == 'POST':
+        form = variationForm(requst.POST, requst.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('add_variations')
+    form = variationForm
+
+    context = {
+        'existing_variations': existing_variations,
+        'form': form,
+    }
+    return render(requst, 'Ekka_Admin_App/Variations/add_variations.html', context)
+
+@login_required(login_url='login')
+def edit_variations(request, pk):
+    existing_variations = Variation.objects.all()
+    variation = Variation.objects.get(pk=pk)
+    form = variationForm(instance=variation)
+    if request.method == 'POST':
+        form = variationForm(request.POST, request.FILES, instance=variation)
+        if form.is_valid():
+            form.save()
+            return redirect('add_variations')
+        else: 
+            print(form.errors)
+        
+    context = {
+        'existing_variations': existing_variations,
+        'variation_editing': variation,
+        'form': form,
+    }
+    return render(request, 'Ekka_Admin_App/Variations/edit_variations.html', context)
+
+@login_required(login_url='login')
+def delete_variations(request, pk):
+    variation = Variation.objects.get(pk=pk)
+    variation.delete()
+    return redirect('add_variations')
+
 
 
 

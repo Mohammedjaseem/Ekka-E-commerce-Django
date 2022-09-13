@@ -17,8 +17,7 @@ from django.shortcuts import get_object_or_404
 #import orders
 from orders.models import Order, OrderProduct
 from django.core.exceptions import ObjectDoesNotExist
-
-
+from django.contrib.auth.decorators import login_required
 
 
 #import account details

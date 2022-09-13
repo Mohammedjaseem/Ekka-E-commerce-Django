@@ -29,6 +29,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     #admin panel
     path('manager/', include('Ekka_Admin_App.urls')),
+
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

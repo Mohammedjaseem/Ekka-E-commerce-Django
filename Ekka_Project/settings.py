@@ -154,8 +154,13 @@ MESSAGE_TAGS = {
 #smtp configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'jassybrocamp@gmail.com'
-EMAIL_HOST_PASSWORD = 'jjck xunk qbec ubkt'
+EMAIL_HOST_USER = 'portal@macity.edu.in'
+EMAIL_HOST_PASSWORD = 'naux tfci vlfi qlnk'
 EMAIL_USE_TLS = True
+
+
+#razor pay
+RAZOR_KEY_ID = 'rzp_test_JpeLWXukwaEiRw'
+RAZOR_KEY_SECRET = 't6HUXgZj4F5ENOAn5TOtUl6X'
 
 

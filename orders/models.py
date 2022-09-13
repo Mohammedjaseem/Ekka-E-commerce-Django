@@ -21,6 +21,15 @@ class Order(models.Model):
         ('Completed', 'Completed'),
         ('Cancelled', 'Cancelled'),
     )
+    ORDER_STATUS = (
+        ('Accepted', 'Accepted'),
+        ('Ready to ship', 'Ready to ship'),
+        ('On shipping', 'On shipping'),
+        ('Delivered', 'Delivered'),
+        ('Cancelled', 'Cancelled'),
+        ('return', 'return'),
+        ('Refunded', 'Refunded'),
+    )
 
     user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
@@ -42,7 +51,7 @@ class Order(models.Model):
     is_ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    order_status = models.CharField(max_length=50, choices=STATUS, default='Accepted')
+    order_status = models.CharField(max_length=50, choices=ORDER_STATUS, default='Accepted')
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name + ' ' + self.order_number 

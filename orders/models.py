@@ -38,6 +38,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
+    payment_method = models.CharField(max_length=50, blank=True)
     address_line_1 = models.CharField(max_length=100)
     address_line_2 = models.CharField(max_length=100,  blank=True)
     country = models.CharField(max_length=50)

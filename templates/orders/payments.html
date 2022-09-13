@@ -140,8 +140,7 @@
 <b>    City             :</b>  {{order.city }}
 <b>    State           :</b>  {{order.state }}
 <b>    Country      :</b>  {{order.country }}{% if order.order_note %}
-<b>    Order Note :</b>  " {{order.order_note }} "</pre>
-                                            {% endif %}
+<b>    Order Note :</b>  " {{order.order_note }} "{% endif %}
                                         </pre>
                                             
                                         </div>
@@ -150,8 +149,11 @@
                                     <div class="card">
                                         <h5 class="card-header">Billing Method</h5>
                                         <div class="card-body">
+                                            {% if order.payment_method == 'Paypal' %}
                                           <pre class="card-text">   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" height="30px"></pre>
-                                          
+                                            {% else %}
+                                            <pre class="card-text">   <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Razorpay_logo.svg/1896px-Razorpay_logo.svg.png" height="30px"></pre>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <br>
@@ -308,6 +310,12 @@
     </div>
 </section>
 
+{% if payment_type == 'Paypal' %}
+                <div class="btn-container">
+                  <!-- razorpay button -->
+                  <button class="btn btn-dark col-12" id="pay-btn">Pay with Razorpay</button>
+                </div>
+
 <script src="https://www.paypal.com/sdk/js?client-id=ASHQaVNygDQF-248AqZVNtjAylXuiJaiyEO6VbCzC9bIr8lOCj5Cx0vckCvKK5QZ1RnGx5A9IvQwjYb4&currency=USD"></script>
 <script>
 
@@ -384,5 +392,45 @@
             }
     }).render('#paypal-button-container');
 </script>
+
+{% else %}
+
+<div class="btn-container container">
+    <!-- razorpay button -->
+    <button class="btn btn-dark col-2 rounded-3" id="pay-btn">Pay with Razorpay</button>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    var options = {
+       
+      // Enter the Key ID generated from the Dashboard
+      key: "{{rzp_test_JpeLWXukwaEiRw}}",
+       
+      // Amount is in currency subunits.
+      // Default currency is INR. Hence,
+      // 50000 refers to 50000 paise
+      amount: "{{ razorpay_amount }}",
+      currency: "{{ 'INR' }}",
+       
+      // Your/store name.
+      name: "Ekka's Ecommerce",
+       
+      // Pass the `id` obtained in the response of Step 1
+      order_id: "{{ razorpay_order_id }}",
+      callback_url: "{{ callback_url }}",
+    };
+     
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+     
+    // add event listener to the payment button.
+    document.getElementById("pay-btn").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+  </script>
+
+  {% endif %}
 
 {% endblock %}

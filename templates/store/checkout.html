@@ -160,7 +160,15 @@
                                </div>
 
                            </div>
-                           <span class="ec-check-order-btn">
+                           <div class="d-flex flex-column p-4" >       
+                            <div class="p-2"><input type="radio"  style="color:black "name="payment_method"  value="Razorpay" id="Razorpay">
+                                <label for="Razorpay"></label required>
+                                Razorpay</div>
+                            <div class="p-2"><input type="radio"  style="color:black "name="payment_method"  value="Paypal" id="Paypal" required>
+                                <label for="Paypal"></label>
+                                Paypal</div>
+                        </div>
+                           <span class="btn">
                             <button type="submit" name="submit" class="btn btn-primary rounded-3">Place Order</button>
                            </span>
                        </div>

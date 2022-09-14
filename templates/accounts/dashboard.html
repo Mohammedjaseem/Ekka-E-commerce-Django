@@ -6,6 +6,17 @@
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
 <link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/vendor/ecicons.min.css' %}" />
+<style>
+    .blink_me {
+        animation: blinker 1s linear infinite;
+      }
+      
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+</style>
 {% endblock %}
 {% block content %}
 
@@ -46,6 +57,12 @@
                             <div class="ec-header-btn">
                                 <a class="btn btn-lg btn-primary rounded-3" href="../store">Shop Now</a>
                             </div>
+                            {% for message in messages %} 
+                                <br>
+                                <strong> 
+                                    <h5 class="blink_me"><p>{{ message }}</p></h5>
+                                </strong>
+					        {% endfor %}
                         </div>
                         <div class="ec-vendor-card-body">
                             <div class="ec-vendor-card-table">
@@ -58,7 +75,9 @@
                                             <th scope="col">Amount</th>
                                             <th scope="col">Payment Status</th>
                                             <th scope="col">Payment Method</th>
+                                            <th scope="col">Order Status</th>
                                             <th scope="col">View Details</th>
+                                            <th scope="col">Cancel Order</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,8 +108,11 @@
                                             <td><span>₹ <b>{{item.payment.amount_paid}}</b></span></td>
                                             <td><span><b>{{item.payment.status}}</b></span></td>
                                             <td><span><b>{{item.payment.payment_method}}</b></span></td>
+                                            <td><span><b>{{item.order_status}}</b></span></td>
                                             <td><span class="tbl-btn"><a class="btn btn-lg btn-primary rounded-3"
                                                         href="./order_details/{{item.order_number}}/">Details</a></span></td>
+                                                        <td><span class="tbl-btn"><a class="btn btn-lg btn-secondary rounded-3"
+                                                            href="./cancel_order/{{item.order_number}}/">Cancel</a></span></td>
                                         </tr>
                                         {% endfor %} 
                                     </tbody>

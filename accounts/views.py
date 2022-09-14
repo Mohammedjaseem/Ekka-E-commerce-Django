@@ -19,9 +19,21 @@ from orders.models import Order, OrderProduct
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 
+#import payments
+from orders.models import Order, OrderProduct, Payment
+
+from store.models import Product 
+
 
 #import account details
 from accounts.models import Account, UserProfile 
+
+# Razorpay
+import razorpay
+from django.conf import settings
+from orders.models import Payment
+
+import datetime
 
 #verfication email
 from django.contrib.sites.shortcuts import get_current_site
@@ -179,18 +191,18 @@ def activate(request, uidb64, token):
 
 @login_required(login_url='login')
 def dashboard(request): 
-    user = request.user
-    orders = Order.objects.order_by('-created_at').filter(user_id=user.id, is_ordered=True)
-    orders_count = orders.count()
+    user            = request.user
+    orders          = Order.objects.order_by('-created_at').filter(user_id=user.id, is_ordered=True)
+    orders_count    = orders.count()
     product_ordered = OrderProduct.objects.filter(user_id=user.id).order_by('-created_at')
     
 
     context = {
-        'profile': user,
-        'orders_count': orders_count,
-        'user': user,
+        'profile'        : user,
+        'orders_count'   : orders_count,
+        'user'           : user,
         'product_ordered': product_ordered,
-        'orders': orders,
+        'orders'         : orders,
         
     }
     return render(request, 'accounts/dashboard.html', context)
@@ -208,10 +220,10 @@ def forgotPassword(request):
             mail_subject = 'Reset your account passowrd.'
             user.save()
             message = render_to_string('accounts/reset_password_email.html', {
-                'user': user,
+                'user'  : user,
                 'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)), 
-                'token': default_token_generator.make_token(user),
+                'uid'   : urlsafe_base64_encode(force_bytes(user.pk)), 
+                'token' : default_token_generator.make_token(user),
             })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
@@ -312,9 +324,9 @@ def user_profile(request):
     user_form = UserForm(instance=request.user)
     profile_form = UserProfileForm(instance=userprofile)
     context = {
-        'user_form': user_form,
+        'user_form'   : user_form,
         'profile_form': profile_form,
-        'profile': user,
+        'profile'     : user,
         'profile_data': profile_data,
     }
     return render(request, 'accounts/profile.html', context)
@@ -326,21 +338,74 @@ def order_details(request, order_id):
 
     #total amount in order details
     for i in order_details:
-        total = i.product_price * i.quantity
+        total   = i.product_price * i.quantity
         i.total = total
 
     #tax calculating 
     for item in order_details:
         item.tax = (i.total * 2)/100
-        total = i.total + item.tax
+        total    = i.total + item.tax
 
     #items count
     items_count = order_details.count()
 
     context = {
         'order_detail': order_details,
-        'order': order,
-        'tax': item.tax,
-        'total': i.total,
+        'order'       : order,
+        'tax'         : item.tax,
+        'total'       : i.total,
     }
-    return render(request, 'accounts/order_details.html', context)   
+    return render(request, 'accounts/order_details.html', context) 
+
+
+# order cancels
+@login_required(login_url='login')
+def cancel_order(request, order_id):
+    order              = Order.objects.get(order_number=order_id)
+    Payments           = Payment.objects.get(order=order)
+    order.order_status = 'Cancelled'
+    order.save()
+    Payments.status     = 'Refunded'
+    Payments.save()
+
+
+    #refund process of stripe
+    if str(Payments).__contains__("pay"):
+        paymentId     = Payments.payment_id
+        refund_amount = Payments.amount_paid
+        amount        = int(refund_amount * 100)
+
+        
+        client = razorpay.Client(auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+        print(paymentId)
+        client.payment.refund( paymentId,amount,)
+
+        #addning stock in product
+        order_items = OrderProduct.objects.filter(order=order)
+        for item in order_items:
+            product = Product.objects.get(id=item.product_id)
+            product.stock += item.quantity
+            product.save()
+
+    #adding quantity of product back to stock in payapal
+    order_items = OrderProduct.objects.filter(order=order)
+    for item in order_items:
+        product = Product.objects.get(id=item.product_id)
+        product.stock += item.quantity
+        product.save()
+
+    # Send email to the user ( with order details )
+    mail_subject = 'Your order from Ekka has been cancelled.'
+    message = render_to_string('accounts/order_cancel_mail.html', {
+        'user'  : request.user,
+        'order' : order,
+        'url'   : 'http://127.0.0.1:8000/accounts/order_details/' + order.order_number
+    })
+    to_email                   = order.email
+    send_email                 = EmailMessage(mail_subject, message, to=[to_email])
+    send_email.content_subtype = "html"
+    send_email.send()
+
+
+    messages.success(request, 'Your order has been cancelled..!')
+    return redirect('dashboard')

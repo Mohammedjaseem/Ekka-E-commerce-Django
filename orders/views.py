@@ -158,6 +158,9 @@ def place_order(request, total=0, quantity=0):
             if payment_type == "Razorpay":
                 order_number = razorpay_order['id']
                 data.order_number = razorpay_order['id']
+
+                
+
                 data.save()
             else:
                 order_number = current_date + str(data.id)
@@ -284,16 +287,20 @@ def paymenthandler(request, total=0, quantity=0):
                         orderproduct.ordered = True
                         orderproduct.save()
                         
-                        # cart_item = CartItem.objects.get(id=item.id)
-                        # product_variation = cart_item.variations.all()
-                        # orderproduct = OrderProduct.objects.get(id=orderproduct.id)
-                        # orderproduct.variations.set(product_variation)
-                        # orderproduct.save()
+                        #variations adding to order product
+                        #check variation variable name in orders cart and payment to avido confusing in future
+                        cart_item = CartItem.objects.get(id=item.id)
+                        product_variation = cart_item.variations.all()
+                        orderproduct = OrderProduct.objects.get(id=orderproduct.id)
+                        orderproduct.variation.set(product_variation)
+                        orderproduct.save()
 
-                        # Reduce the quantity of sold products
-                        product = Product.objects.get(id = item.product_id)
+                        # Reduce the quantity of the sold products from orginal stock
+                        product = Product.objects.get(id=item.product_id)
                         product.stock -= item.quantity
                         product.save()
+
+                       
 
                     # Clear the Cart
                     CartItem.objects.filter(user=request.user).delete()

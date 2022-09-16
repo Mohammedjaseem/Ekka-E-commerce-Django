@@ -131,6 +131,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+Ekka-venv/
 env/
 venv/
 ENV/

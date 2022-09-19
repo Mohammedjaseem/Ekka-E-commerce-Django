@@ -714,7 +714,11 @@
                                                     {% for profile in user %}
 													<td>
                                                         <a href="{% url 'user_profile' profile.user.pk %}">
+															{% if profile.profile_picture %}
                                                             <img class="vendor-thumb" src="{{ profile.profile_picture.url }}" alt="user profile" />
+															{% else %}
+															<img class="vendor-thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="user profile" />
+															{% endif %}
                                                         </a>
                                                     </td>
                                                     

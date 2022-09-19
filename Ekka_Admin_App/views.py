@@ -9,14 +9,16 @@ from store.models import Product, Variation, VariationManager
 from carts.forms import ProductForm
 from store.forms import variationForm
 from orders.forms import OrderForm, OrderUpdateForm
+from django.http import HttpResponse
 from orders.models import Order, OrderProduct, Payment
 
 
 # Create your views here.
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'Ekka_Admin_App/dashboard.html')
-
+    if request.user.is_superuser:
+        return render(request, 'Ekka_Admin_App/index.html')
+    return HttpResponse('You are not authorized to view this page')
 
 # User based views ##############################################################
 

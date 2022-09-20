@@ -12,7 +12,7 @@
                         <!-- Header User Start -->
                         <div class="ec-header-user dropdown">
                             <button class=" rounded-3 dropdown-toggle" data-bs-toggle="dropdown"><img
-                                    src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
+                                    src="{% static 'ekka_webapp/assets/images/icons/user.svg' %}" class="svg_img header_svg" alt="" /></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li><a class="dropdown-item" href={% url 'register' %}>Register</a></li>
                                 <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -22,21 +22,21 @@
                         <!-- Header User End -->
                         <!-- Header Cart Start -->
                         <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                            <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg ' %}"
+                            <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
                                     class="svg_img header_svg" alt="" /></div>
                             <span class="ec-header-count">4</span>
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header Cart Start -->
                         <a href="/cart/" class="ec-header-btn ">
-                            <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg ' %}"
+                            <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}"
                                     class="svg_img header_svg" alt="" /></div>
                             <span class="ec-header-count ec-cart-count cart-count-lable">{{cart_count}}</span>
                         </a>
                         <!-- Header Cart End -->
                         <!-- Header menu Start -->
                         <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                            <img src="{% static 'ekka_webapp/assets/images/icons/menu.svg ' %}" class="svg_img header_svg" alt="icon" />
+                            <img src="{% static 'ekka_webapp/assets/images/icons/menu.svg' %}" class="svg_img header_svg" alt="icon" />
                         </a>
                         <!-- Header menu End -->
                     </div>
@@ -54,8 +54,8 @@
                     <!-- Ec Header Logo Start -->
                     <div class="align-self-center">
                         <div class="header-logo">
-                            <a href="/"><img src="{% static 'ekka_webapp/assets/images/logo/logo-8.png ' %}" alt="Site Logo" /><img
-                                    class="dark-logo" src="{% static 'ekka_webapp/assets/images/logo/dark-logo-8.png ' %}" alt="Site Logo"
+                            <a href="/"><img src="{% static 'ekka_webapp/assets/images/logo/logo-8.png' %}" alt="Site Logo" /><img
+                                    class="dark-logo" src="{% static 'ekka_webapp/assets/images/logo/dark-logo-8.png' %}" alt="Site Logo"
                                     style="display: none;" /></a>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="header-search">
                             <form class="ec-btn-group-form" action="{% url 'search' %}" method = "GET" >
                                 <input class="form-control" placeholder="Enter Your Product Name..." type="text" name="keyword">
-                                <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
+                                <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg' %}"
                                         class="svg_img header_svg" alt="" /></button>
                             </form>
                         </div>
@@ -80,7 +80,7 @@
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
                                 <button class=" rounded-3 dropdown-toggle" data-bs-toggle="dropdown"><img
-                                        src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
+                                        src="{% static 'ekka_webapp/assets/images/icons/user.svg' %}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     {% if user.is_authenticated %}
                                     <li><a class="dropdown-item" href="{% url 'user_profile' %}">Hai, {{user.full_name}}</a></li>
@@ -96,14 +96,14 @@
                             <!-- Header User End -->
                             <!-- Header wishlist Start -->
                             <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg ' %}"
+                                <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count">4</span>
                             </a>
                             <!-- Header wishlist End -->
                             {% comment %} <!-- Header Cart Start --> ( #ec-side-cart ) to view side cart ) {% endcomment %}
                             <a href="/cart/" class="ec-header-btn ">
-                                <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg ' %}"
+                                <div class="header-icon"><img src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count ec-cart-count cart-count-lable">{{cart_count}}</span>
                             </a>
@@ -124,8 +124,8 @@
                 <!-- Ec Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="/"><img src="{% static 'ekka_webapp/assets/images/logo/logo-8.png ' %}" alt="Site Logo" /><img
-                                class="dark-logo" src="{% static 'ekka_webapp/assets/images/logo/dark-logo-8.png ' %}" alt="Site Logo"
+                        <a href="/"><img src="{% static 'ekka_webapp/assets/images/logo/logo-8.png' %}" alt="Site Logo" /><img
+                                class="dark-logo" src="{% static 'ekka_webapp/assets/images/logo/dark-logo-8.png' %}" alt="Site Logo"
                                 style="display: none;" /></a>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     <div class="header-search">
                         <form class="ec-btn-group-form" action="{% url 'search' %}" method = "GET" >
                             <input class="form-control" type="text" placeholder="Enter Your Product Name..." name="keyword" >
-                            <button class=" rounded-3 submit" type="submit" ><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
+                            <button class=" rounded-3 submit" type="submit" ><img src="{% static 'ekka_webapp/assets/images/icons/search.svg' %}"
                                     class="svg_img header_svg" alt="icon" /></button>
                         </form>
                     </div>
@@ -193,16 +193,16 @@
                                     <li>
                                         <ul class="ec-main-banner w-100">
                                             <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img
-                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/1.jpg ' %}"
+                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/1.jpg' %}"
                                                         alt=""></a></li>
                                             <li><a class="p-0" href="shop-left-sidebar-col-4.html"><img
-                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/2.jpg ' %}"
+                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/2.jpg' %}"
                                                         alt=""></a></li>
                                             <li><a class="p-0" href="shop-right-sidebar-col-3.html"><img
-                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/3.jpg ' %}"
+                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/3.jpg' %}"
                                                         alt=""></a></li>
                                             <li><a class="p-0" href="shop-right-sidebar-col-4.html"><img
-                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/4.jpg ' %}"
+                                                        class="img-responsive" src="{% static 'ekka_webapp/assets/images/menu-banner/4.jpg' %}"
                                                         alt=""></a></li>
                                         </ul>
                                     </li>
@@ -276,7 +276,7 @@
                                 </ul>
                             </li>
                             <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img class="img-responsive"
-                                        src="{% static 'ekka_webapp/assets/images/menu-banner/1.jpg ' %}" alt=""></a>
+                                        src="{% static 'ekka_webapp/assets/images/menu-banner/1.jpg' %}" alt=""></a>
                             </li>
                         </ul>
                     </li>

@@ -3,6 +3,8 @@ from store.models import Product
 from category.models import CategoryMain, SubCategory
 from carts.views import _cart_id
 from carts.models import CartItem as cart_item
+from django.http import HttpResponse
+from django.db.models import Q
 
 # Create your views here.
 def store(request, category_slug=None):
@@ -55,3 +57,18 @@ def product_detail(request, category_slug=None, sub_category_slug=None, product_
         'in_cart': in_cart,
         }
     return render(request, 'store/product_detail.html', context)
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+       
+        product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
+        produ_count = product.count()
+         
+        context = {
+            'products':product,
+            'produ_count':produ_count,
+        }
+        return render(request, 'store/store.html', context)
+    else:
+        return redirect('store')

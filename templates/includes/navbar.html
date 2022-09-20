@@ -5,57 +5,6 @@
     <div class="header-top">
         <div class="container">
             <div class="row align-items-center">
-                <!-- Header Top social Start -->
-                <div class="col text-left header-top-left d-none d-lg-block">
-                    <div class="header-top-social">
-                        <span class="social-text text-upper">Follow us on:</span>
-                        <ul class="mb-0">
-                            <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Header Top social End -->
-                <!-- Header Top Category Toggle Start -->
-                <a href="#ec-mobile-sidebar" class="ec-header-btn ec-sidebar-toggle d-lg-none">
-                    <img src="{% static 'ekka_webapp/assets/images/icons/category-icon.svg ' %}" class="svg_img header_svg" alt="icon" />
-                </a>
-                <!-- Header Top Category Toggle End -->
-                <!-- Header Top Message Start -->
-                <div class="col text-center header-top-center">
-                    <div class="header-top-message text-upper">
-                        <span>Free Shipping</span>This Week Order Over - $75
-                    </div>
-                </div>
-                <!-- Header Top Message End -->
-                <!-- Header Top Language Currency -->
-                <div class="col header-top-right d-none d-lg-block">
-                    <div class="header-top-lan-curr d-flex justify-content-end">
-                        <!-- Currency Start -->
-                        <div class="header-top-curr dropdown">
-                            <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
-                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
-                                <li><a class="dropdown-item" href="#">EUR €</a></li>
-                            </ul>
-                        </div>
-                        <!-- Currency End -->
-                        <!-- Language Start -->
-                        <div class="header-top-lan dropdown">
-                            <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
-                                    class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                            <ul class="dropdown-menu">
-                                <li class="active"><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">Italiano</a></li>
-                            </ul>
-                        </div>
-                        <!-- Language End -->
-
-                    </div>
-                </div>
                 <!-- Header Top Language Currency -->
                 <!-- Header Top responsive Action -->
                 <div class="col d-lg-none ">
@@ -65,7 +14,7 @@
                             <button class=" rounded-3 dropdown-toggle" data-bs-toggle="dropdown"><img
                                     src="{% static 'ekka_webapp/assets/images/icons/user.svg ' %}" class="svg_img header_svg" alt="" /></button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a class="dropdown-item" href="register.html">Register</a></li>
+                                <li><a class="dropdown-item" href={% url 'register' %}>Register</a></li>
                                 <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
                                 <li><a class="dropdown-item" href={% url 'login' %}>Login</a></li>
                             </ul>
@@ -115,8 +64,8 @@
                     <!-- Ec Header Search Start -->
                     <div class="align-self-center">
                         <div class="header-search">
-                            <form class="ec-btn-group-form" action="#">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
+                            <form class="ec-btn-group-form" action="{% url 'search' %}" method = "GET" >
+                                <input class="form-control" placeholder="Enter Your Product Name..." type="text" name="keyword">
                                 <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
                                         class="svg_img header_svg" alt="" /></button>
                             </form>
@@ -184,9 +133,9 @@
                 <!-- Ec Header Search Start -->
                 <div class="col">
                     <div class="header-search">
-                        <form class="ec-btn-group-form" action="#">
-                            <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                            <button class=" rounded-3 submit" type="submit"><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
+                        <form class="ec-btn-group-form" action="{% url 'search' %}" method = "GET" >
+                            <input class="form-control" type="text" placeholder="Enter Your Product Name..." name="keyword" >
+                            <button class=" rounded-3 submit" type="submit" ><img src="{% static 'ekka_webapp/assets/images/icons/search.svg ' %}"
                                     class="svg_img header_svg" alt="icon" /></button>
                         </form>
                     </div>
@@ -259,47 +208,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="javascript:void(0)">Products</a>
-                                <ul class="sub-menu">
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product page
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-left-sidebar.html">Product left sidebar</a></li>
-                                            <li><a href="product-right-sidebar.html">Product right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product 360
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-360-left-sidebar.html">360 left sidebar</a></li>
-                                            <li><a href="product-360-right-sidebar.html">360 right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product video
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-video-left-sidebar.html">Video left sidebar</a>
-                                            </li>
-                                            <li><a href="product-video-right-sidebar.html">Video right sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product
-                                            gallery
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-gallery-left-sidebar.html">Gallery left sidebar</a>
-                                            </li>
-                                            <li><a href="product-gallery-right-sidebar.html">Gallery right
-                                                    sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="product-full-width.html">Product full width</a></li>
-                                    <li><a href="product-360-full-width.html">360 full width</a></li>
-                                    <li><a href="product-video-full-width.html">Video full width</a></li>
-                                    <li><a href="product-gallery-full-width.html">Gallery full width</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/store/">Products</a></li>
+                            <li><a href="/accounts/user_profile">Profile</a></li>
+                            <li><a href="/accounts/dashboard">Orders</a></li>
+                            
                             
                     </div>
                 </div>
@@ -311,7 +223,7 @@
     <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
         <div class="ec-menu-title">
             <span class="menu_title">My Menu</span>
-            <button class=" rounded-3 ec-close">×</button>
+            <button class=" rounded-3 ec-close">x</button>
         </div>
         <div class="ec-menu-inner">
             <div class="ec-menu-content">
@@ -473,7 +385,7 @@
                             <li><a href="compare.html">Compare</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href={% url 'register' %}>Register</a></li>
                             <li><a href="track-order.html">Track Order</a></li>
                             <li><a href="terms-condition.html">Terms Condition</a></li>
                             <li><a href="privacy-policy.html">Privacy Policy</a></li>
@@ -504,42 +416,7 @@
                     <li><a href="offer.html">Hot Offers</a></li>
                 </ul>
             </div>
-            <div class="header-res-lan-curr">
-                <div class="header-top-lan-curr">
-                    <!-- Language Start -->
-                    <div class="header-top-lan dropdown">
-                        <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
-                                class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a class="dropdown-item" href="#">English</a></li>
-                            <li><a class="dropdown-item" href="#">Italiano</a></li>
-                        </ul>
-                    </div>
-                    <!-- Language End -->
-                    <!-- Currency Start -->
-                    <div class="header-top-curr dropdown">
-                        <button class=" rounded-3 dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
-                                class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
-                            <li><a class="dropdown-item" href="#">EUR €</a></li>
-                        </ul>
-                    </div>
-                    <!-- Currency End -->
-                </div>
-                <!-- Social Start -->
-                <div class="header-res-social">
-                    <div class="header-top-social">
-                        <ul class="mb-0">
-                            <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                            <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Social End -->
-            </div>
+            
         </div>
     </div>
     <!-- ekka mobile Menu End -->

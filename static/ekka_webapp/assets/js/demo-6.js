@@ -192,7 +192,7 @@ function ecCheckCookie()
                             '<div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div>'+
                                 '<input class="qty-input" type="text" name="ec_qtybtn" value="1">'+
                             '<div class="inc ec_qtybtn">+</div></div>'+
-                            '<a href="javascript:void(0)" class="remove">×</a>'+
+                            '<a href="javascript:void(0)" class="remove">x</a>'+
                         '</div>'+
                     '</li>';
 

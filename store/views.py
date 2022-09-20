@@ -58,6 +58,8 @@ def product_detail(request, category_slug=None, sub_category_slug=None, product_
         }
     return render(request, 'store/product_detail.html', context)
 
+
+#function to search products
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']

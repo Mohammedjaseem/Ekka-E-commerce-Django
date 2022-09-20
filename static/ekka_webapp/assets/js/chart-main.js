@@ -3,7 +3,7 @@
     Author: ashishmaraviya
     Version: 3.2
     Copyright 2021-2022
-	Author URI: https://mohammedjaseem.me/
+	Author URI: https://jassy.in/
 **/
 (function($) {
     "use strict";

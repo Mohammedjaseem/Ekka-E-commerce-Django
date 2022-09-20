@@ -2,7 +2,7 @@
     Item Name: Ekka - Ecommerce HTML Template.
     Author: ashishmaraviya
     Copyright 2021-2022
-	Author URI: https://mohammedjaseem.me/
+	Author URI: https://jassy.in/
 **/
 (function($) {
     "use strict";

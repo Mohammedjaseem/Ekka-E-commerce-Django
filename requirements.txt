@@ -29,7 +29,6 @@ oauthlib==3.2.0
 Pillow==8.4.0
 pipreqs==0.4.11
 platformdirs==2.5.2
-psycopg2==2.9.2
 pycodestyle==2.8.0
 pycparser==2.21
 pydyf==0.1.2
@@ -61,3 +60,4 @@ webencodings==0.5.1
 websocket-client==1.3.3
 yarg==0.1.9
 zopfli==0.1.9
+psycopg2==2.9.2

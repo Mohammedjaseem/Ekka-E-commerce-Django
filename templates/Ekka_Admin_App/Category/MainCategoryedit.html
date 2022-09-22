@@ -703,7 +703,7 @@
 												<div class="col-12">
 													<input id="slug" name="slug" class="form-control here set-slug" type="text" {{edit_form.slug}}
                                                     
-													<small>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
+													<small>The slug is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
 												</div>
 											</div>
 
@@ -754,7 +754,13 @@
 											 {% for category in mains %}
                                     <tr>
                                         <td><span class="ec-sub-cat-count" title="Total Sub Categories">{{ forloop.counter }}</span></td>
+
+										{% if category.cat_main_img %}
                                         <td><img class="cat-thumb" src="{{category.cat_main_img.url}}" alt="Product Image" /></td>
+										{% else %}
+										<td><img class="vendor-thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="user profile" height=40 width=40 /></td>
+										{% endif %}
+
                                         <td>{{category.category_name}}</td>
                                         
                                         <td>

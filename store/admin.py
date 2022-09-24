@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Variation
+from .models import Product, Variation, ReviewRating
 
 # Register your models here.
 
@@ -25,3 +25,17 @@ class Variation_modeladmin(admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(Variation, Variation_modeladmin)
+
+
+class ReviewRating_modeladmin(admin.ModelAdmin):
+    list_display  = ('product', 'user', 'subject', 'review', 'rating')
+    list_filter   = ('product', 'user', 'subject', 'review', 'rating')
+    search_fields = ('product', 'user', 'subject', 'review', 'rating')
+
+    filter_horizontal = ()
+
+    list_per_page = 25
+
+admin.site.register(ReviewRating, ReviewRating_modeladmin)
+
+

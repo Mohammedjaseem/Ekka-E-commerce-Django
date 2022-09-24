@@ -1,0 +1,341 @@
+<!-- Sart Single product -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12">
+
+                <!-- Single product content Start -->
+                <div class="single-pro-block">
+                    <div class="single-pro-inner">
+                        <div class="row">
+                            <div class="single-pro-img single-pro-img-no-sidebar">
+                                <div class="single-product-scroll">
+                                    <div class="row space-6">
+                                        <div class="col-md-12 col-sm-12">
+                                            <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
+                                                title="Blue women purse">
+                                                <img class="example-image"
+                                                    src="{{ product.images.url }}" alt="portfolio img">
+                                            </a>
+                                        </div><br>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
+                                                title="Contrast color Purse">
+                                                <img class="example-image"
+                                                    src="{{ product.images.url }}" alt="portfolio img">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
+                                                title="Green Purse">
+                                                <img class="example-image"
+                                                    src="{{ product.images.url }}" alt="portfolio img">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
+                                                title="Wooden color purse">
+                                                <img class="example-image"
+                                                    src="{{ product.images.url }}" alt="portfolio img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="single-pro-desc single-pro-desc-no-sidebar">
+
+                                <form action="{% url 'add_cart' product.id%}" method = "POST">
+                                  {% csrf_token %}  
+
+                                <div class="single-pro-content">
+                                    <h5 class="ec-single-title">{{product.product_name}}</h5>
+                                    <div class="ec-single-rating-wrap">
+                                        <div class="ec-single-rating">
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star-o"></i>
+                                        </div>
+                                        <span class="ec-read-review"><a href="#ec-spt-nav-review">Be the first to
+                                                review this product</a></span>
+                                    </div>
+                                    <div class="ec-single-desc">{{product.short_desp}}</div>
+                                    
+                                    
+                                    <div class="ec-single-sales">
+                                        
+                                        <div class="ec-single-sales-inner">
+                                            <div class="ec-single-sales-title">sales accelerators</div>
+                                            {% if product.is_available %}
+                                            <div class="ec-single-sales-visitor">Hurry up! left <span>{{product.stock}}</span> in stock now!</div>
+                                            <div class="ec-single-sales-progress">
+                                                <span class="ec-single-progressbar"></span>
+                                            </div>
+                                            <div class="ec-single-sales-countdown">
+                                                <div class="ec-single-countdown"><span
+                                                        id="ec-single-countdown"></span></div>
+                                                <div class="ec-single-count-desc">Time is Running Out!</div>
+                                            </div>
+                                            
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="ec-single-price-stoke">
+                                        <div class="ec-single-price">
+                                            <span class="ec-single-ps-title">As low as</span>
+                                            <span class="new-price"><span> ₹{{product.mrp_price}}</span>
+                                        </div>
+                                        <div class="ec-single-stoke">
+                                            <span class="ec-single-sku">ID#: {{product.id}}</span>
+                                        </div>
+                                    </div>
+                                    {% comment %} Varition start here {% endcomment %}
+                                    
+                                    <div class="ec-pro-variation">
+                                        <div class="d-inline-block justify-content-center">
+                                        <div class="ec-pro-variation-inner ec-pro-variation-color">
+                                            <span>Select Color & Size</span>
+                                            <div class="ec-pro-variation-content">
+                                                <select name="color" class="active btn btn-info" style="border-radius:15px; color:black; text-align:left;" required>
+                                                    <option  value="" disabled selected style="">Choose color ⬇️</option>
+                                                    {% for i in product.variation_set.colors %}
+                                                    <option value="{{i.Variation_value | lower }}">{{i.Variation_value }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                
+                                                
+                                                <select name="size" class="active btn ml-2" style="border-radius:15px; background-color:#8f918f ;  color:black; text-align:left;" required>
+                                                    <option  value="" disabled selected style="" style="">Choose Size⬇️</option>
+                                                    {% for i in product.variation_set.sizes %}
+                                                    <option value="{{i.Variation_value  | lower}}">{{i.Variation_value }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                </div>
+                                    {% comment %} Variation ends here {% endcomment %}
+                                    <div class="ec-single-qty">
+                                        {% comment %} {% if product.is_available %} {% endcomment %}
+                                             {% if in_cart %}
+                                             <div class="ec-single-cart ">
+                                                <button class=" rounded-3 btn btn-success">Already added ‏‏‎ ‎<i class="fa fa-check" aria-hidden="true"></i> </button>
+                                            </div>
+                                            <div class="ec-single-cart ">
+                                                <a href="/cart/">
+                                                <button class=" rounded-3 btn  btn-secondary rounded-3 ">View Cart ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
+                                            </div> 
+                                            {% endif %} 
+                                            {% comment %} <div class="ec-single-cart ">
+                                                <a href="{% url 'remove_cart_item' product.id %}">
+                                                <button class=" rounded-3 btn btn-info">Remove  ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
+                                            </div> 
+
+
+                                            {% else%} 
+                                                <div class="qty-plus-minus">
+                                                    <input class="qty-input" type="text"  value="1" />
+                                                </div>
+                                                <div class="ec-single-cart ">
+                                                    <button type="submit"  class=" rounded-3 btn btn-primary rounded-3">Add To Cart </button>
+                                                </div>
+                                            {% endif %} {% endcomment %}
+                                        {% if product.stock <= 0 %}
+                                        <div class="ec-single-cart "> 
+                                            <button class=" rounded-3 btn btn-danger" disabled>Out of stock</button>
+                                        </div>
+                                        {% else %}
+                                        <div class="ec-single-cart ">
+                                            <button type="submit"  class=" rounded-3 btn btn-primary rounded-3">Add To Cart </button>
+                                        </div> 
+                                        {% endif %} 
+
+
+                                        {% if product.is_available %}
+                                        {% if in_cart %}
+
+                                        {% else %}
+                                        <div class="ec-single-wishlist">
+                                            <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                    src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}" class="svg_img pro_svg"
+                                                    alt="" /></a>
+                                        </div>
+                                        <div class="ec-single-quickview">
+                                            <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
+                                                title="Quick view" data-bs-toggle="modal"
+                                                data-bs-target="#ec_quickview_modal"><img
+                                                    src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
+                                                    alt="" /></a>
+                                        </div>
+                                        {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="ec-single-social">
+                                        <ul class="mb-0">
+                                            <li class="list-inline-item facebook"><a href="#"><i
+                                                        class="ecicon eci-facebook"></i></a></li>
+                                            <li class="list-inline-item twitter"><a href="#"><i
+                                                        class="ecicon eci-twitter"></i></a></li>
+                                            <li class="list-inline-item instagram"><a href="#"><i
+                                                        class="ecicon eci-instagram"></i></a></li>
+                                            <li class="list-inline-item youtube-play"><a href="#"><i
+                                                        class="ecicon eci-youtube-play"></i></a></li>
+                                            <li class="list-inline-item behance"><a href="#"><i
+                                                        class="ecicon eci-behance"></i></a></li>
+                                            <li class="list-inline-item whatsapp"><a href="#"><i
+                                                        class="ecicon eci-whatsapp"></i></a></li>
+                                            <li class="list-inline-item plus"><a href="#"><i
+                                                        class="ecicon eci-plus"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Single product content End -->
+                <!-- Single product tab start -->
+                <div class="ec-single-pro-tab">
+                    <div class="ec-single-pro-tab-wrapper">
+                        <div class="ec-single-pro-tab-nav">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab"
+                                        data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
+                                        role="tablist">More Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
+                                        role="tablist">Reviews</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content  ec-single-pro-tab-content">
+                            <div id="ec-spt-nav-details" class="tab-pane fade show active">
+                                <div class="ec-single-pro-tab-desc">
+                                    <p>{{product.description}}
+                                    </p>
+                                    <ul>
+                                        <li>Product MRP: <b>{{product.mrp_price}}</b></li>
+                                        <li>Offer Price: <b>{{product.price}}</b></li>
+                                        <li>Product Category: <b>{{product.Category_Main}}</b></li>
+                                        <li>Product Sub-Category: <b>{{product.sub_category}}</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="ec-spt-nav-info" class="tab-pane fade">
+                                <div class="ec-single-pro-tab-moreinfo">
+                                    <ul>
+                                        <li><span>Weight</span> 1000 g</li>
+                                        <li><span>Dimensions</span> 35 x 30 x 7 cm</li>
+                                        <li><span>Color</span> Black, Pink, Red, White</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="ec-spt-nav-review" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="ec-t-review-wrapper">
+                                        <div class="ec-t-review-item">
+                                            <div class="ec-t-review-avtar">
+                                                <img src="{% static 'ekka_webapp/assets/images/review-image/1.jpg' %}" alt="" />
+                                            </div>
+                                            <div class="ec-t-review-content">
+                                                <div class="ec-t-review-top">
+                                                    <div class="ec-t-review-name">Jeny Doe</div>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-t-review-bottom">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and
+                                                        typesetting industry. Lorem Ipsum has been the industry's
+                                                        standard dummy text ever since the 1500s, when an unknown
+                                                        printer took a galley of type and scrambled it to make a
+                                                        type specimen.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ec-t-review-item">
+                                            <div class="ec-t-review-avtar">
+                                                <img src="{% static 'ekka_webapp/assets/images/review-image/2.jpg' %}" alt="" />
+                                            </div>
+                                            <div class="ec-t-review-content">
+                                                <div class="ec-t-review-top">
+                                                    <div class="ec-t-review-name">Linda Morgus</div>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-t-review-bottom">
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and
+                                                        typesetting industry. Lorem Ipsum has been the industry's
+                                                        standard dummy text ever since the 1500s, when an unknown
+                                                        printer took a galley of type and scrambled it to make a
+                                                        type specimen.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="ec-ratting-content">
+                                        <h3>Add a Review</h3>
+                                        <div class="ec-ratting-form">
+                                            <form action="#">
+                                                <div class="ec-ratting-star">
+                                                    <span>Your rating:</span>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-ratting-input">
+                                                    <input name="your-name" placeholder="Name" type="text" />
+                                                </div>
+                                                <div class="ec-ratting-input">
+                                                    <input name="your-email" placeholder="Email*" type="email"
+                                                        required />
+                                                </div>
+                                                <div class="ec-ratting-input form-submit">
+                                                    <textarea name="your-commemt"
+                                                        placeholder="Enter Your Comment"></textarea>
+                                                    <button class=" rounded-3 btn btn-primary" type="submit"
+                                                        value="Submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- product details description area end -->
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- End Single product -->

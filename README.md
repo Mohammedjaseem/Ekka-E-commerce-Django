@@ -4,6 +4,8 @@ Live Preview :  ekka.jassy.in
 
 # updates to be added
 
+Google Authentication
+
 Review
 
 wishlist

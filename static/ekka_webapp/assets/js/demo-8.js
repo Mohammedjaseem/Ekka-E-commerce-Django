@@ -461,17 +461,21 @@ function ecCheckCookie()
         verticalSwiping:true,    
     });
 
+    let todays = new Date().toLocaleDateString()
+
     /*--------------------- Product Countdown --------------------- */
     $("#ec-spe-count-1").countdowntimer({
-        startDate : "2021/01/01 12:00:00",
-        dateAndTime : "2021/10/10 12:00:00",
+        startDate : "2021/10/10 12:00:00",
+        dateAndTime : "2021/11/11 12:00:00",
         labelsFormat : true,
         displayFormat : "DHMS"
     });
 
+    let today = new Date().toLocaleDateString()
+
     $("#ec-spe-count-2").countdowntimer({
-        startDate : "2021/01/01 12:00:00",
-        dateAndTime : "2021/11/10 12:00:00",
+        startDate : "2021/10/10 12:00:00",
+        dateAndTime : "2021/11/11 12:00:00",
         labelsFormat : true,
         displayFormat : "DHMS"
     });

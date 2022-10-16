@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect 
 from store.models import Product
 from category.models import CategoryMain, SubCategory
+from store.models import Product
 from carts.views import _cart_id
 from carts.models import CartItem as cart_item
 from django.http import HttpResponse
@@ -16,9 +17,11 @@ def store(request, category_slug=None):
         categories = get_object_or_404(CategoryMain, slug=category_slug)
         products = Product.objects.filter(Category_Main=categories )  #, is_available=True to display only avilable products
         produ_count = products.count()
+        related_products = Product.objects.filter(Category_Main=categories)
     else:
         products = Product.objects.all() #.filter(is_available=True) to display only avilable products
         produ_count = products.count()
+        
 
     context = {
         'products': products,
@@ -36,9 +39,11 @@ def substore(request, category_slug=None, sub_category_slug=None):
                 categories = get_object_or_404(SubCategory, slug=sub_category_slug)
                 products = Product.objects.filter(sub_category=categories) #, is_available=True to display only avilable products
                 produ_count = products.count()
+
         else:
             products = Product.objects.all()   #.filter(is_available=True) to display only avilable products
             produ_count = products.count()
+
 
     context = {
         'products': products,
@@ -51,12 +56,18 @@ def product_detail(request, category_slug=None, sub_category_slug=None, product_
     if product_slug != None:
         product = get_object_or_404(Product, slug=product_slug)
         in_cart = cart_item.objects.filter(cart__cart_id=_cart_id(request), product=product).exists()
+        # list products with same sub category
+        related = Product.objects.filter(sub_category=product.sub_category).exclude(id=product.id)
+        print (related)
 
     context = {
         'product': product,
         'in_cart': in_cart,
+        'related_products': related,
         }
     return render(request, 'store/product_detail.html', context)
+
+
 
 def search(request):
     if 'keyword' in request.GET:

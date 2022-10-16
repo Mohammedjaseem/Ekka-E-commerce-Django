@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Variation, ReviewRating
+from .models import Product, Variation, ReviewRating, deals
 
 # Register your models here.
 
@@ -37,5 +37,17 @@ class ReviewRating_modeladmin(admin.ModelAdmin):
     list_per_page = 25
 
 admin.site.register(ReviewRating, ReviewRating_modeladmin)
+
+
+class deals_modeladmin(admin.ModelAdmin):
+    list_display  = ('product', 'discount', 'start_date', 'end_date')
+    list_filter   = ('product', 'discount', 'start_date', 'end_date')
+    search_fields = ('product', 'discount', 'start_date', 'end_date')
+
+    filter_horizontal = ()
+
+    list_per_page = 25
+
+admin.site.register(deals, deals_modeladmin)
 
 

@@ -13,6 +13,14 @@ class Product(models.Model):
     short_desp    = models.CharField(max_length=150)
     description   = models.TextField(blank=True)
     images        = models.ImageField(upload_to='Product/product_img', blank=True)
+    # Multiple images upload
+    Image_1       = models.ImageField(upload_to='Product/product_img/product_diffrent_img', blank=True)
+    Image_2       = models.ImageField(upload_to='Product/product_img/product_diffrent_img', blank=True)
+    Image_3       = models.ImageField(upload_to='Product/product_img/product_diffrent_img', blank=True)
+    Image_4       = models.ImageField(upload_to='Product/product_img/product_diffrent_img', blank=True)
+    Image_5       = models.ImageField(upload_to='Product/product_img/product_diffrent_img', blank=True)
+    
+    already_saled = models.IntegerField(default=23)
     stock         = models.IntegerField(default=0)
     is_available  = models.BooleanField(default=True)
     
@@ -24,6 +32,21 @@ class Product(models.Model):
     
     def get_url(self):
             return reverse('product_detail', args=[self.slug])
+
+
+class deals(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    discount = models.IntegerField(default=0)
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.product.product_name
+
+    def get_url(self):
+        return reverse('product_detail', args=[self.product.slug])
+
+
 
 class VariationManager(models.Manager):
     def colors(self):

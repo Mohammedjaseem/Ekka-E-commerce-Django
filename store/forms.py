@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Variation, ReviewRating 
+from .models import Product, Variation, ReviewRating
 
 class variationForm(forms.ModelForm):
     class Meta:
@@ -11,6 +11,7 @@ class variationForm(forms.ModelForm):
             'Variation_value': forms.TextInput(attrs={'placeholder': 'Variation Value', 'class': 'form-control here'}),
             'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
+
 
 class ReviewForm(forms.ModelForm):
     class Meta:

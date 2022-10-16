@@ -295,10 +295,13 @@ def paymenthandler(request, total=0, quantity=0):
                         orderproduct.variation.set(product_variation)
                         orderproduct.save()
 
-                        # Reduce the quantity of the sold products from orginal stock
+                        # Reduce the quantity of the sold products from orginal stock & add sold product to sold product table
                         product = Product.objects.get(id=item.product_id)
                         product.stock -= item.quantity
+                        product.already_saled += item.quantity
                         product.save()
+
+
 
                        
 

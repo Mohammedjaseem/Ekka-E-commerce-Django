@@ -3,10 +3,27 @@
 
 
 {% block extra_head %}
-<link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css' %}">
-<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css' %}" />
-<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css' %}" />
+<link rel="stylesheet" id="bg-switcher-css" href="{% static 'ekka_webapp/assets/css/backgrounds/bg-4.css'%}">
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css'%}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- css Icon Font -->
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/vendor/ecicons.min.css'%}" />
+
+<!-- css All Plugins Files -->
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/animatecss'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/swiper-bundle.mincss'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/jquery-ui.min.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/countdownTimer.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/slick.min.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/nouislider.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/plugins/bootstrap.css'%}" />
+
+<!-- Main Style -->
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/style.css'%}" />
+<link rel="stylesheet" href="{% static 'ekka_webapp/assets/css/responsive.css'%}" />
+
 {% endblock %}
 
 
@@ -14,82 +31,7 @@
 {% block content %}
 
 
-    <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
-    <div id="ec-side-cart" class="ec-side-cart">
-        <div class="ec-cart-inner">
-            <div class="ec-cart-top">
-                <div class="ec-cart-title">
-                    <span class="cart_title">My Cart</span>
-                    <button class=" rounded-3 ec-close">×</button>
-                </div>
-                <ul class="eccart-pro-items">
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
-                            <span class="cart-price"><span>$76.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text"  value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">x</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'ekka_webapp/assets/images/product-image/12_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
-                            <span class="cart-price"><span>$64.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text"  value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">x</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="{% static 'ekka_webapp/assets/images/product-image/3_1.jpg' %}" alt="product"></a>
-                        <div class="ec-pro-content">
-                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
-                            <span class="cart-price"><span>$59.00</span> x 1</span>
-                            <div class="qty-plus-minus">
-                                <input class="qty-input" type="text"  value="1" />
-                            </div>
-                            <a href="javascript:void(0)" class="remove">x</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="ec-cart-bottom">
-                <div class="cart-sub-total">
-                    <table class="table cart-table">
-                        <tbody>
-                            <tr>
-                                <td class="text-left">Sub-Total :</td>
-                                <td class="text-right">$300.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">VAT (20%) :</td>
-                                <td class="text-right">$60.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">Total :</td>
-                                <td class="text-right primary-color">$360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_btn">
-                    <a href="cart.html" class="btn btn-primary rounded-3">View Cart</a>
-                    <a href="checkout.html" class="btn  btn-secondary rounded-3 ">Checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ekka Cart End -->
-
+    
     <!-- Ec breadcrumb start -->
     <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
@@ -121,49 +63,63 @@
                 <div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12">
 
                     <!-- Single product content Start -->
+			
+			<form action="{% url 'add_cart' product.id%}" method = "POST">
+                        {% csrf_token %} 
+
+
                     <div class="single-pro-block">
                         <div class="single-pro-inner">
                             <div class="row">
                                 <div class="single-pro-img single-pro-img-no-sidebar">
                                     <div class="single-product-scroll">
-                                        <div class="row space-6">
-                                            <div class="col-md-12 col-sm-12">
-                                                <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
-                                                    title="Blue women purse">
-                                                    <img class="example-image"
-                                                        src="{{ product.images.url }}" alt="portfolio img">
-                                                </a>
-                                            </div><br>
-                                            <div class="col-md-4 col-sm-4">
-                                                <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
-                                                    title="Contrast color Purse">
-                                                    <img class="example-image"
-                                                        src="{{ product.images.url }}" alt="portfolio img">
-                                                </a>
+                                         <div class="single-product-cover">
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="{{product.Image_1.url}}"
+                                                    alt="">
                                             </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
-                                                    title="Green Purse">
-                                                    <img class="example-image"
-                                                        src="{{ product.images.url }}" alt="portfolio img">
-                                                </a>
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="{{product.Image_2.url}}"
+                                                    alt="">
                                             </div>
-                                            <div class="col-md-4 col-sm-4">
-                                                <a class="popup-gallery" href="{{product.Category_Main.get_url}}{{product.sub_category.slug}}/{{product.slug}}"
-                                                    title="Wooden color purse">
-                                                    <img class="example-image"
-                                                        src="{{ product.images.url }}" alt="portfolio img">
-                                                </a>
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="{{product.Image_3.url}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="{{product.Image_4.url}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="{{product.Image_5.url}}"
+                                                    alt="">
+                                            </div>
+                                        </div> 
+                                        <div class="single-nav-thumb">
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="{{product.Image_1.url}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="{{product.Image_2.url}}"
+                                                    alt="">
+                                            </div> 
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="{{product.Image_3.url}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="{{product.Image_4.url}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="{{product.Image_5.url}}"
+                                                    alt="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="single-pro-desc single-pro-desc-no-sidebar">
-
-                                    <form action="{% url 'add_cart' product.id%}" method = "POST">
-                                      {% csrf_token %}  
-
                                     <div class="single-pro-content">
                                         <h5 class="ec-single-title">{{product.product_name}}</h5>
                                         <div class="ec-single-rating-wrap">
@@ -178,15 +134,15 @@
                                                     review this product</a></span>
                                         </div>
                                         <div class="ec-single-desc">{{product.short_desp}}</div>
-                                        
-                                        
+
                                         <div class="ec-single-sales">
-                                            
                                             <div class="ec-single-sales-inner">
                                                 <div class="ec-single-sales-title">sales accelerators</div>
-                                                {% if product.is_available %}
-                                                <div class="ec-single-sales-visitor">Hurry up! left <span>{{product.stock}}</span> in stock now!</div>
+                                                <div class="ec-single-sales-visitor">real time <span>24</span> visitor
+                                                    right now!</div>
                                                 <div class="ec-single-sales-progress">
+                                                    <span class="ec-single-progress-desc">Hurry up!left 29 in
+                                                        stock</span>
                                                     <span class="ec-single-progressbar"></span>
                                                 </div>
                                                 <div class="ec-single-sales-countdown">
@@ -194,20 +150,42 @@
                                                             id="ec-single-countdown"></span></div>
                                                     <div class="ec-single-count-desc">Time is Running Out!</div>
                                                 </div>
-                                                
                                             </div>
-                                            {% endif %}
                                         </div>
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">As low as</span>
-                                                <span class="new-price"><span> ₹{{product.mrp_price}}</span>
+                                                <span class="new-price">?{{product.price}}</span>
                                             </div>
                                             <div class="ec-single-stoke">
-                                                <span class="ec-single-sku">ID#: {{product.id}}</span>
+                                                <span class="ec-single-ps-title">IN STOCK</span>
+                                                <span class="ec-single-sku"># {{product.stock}} Units</span>
                                             </div>
                                         </div>
-                                        {% comment %} Varition start here {% endcomment %}
+                             
+                                        {% comment %} <div class="ec-pro-variation">
+                                           <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                <span>SIZE</span>
+                                                <div class="ec-pro-variation-content">
+                                                    <ul>
+                                                        <li class="active"><span>7</span></li>
+                                                        <li><span>8</span></li>
+                                                        <li><span>9</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-variation-inner ec-pro-variation-color">
+                                                <span>Color</span>
+                                                <div class="ec-pro-variation-content">
+                                                    <ul>
+                                                        <li class="active"><span
+                                                                style="background-color:#23839c;"></span></li>
+                                                        <li><span style="background-color:#000;"></span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>  {% endcomment %}
+
+                                            {% comment %} Varition start here {% endcomment %}
                                         
                                         <div class="ec-pro-variation">
                                             <div class="d-inline-block justify-content-center">
@@ -215,82 +193,44 @@
                                                 <span>Select Color & Size</span>
                                                 <div class="ec-pro-variation-content">
                                                     <select name="color" class="active btn btn-info" style="border-radius:15px; color:black; text-align:left;" required>
-                                                        <option  value="" disabled selected style="">Choose color ⬇️</option>
+                                                        <option  value="" disabled selected style="">Choose color </option>
                                                         {% for i in product.variation_set.colors %}
                                                         <option value="{{i.Variation_value | lower }}">{{i.Variation_value }}</option>
                                                         {% endfor %}
                                                     </select>
-                                                    
-                                                    
                                                     <select name="size" class="active btn ml-2" style="border-radius:15px; background-color:#8f918f ;  color:black; text-align:left;" required>
-                                                        <option  value="" disabled selected style="" style="">Choose Size⬇️</option>
+                                                        <option  value="" disabled selected style="" style="">Choose Size</option>
                                                         {% for i in product.variation_set.sizes %}
                                                         <option value="{{i.Variation_value  | lower}}">{{i.Variation_value }}</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
-                                                
                                             </div>
-                                           
-                                            
                                         </div>
-                                    </div>
                                         {% comment %} Variation ends here {% endcomment %}
+
+                                        </div>
                                         <div class="ec-single-qty">
-                                            {% comment %} {% if product.is_available %} {% endcomment %}
-                                                 {% if in_cart %}
-                                                 <div class="ec-single-cart ">
-                                                    <button class=" rounded-3 btn btn-success">Already added ‏‏‎ ‎<i class="fa fa-check" aria-hidden="true"></i> </button>
-                                                </div>
-                                                <div class="ec-single-cart ">
-                                                    <a href="/cart/">
-                                                    <button class=" rounded-3 btn  btn-secondary rounded-3 ">View Cart ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
-                                                </div> 
-                                                {% endif %} 
-                                                {% comment %} <div class="ec-single-cart ">
-                                                    <a href="{% url 'remove_cart_item' product.id %}">
-                                                    <button class=" rounded-3 btn btn-info">Remove  ‏‏‎ ‎<i class="fa fa-cart-plus" aria-hidden="true"></i> </button></a>
-                                                </div> 
-
-
-                                                {% else%} 
-                                                    <div class="qty-plus-minus">
-                                                        <input class="qty-input" type="text"  value="1" />
-                                                    </div>
-                                                    <div class="ec-single-cart ">
-                                                        <button type="submit"  class=" rounded-3 btn btn-primary rounded-3">Add To Cart </button>
-                                                    </div>
-                                                {% endif %} {% endcomment %}
-                                            {% if product.stock <= 0 %}
-                                            <div class="ec-single-cart "> 
-                                                <button class=" rounded-3 btn btn-danger" disabled>Out of stock</button>
-                                            </div>
-                                            {% else %}
+                                            {% comment %} <div class="qty-plus-minus">
+                                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                            </div> {% endcomment %}
                                             <div class="ec-single-cart ">
-                                                <button type="submit"  class=" rounded-3 btn btn-primary rounded-3">Add To Cart </button>
-                                            </div> 
-                                            {% endif %} 
-
-
-                                            {% if product.is_available %}
-                                            {% if in_cart %}
-
-                                            {% else %}
+                                                <button class="btn btn-primary">Add To Cart</button>
+                                            </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                        src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}" class="svg_img pro_svg"
+                                                        src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg'%}" class="svg_img pro_svg"
                                                         alt="" /></a>
                                             </div>
                                             <div class="ec-single-quickview">
                                                 <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
                                                     data-bs-target="#ec_quickview_modal"><img
-                                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
+                                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg'%}" class="svg_img pro_svg"
                                                         alt="" /></a>
                                             </div>
-                                            {% endif %}
-                                            {% endif %}
-                                        </div>
+                                        </div>	
+					</form>
                                         <div class="ec-single-social">
                                             <ul class="mb-0">
                                                 <li class="list-inline-item facebook"><a href="#"><i
@@ -310,7 +250,6 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </form>
                                 </div>
                             </div>
                         </div>
@@ -341,10 +280,10 @@
                                         <p>{{product.description}}
                                         </p>
                                         <ul>
-                                            <li>Product MRP: <b>{{product.mrp_price}}</b></li>
-                                            <li>Offer Price: <b>{{product.price}}</b></li>
-                                            <li>Product Category: <b>{{product.Category_Main}}</b></li>
-                                            <li>Product Sub-Category: <b>{{product.sub_category}}</b></li>
+                                            <li>Any Product types that You want - Simple, Configurable</li>
+                                            <li>Downloadable/Digital Products, Virtual Products</li>
+                                            <li>Inventory Management with Backordered items</li>
+                                            <li>Flatlock seams throughout.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -352,7 +291,7 @@
                                     <div class="ec-single-pro-tab-moreinfo">
                                         <ul>
                                             <li><span>Weight</span> 1000 g</li>
-                                            <li><span>Dimensions</span> 35 × 30 × 7 cm</li>
+                                            <li><span>Dimensions</span> 35 x 30 x 7 cm</li>
                                             <li><span>Color</span> Black, Pink, Red, White</li>
                                         </ul>
                                     </div>
@@ -363,7 +302,7 @@
                                         <div class="ec-t-review-wrapper">
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="{% static 'ekka_webapp/assets/images/review-image/1.jpg' %}" alt="" />
+                                                    <img src="{% static 'ekka_webapp/assets/images/review-image/1.jpg'%}" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -388,7 +327,7 @@
                                             </div>
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="{% static 'ekka_webapp/assets/images/review-image/2.jpg' %}" alt="" />
+                                                    <img src="{% static 'ekka_webapp/assets/images/review-image/2.jpg'%}" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -437,7 +376,7 @@
                                                     <div class="ec-ratting-input form-submit">
                                                         <textarea name="your-commemt"
                                                             placeholder="Enter Your Comment"></textarea>
-                                                        <button class=" rounded-3 btn btn-primary" type="submit"
+                                                        <button class="btn btn-primary" type="submit"
                                                             value="Submit">Submit</button>
                                                     </div>
                                                 </form>
@@ -450,11 +389,13 @@
                     </div>
                     <!-- product details description area end -->
                 </div>
-                
             </div>
         </div>
     </section>
     <!-- End Single product -->
+
+
+
 
     <!-- Related Product Start -->
     <section class="section ec-releted-product section-space-p">
@@ -470,310 +411,72 @@
             </div>
             <div class="row margin-minus-b-30">
                 <!-- Related Product Content -->
+                {% for item in related_products %}
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                     <div class="ec-product-inner">
                         <div class="ec-pro-image-outer">
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %}" alt="Product" />
+                                    <img class="main-image p-3"
+                                        src="{{item.images.url}}" alt="Product" />
                                     <img class="hover-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/6_2.jpg' %}" alt="Product" />
+                                        src="{{item.images.url}}" alt="Product" />
                                 </a>
-                                <span class="percentage">20%</span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
-                                        alt="" /></a>
-                                <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="{% static 'ekka_webapp/assets/images/icons/compare.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                </div>
                             </div>
                         </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Round Neck T-Shirt</a></h5>
+                        <div class="ec-pro-content p-2">
+                            <h5 class="ec-pro-title "><a href="product-left-sidebar.html">{{item.product_name}}</a></h5>
                             <div class="ec-pro-rating">
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star"></i>
+                                <i class="ecicon eci-star fill p-2"></i>
+                                <i class="ecicon eci-star fill p-2"></i>
+                                <i class="ecicon eci-star fill p-2"></i>
+                                <i class="ecicon eci-star fill p-2"></i>
+                                <i class="ecicon eci-star p-2"></i>
                             </div>
-                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
-                            <span class="ec-price">
-                                <span class="old-price">$27.00</span>
-                                <span class="new-price">$22.00</span>
+                            <div class="px-3">{{item.short_desp}}</div>
+                       
+                            <span class="ec-price px-4 py-2">
+                                <span class="old-price">?27.00</span>
+                                <span class="new-price">?22.00</span>
                             </span>
-                            <div class="ec-pro-option">
-                                <div class="ec-pro-color">
-                                    <span class="ec-pro-opt-label">Color</span>
-                                    <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/6_1.jpg' %}"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#e8c2ff;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/6_2.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/6_2.jpg' %}"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#9cfdd5;"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ec-pro-size">
-                                    <span class="ec-pro-opt-label">Size</span>
-                                    <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$25.00" data-new="$20.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$27.00"
-                                                data-new="$22.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$35.00"
-                                                data-new="$30.00" data-tooltip="Extra Large">XL</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
-                    <div class="ec-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/7_1.jpg' %}" alt="Product" />
-                                    <img class="hover-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/7_2.jpg' %}" alt="Product" />
-                                </a>
-                                <span class="percentage">20%</span>
-                                <span class="flags">
-                                    <span class="sale">Sale</span>
-                                </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
-                                        alt="" /></a>
-                                <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="{% static 'ekka_webapp/assets/images/icons/compare.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Full Sleeve Shirt</a></h5>
-                            <div class="ec-pro-rating">
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star"></i>
-                            </div>
-                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
-                            <span class="ec-price">
-                                <span class="old-price">$12.00</span>
-                                <span class="new-price">$10.00</span>
-                            </span>
-                            <div class="ec-pro-option">
-                                <div class="ec-pro-color">
-                                    <span class="ec-pro-opt-label">Color</span>
-                                    <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/7_1.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/7_1.jpg' %}"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#01f1f1;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/7_2.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/7_2.jpg' %}"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#b89df8;"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ec-pro-size">
-                                    <span class="ec-pro-opt-label">Size</span>
-                                    <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$12.00" data-new="$10.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$15.00"
-                                                data-new="$12.00" data-tooltip="Medium">M</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$20.00"
-                                                data-new="$17.00" data-tooltip="Extra Large">XL</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
-                    <div class="ec-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/1_1.jpg' %}" alt="Product" />
-                                    <img class="hover-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/1_2.jpg' %}" alt="Product" />
-                                </a>
-                                <span class="percentage">20%</span>
-                                <span class="flags">
-                                    <span class="sale">Sale</span>
-                                </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
-                                        alt="" /></a>
-                                <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="{% static 'ekka_webapp/assets/images/icons/compare.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Cute Baby Toy's</a></h5>
-                            <div class="ec-pro-rating">
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star"></i>
-                            </div>
-                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
-                            <span class="ec-price">
-                                <span class="old-price">$40.00</span>
-                                <span class="new-price">$30.00</span>
-                            </span>
-                            <div class="ec-pro-option">
-                                <div class="ec-pro-color">
-                                    <span class="ec-pro-opt-label">Color</span>
-                                    <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/1_1.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/1_1.jpg' %}"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#90cdf7;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/1_2.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/1_2.jpg' %}"
-                                                data-tooltip="Orange"><span
-                                                    style="background-color:#ff3b66;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/1_3.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/1_3.jpg' %}"
-                                                data-tooltip="Green"><span
-                                                    style="background-color:#ffc476;"></span></a></li>
-                                        <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/1_4.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/1_4.jpg' %}"
-                                                data-tooltip="Sky Blue"><span
-                                                    style="background-color:#1af0ba;"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="ec-pro-size">
-                                    <span class="ec-pro-opt-label">Size</span>
-                                    <ul class="ec-opt-size">
-                                        <li class="active"><a href="#" class="ec-opt-sz"
-                                                data-old="$40.00" data-new="$30.00"
-                                                data-tooltip="Small">S</a></li>
-                                        <li><a href="#" class="ec-opt-sz" data-old="$50.00"
-                                                data-new="$40.00" data-tooltip="Medium">M</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
-                    <div class="ec-product-inner">
-                        <div class="ec-pro-image-outer">
-                            <div class="ec-pro-image">
-                                <a href="product-left-sidebar.html" class="image">
-                                    <img class="main-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/2_1.jpg' %}" alt="Product" />
-                                    <img class="hover-image"
-                                        src="{% static 'ekka_webapp/assets/images/product-image/2_2.jpg' %}" alt="Product" />
-                                </a>
-                                <span class="percentage">20%</span>
-                                <span class="flags">
-                                    <span class="new">New</span>
-                                </span>
-                                <a href="#" class="quickview" data-link-action="quickview"
-                                    title="Quick view" data-bs-toggle="modal"
-                                    data-bs-target="#ec_quickview_modal"><img
-                                        src="{% static 'ekka_webapp/assets/images/icons/quickview.svg' %}" class="svg_img pro_svg"
-                                        alt="" /></a>
-                                <div class="ec-pro-actions">
-                                    <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="{% static 'ekka_webapp/assets/images/icons/compare.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                    <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/cart.svg' %}" class="svg_img pro_svg"
-                                            alt="" /> Add To Cart</button>
-                                    <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="{% static 'ekka_webapp/assets/images/icons/wishlist.svg' %}"
-                                            class="svg_img pro_svg" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ec-pro-content">
-                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Jumbo Carry Bag</a></h5>
-                            <div class="ec-pro-rating">
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star fill"></i>
-                                <i class="ecicon eci-star"></i>
-                            </div>
-                            <div class="ec-pro-list-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dutmmy text ever since the 1500s, when an unknown printer took a galley.</div>
-                            <span class="ec-price">
-                                <span class="old-price">$50.00</span>
-                                <span class="new-price">$40.00</span>
-                            </span>                                                
-                            <div class="ec-pro-option">
-                                <div class="ec-pro-color">
-                                    <span class="ec-pro-opt-label">Color</span>
-                                    <ul class="ec-opt-swatch ec-change-img">
-                                        <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="{% static 'ekka_webapp/assets/images/product-image/2_1.jpg' %}"
-                                                data-src-hover="{% static 'ekka_webapp/assets/images/product-image/2_2.jpg' %}"
-                                                data-tooltip="Gray"><span
-                                                    style="background-color:#fdbf04;"></span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor%}
+                
+                
+                
             </div>
         </div>
     </section>
     <!-- Related Product end -->
+
+        <!-- Vendor JS -->
+        <script src="{% static 'ekka_webapp/assets/js/vendor/jquery-3.5.1.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/jquery.notify.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/jquery.bundle.notify.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/popper.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/bootstrap.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/jquery-migrate-3.3.0.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/modernizr-3.11.2.min.js'%}"></script>
+    
+        <!--Plugins JS-->
+        <script src="{% static 'ekka_webapp/assets/js/plugins/swiper-bundle.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/countdownTimer.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/scrollup.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/jquery.zoom.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/slick.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/infiniteslidev2.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/vendor/jquery.magnific-popup.min.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/plugins/jquery.sticky-sidebar.js'%}"></script>
+        <!-- Google translate Js -->
+        <script src="{% static 'ekka_webapp/assets/js/vendor/google-translate.js'%}"></script>
+    
+        <!-- Main Js -->
+        <script src="{% static 'ekka_webapp/assets/js/vendor/index.js'%}"></script>
+        <script src="{% static 'ekka_webapp/assets/js/main.js'%}"></script>
+    
 
 
 

@@ -1,0 +1,67 @@
+/*! CountdownTimer for jQuery @version2.0.1 (https://harshen.github.io/jQuery-countdownTimer/).
+ *  Written by Harshen Pandey (https://remote.com/harshen) January 2014.
+ *  @license MIT (https://github.com/harshen/jQuery-countdownTimer/blob/master/LICENSE.md)
+ *  and GPLv3 (https://github.com/harshen/jQuery-countdownTimer/blob/master/LICENSE-GPL.md).
+ *  @release - 29/10/2017
+ *  Copyright (c) 2017 - 2020 Harshen Pandey
+ *  Please attribute the author if you use it.
+ */
+ /* jQuery.countdownTimer.css*/
+
+
+ .lang-rtl {
+ 	direction: rtl;
+ }
+
+ .displaySection {
+ 	display: flex;
+ 	float: left;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+ 	margin-right: 20px;
+
+ }
+
+ .timerDisplay > span.displaySection:last-child {
+ 	margin: 0;
+ }
+
+
+ .numberDisplay {
+ 	font-size: 16px;
+ 	min-height: 40px;
+ 	min-width: 40px;
+ 	color: #ffffff;
+ 	display: flex;
+ 	justify-content: center;
+ 	align-items: center;
+
+ }
+
+ .periodDisplay {
+ 	display: block;
+ }
+
+ .timerDisplay {
+ 	clear: both;
+ 	width: 100%;
+ 	padding: 0;
+ 	text-align: center;
+ 	float: left;
+ }
+
+ .labelformat {
+ 	float: left;
+ 	width: auto;
+ 	font-size: 16px;
+ 	color: #555555;
+ 	line-height: 1.4;
+ }
+
+
+ @media only screen and (max-width: 1199px){
+ 	.displaySection {
+ 		margin-right: 10px;
+ 	}
+ }

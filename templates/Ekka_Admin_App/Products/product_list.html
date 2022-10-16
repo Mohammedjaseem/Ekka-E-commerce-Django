@@ -704,7 +704,7 @@
 												<div class="col-12">
 													<input id="slug" name="slug" class="form-control here set-slug" type="text" {{addProduct.slug}}
                                                     
-													<small>The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
+													<small>The slug is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
 												</div>
 											</div>
 
@@ -833,7 +833,13 @@
 											 {% for prodt in product %}
                                     <tr>
                                         <td><span class="ec-sub-cat-count" title="Total Sub Categories">{{ forloop.counter }}</span></td>
+
+										{% if prodt.images %}
                                         <td><img class="cat-thumb" src="{{prodt.images.url}}" alt="Product Image" /></td>
+										{% else %}
+										<td><img class="vendor-thumb" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="user profile" height=40 width=40 /><td>
+										{% endif %}
+
                                         <td><a href="../..{{prodt.Category_Main.get_url}}{{prodt.sub_category.slug}}/{{prodt.slug}}">{{prodt.product_name}}</td>
                                         
                                         <td>
@@ -860,8 +866,8 @@
                                             {% endif %}
                                         </td>
                                         
-                                        {% comment %} <td>₹{{prodt.mrp_price}}</td> {% endcomment %}
-                                        <td>₹<b>{{prodt.price}}</b></td>
+                                        {% comment %} <td>?{{prodt.mrp_price}}</td> {% endcomment %}
+                                        <td>?<b>{{prodt.price}}</b></td>
                                         <td>{{prodt.stock}}</td>
                                         <td> {{prodt.short_desp }}</td>
                                         <td>

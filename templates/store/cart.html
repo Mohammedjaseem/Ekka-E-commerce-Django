@@ -24,7 +24,7 @@
         <div class="ec-cart-top">
             <div class="ec-cart-title">
                 <span class="cart_title">My Cart</span>
-                <button class=" rounded-3 ec-close">×</button>
+                <button class=" rounded-3 ec-close">x</button>
             </div>
             <ul class="eccart-pro-items">
                 <li>
@@ -178,7 +178,7 @@
                                                         {% comment %} Vartion like clr siz edns here {% endcomment %}
 
                                                 <td data-label="Price" class="ec-cart-pro-price"><span
-                                                        class="amount">₹ {{cart_item.product.price }}</span></td>
+                                                        class="amount">? {{cart_item.product.price }}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="cart-qty-plus-minus">
@@ -208,11 +208,12 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="ec-cart-update-bottom">
-                                            <a href="/store/">Continue Shopping</a>
-                                            <a href="/cart/checkout/">Proceed to Checkout</a>
+                                            <a href='/store/' style=" text-decoration: none;">
+                                                <span class=" rounded-3  btn-secondary p-2" style="color:white; text-decoration: none;">Continue shopping</span></a>
+                                        
                                            
-                                            <a href='/cart/checkout/'>
-                                                <button class=" rounded-3  btn-primary" style="color:white;">Check Out</button></a>
+                                            <a href='/cart/checkout/' style=" text-decoration: none;">
+                                                <span class=" rounded-3  btn-primary p-2" style="color:white; text-decoration: none;">Check Out</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -278,11 +279,11 @@
                                 <div class="ec-cart-summary">
                                     <div>
                                         <span class="text-left">Sub-Total</span>
-                                        <span class="text-right">₹{{total}}</span>
+                                        <span class="text-right">{{total}}</span>
                                     </div>
                                     <div>
                                         <span class="text-left">Taxs Charge ( {{tax_percentage}}% )</span>
-                                        <span class="text-right">₹{{tax }}</span>
+                                        <span class="text-right">{{tax }}</span>
                                     </div>
                                     
                                     <div>
@@ -300,7 +301,7 @@
                                     </div>
                                     <div class="ec-cart-summary-total">
                                         <span class="text-left">Total Amount</span>
-                                        <span class="text-right">₹<b>{{grand_total}}</b></span>
+                                        <span class="text-right"><b>{{grand_total}}</b></span>
                                     </div>
                                 </div>
 
